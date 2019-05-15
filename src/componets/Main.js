@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+// import { Connect } from 'react-redux';
 
 import Code from './Code';
 import Note from './Note';
 import UserNotes from './UserNotes';
 
-class Main extends Component {
+export default class Main extends Component {
 	render() {
 		return (
 			<React.Fragment>
@@ -16,4 +17,4 @@ class Main extends Component {
 	}
 }
 
-export default Main;
+// export default connect()(Main);

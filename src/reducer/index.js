@@ -1,6 +1,6 @@
 const initialState = 'im legit';
 
-function reducer(state, action) {
+export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		default:
 			return state;
