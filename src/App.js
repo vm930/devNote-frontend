@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//import components for main page
+import Main from './componets/Main';
+import LogIn from './componets/LogIn';
+
+class App extends Component {
+	render() {
+		return (
+			<React.Fragment>
+				<LogIn />
+				<Main />
+			</React.Fragment>
+		);
+	}
 }
 
 export default App;
+
+// function App() {
+// 	return (
+// 		<React.Fragment>
+// 			{/* <LogIn/> */}
+// 			<Main />
+// 			<BoldMark.js />
+// 		</React.Fragment>
+// 	);
+// }
+
+// export default App;
