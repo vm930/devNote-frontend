@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Editor } from 'slate-react';
 import { Value } from 'slate';
-
-//import styling components into NoteEditor
-import BoldMark from './BoldMark';
-import ItalicMark from './ItalicMark';
 import Icon from 'react-icons-kit';
 
-//styling functionalities into NoteEditor
-import { FormatToolbar } from './index';
+//import styling components into NoteEditor
+import BoldMark from '../containers/BoldMark';
+import ItalicMark from '../containers/ItalicMark';
+import FormatToolbar from '../containers/FormatToolbar';
+
+//import tools components into NoteEditor toolBars
 import { italic } from 'react-icons-kit/fa/italic';
 import { bold } from 'react-icons-kit/fa/bold';
 
@@ -34,6 +34,57 @@ const initialValue = Value.fromJSON({
 });
 
 class NoteEditor extends Component {
+	state = {
+		value: initialValue
+	};
+
+	onChange = ({ value }) => {
+		if (value.document != this.state.value.document) {
+			const content = JSON.stringify(value.toJSON());
+			this.createNote(content);
+		}
+		this.setState({ value });
+	};
+
+	onKeyDown = (e, change, next) => {
+		if (!e.ctrlKey) {
+			return next();
+		}
+
+		e.preventDefault();
+		switch (e.key) {
+			case 'b': {
+				change.toggleMark('bold');
+				return true;
+			}
+			case 'i': {
+				change.toggleMark('italic');
+				return true;
+			}
+			default: {
+				return;
+			}
+		}
+	};
+
+	renderMark = (props) => {
+		switch (props.mark.type) {
+			case 'bold':
+				return <BoldMark {...props} />;
+			case 'italic':
+				return <ItalicMark {...props} />;
+		}
+	};
+
+	click = (e, type) => {
+		e.preventDefault();
+		this.editor.toggleMark(type);
+	};
+
+	ref = (editor) => {
+		this.editor = editor;
+	};
+
 	render() {
 		return (
 			<React.Fragment>
