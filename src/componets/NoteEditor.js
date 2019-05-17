@@ -75,7 +75,6 @@ class NoteEditor extends Component {
 	getNote = (noteId) => {
 		fetch('http://localhost:3000/notes/' + `${noteId}`).then((response) => response.json()).then((json) => {
 			console.log(JSON.parse(json.note_value));
-
 			const existingValue = Value.fromJSON(JSON.parse(json.note_value));
 			console.log(existingValue);
 			// this.setState(
@@ -135,7 +134,7 @@ class NoteEditor extends Component {
 		return (
 			<React.Fragment>
 				<form onSubmit={this.handleSubmit}>
-					<FormatToolbar>
+					<FormatToolbar className="format-toolbar">
 						<button className="tooltip-icon-button" onClick={(e) => this.click(e, 'bold')}>
 							<Icon icon={bold} />
 						</button>
@@ -144,6 +143,7 @@ class NoteEditor extends Component {
 						</button>
 					</FormatToolbar>
 					<Editor
+						className="note-editor"
 						ref={this.ref}
 						value={this.state.value}
 						onChange={this.onChange}
