@@ -43,15 +43,13 @@ class NoteEditor extends Component {
 		// console.log(this.state.value.toJSON());
 		// console.log(value.document);
 		// console.log({ value });
-		const content = JSON.stringify(this.state.value.toJSON());
-		this.createNote(content);
+		if (initialValue !== Value.fromJSON(this.state.value.document)) {
+			const content = JSON.stringify(this.state.value.toJSON());
+			this.createNote(content);
+		}
 	};
 
-	// if(value.document != this.state.value.document) {
-	// const content = JSON.stringify(value.toJSON());
-	// this.createNote(content);
-
-	onChange = ({ value }) => {
+	handleOnChange = ({ value }) => {
 		this.setState({ value });
 		// console.log(value.document);
 	};
@@ -61,14 +59,17 @@ class NoteEditor extends Component {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json', Accepts: 'application/json' },
 			body: JSON.stringify({
-				title: 'testing title',
-				date: 'today',
-				note_value: noteContent
+				// title: 'testing title',
+				// date: 'today',
+				note: {
+					user_id: 28,
+					note_value: noteContent
+				}
 			})
 		})
 			.then((response) => response.json())
 			.then((json) => {
-				console.log(json.note_value);
+				console.log(json);
 			});
 	};
 
@@ -77,12 +78,12 @@ class NoteEditor extends Component {
 			console.log(JSON.parse(json.note_value));
 			const existingValue = Value.fromJSON(JSON.parse(json.note_value));
 			console.log(existingValue);
-			// this.setState(
-			// 	{
-			// 		value: existingValue
-			// 	}
-			// 	// () => console.log(this.state.value)
-			// );
+			this.setState(
+				{
+					value: existingValue
+				},
+				() => console.log(this.state.value)
+			);
 		});
 	};
 
@@ -127,33 +128,30 @@ class NoteEditor extends Component {
 
 	handleClick = (e) => {
 		// console.log('im clicked');
-		this.getNote(1);
+		this.getNote(55);
 	};
 
 	render() {
 		return (
 			<React.Fragment>
+				<FormatToolbar className="format-toolbar">
+					<button className="tooltip-icon-button" onClick={(e) => this.click(e, 'bold')}>
+						<Icon icon={bold} />
+					</button>
+					<button className="tooltip-icon-button" onClick={(e) => this.click(e, 'italic')}>
+						<Icon icon={italic} />
+					</button>
+				</FormatToolbar>
 				<form onSubmit={this.handleSubmit}>
-					<FormatToolbar className="format-toolbar">
-						<button className="tooltip-icon-button" onClick={(e) => this.click(e, 'bold')}>
-							<Icon icon={bold} />
-						</button>
-						<button className="tooltip-icon-button" onClick={(e) => this.click(e, 'italic')}>
-							<Icon icon={italic} />
-						</button>
-					</FormatToolbar>
 					<Editor
 						className="note-editor"
 						ref={this.ref}
 						value={this.state.value}
-						onChange={this.onChange}
+						onChange={this.handleOnChange}
 						onKeyDown={this.onKeyDown}
 						renderMark={this.renderMark}
 					/>
 					<input type="submit" value="submit data to server" />
-					{/* <input type="submit" onSubmit={this.handlesubmit}>
-					submit data to server
-				</input> */}
 					<button onClick={this.handleClick}>get notes back from database</button>
 				</form>
 			</React.Fragment>
