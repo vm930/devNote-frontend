@@ -40,9 +40,6 @@ class NoteEditor extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		// console.log(this.state.value.toJSON());
-		// console.log(value.document);
-		// console.log({ value });
 		if (initialValue !== Value.fromJSON(this.state.value.document)) {
 			const content = JSON.stringify(this.state.value.toJSON());
 			this.createNote(content);
@@ -50,42 +47,80 @@ class NoteEditor extends Component {
 	};
 
 	handleOnChange = ({ value }) => {
+		// if (initialValue !== Value.fromJSON(this.state.value.document)) {
+		// 	const content = JSON.stringify(this.state.value.toJSON());
+		// 	this.saveNote(58, content);
+		// }
 		this.setState({ value });
-		// console.log(value.document);
 	};
 
+	//Read exiting notes  -- base off which user is logging in from their userId
+
+	getNote = (noteId) => {
+		fetch('http://localhost:3000/notes/' + `${noteId}`).then((response) => response.json()).then((json) => {
+			// console.log(JSON.parse(json.note_value));
+			const existingValue = Value.fromJSON(JSON.parse(json.note_value));
+			// console.log(existingValue);
+			this.setState(
+				{
+					value: existingValue
+				},
+				() => console.log('data from database', this.state.value)
+			);
+		});
+	};
+
+	handleClick = (e) => {
+		this.getNote(60);
+		// this.saveNote()
+	};
+
+	saveClick = (e) => {
+		if (initialValue !== Value.fromJSON(this.state.value.document)) {
+			const content = JSON.stringify(this.state.value.toJSON());
+			this.saveNote(60, content);
+		}
+	};
+
+	//create note
 	createNote = (noteContent) => {
 		fetch('http://localhost:3000/notes', {
-			method: 'post',
+			method: 'POST',
 			headers: { 'Content-Type': 'application/json', Accepts: 'application/json' },
 			body: JSON.stringify({
-				// title: 'testing title',
-				// date: 'today',
 				note: {
-					user_id: 28,
+					user_id: 29,
 					note_value: noteContent
 				}
 			})
 		})
 			.then((response) => response.json())
 			.then((json) => {
-				console.log(json);
+				console.log('after create note', json);
 			});
 	};
 
-	getNote = (noteId) => {
-		fetch('http://localhost:3000/notes/' + `${noteId}`).then((response) => response.json()).then((json) => {
-			console.log(JSON.parse(json.note_value));
-			const existingValue = Value.fromJSON(JSON.parse(json.note_value));
-			console.log(existingValue);
-			this.setState(
-				{
-					value: existingValue
-				},
-				() => console.log(this.state.value)
-			);
-		});
+	//update notes
+
+	saveNote = (noteId, noteContent) => {
+		fetch(`http://localhost:3000/notes/${noteId}`, {
+			method: 'PATCH',
+			headers: { 'Content-Type': 'application/json', Accepts: 'application/json' },
+			body: JSON.stringify({
+				note: {
+					id: noteId,
+					// user_id: 29,
+					note_value: noteContent
+				}
+			})
+		})
+			.then((response) => response.json())
+			.then((json) => {
+				console.log('saved note', json);
+			});
 	};
+
+	//delete notes
 
 	onKeyDown = (e, change, next) => {
 		if (!e.ctrlKey) {
@@ -117,7 +152,7 @@ class NoteEditor extends Component {
 		}
 	};
 
-	click = (e, type) => {
+	styleClick = (e, type) => {
 		e.preventDefault();
 		this.editor.toggleMark(type);
 	};
@@ -126,19 +161,14 @@ class NoteEditor extends Component {
 		this.editor = editor;
 	};
 
-	handleClick = (e) => {
-		// console.log('im clicked');
-		this.getNote(55);
-	};
-
 	render() {
 		return (
 			<React.Fragment>
 				<FormatToolbar className="format-toolbar">
-					<button className="tooltip-icon-button" onClick={(e) => this.click(e, 'bold')}>
+					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'bold')}>
 						<Icon icon={bold} />
 					</button>
-					<button className="tooltip-icon-button" onClick={(e) => this.click(e, 'italic')}>
+					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'italic')}>
 						<Icon icon={italic} />
 					</button>
 				</FormatToolbar>
@@ -151,8 +181,10 @@ class NoteEditor extends Component {
 						onKeyDown={this.onKeyDown}
 						renderMark={this.renderMark}
 					/>
-					<input type="submit" value="submit data to server" />
+					<input type="submit" value="save" />
+					<input type="submit" value="create" />
 					<button onClick={this.handleClick}>get notes back from database</button>
+					<button onClick={this.saveClick}>update database</button>
 				</form>
 			</React.Fragment>
 		);
