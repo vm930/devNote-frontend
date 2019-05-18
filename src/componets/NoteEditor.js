@@ -58,27 +58,33 @@ class NoteEditor extends Component {
 
 	getNote = (noteId) => {
 		fetch('http://localhost:3000/notes/' + `${noteId}`).then((response) => response.json()).then((json) => {
-			// console.log(JSON.parse(json.note_value));
-			const existingValue = Value.fromJSON(JSON.parse(json.note_value));
-			// console.log(existingValue);
-			this.setState(
-				{
-					value: existingValue
-				},
-				() => console.log('data from database', this.state.value)
-			);
+			console.log(JSON.parse(json.note_value));
+			if (JSON.parse(json.note_value)) {
+				const existingValue = Value.fromJSON(JSON.parse(json.note_value));
+				// console.log(existingValue);
+				this.setState(
+					{
+						value: existingValue
+					},
+					() => console.log('data from database', this.state.value)
+				);
+			} else {
+				this.setState({
+					value: initialValue
+				});
+			}
 		});
 	};
 
 	handleClick = (e) => {
-		this.getNote(60);
+		this.getNote(61);
 		// this.saveNote()
 	};
 
 	saveClick = (e) => {
 		if (initialValue !== Value.fromJSON(this.state.value.document)) {
 			const content = JSON.stringify(this.state.value.toJSON());
-			this.saveNote(60, content);
+			this.saveNote(61, content);
 		}
 	};
 
@@ -103,6 +109,7 @@ class NoteEditor extends Component {
 	//update notes
 
 	saveNote = (noteId, noteContent) => {
+		// console.log('note ID ', noteId);
 		fetch(`http://localhost:3000/notes/${noteId}`, {
 			method: 'PATCH',
 			headers: { 'Content-Type': 'application/json', Accepts: 'application/json' },
@@ -181,7 +188,7 @@ class NoteEditor extends Component {
 						onKeyDown={this.onKeyDown}
 						renderMark={this.renderMark}
 					/>
-					<input type="submit" value="save" />
+
 					<input type="submit" value="create" />
 					<button onClick={this.handleClick}>get notes back from database</button>
 					<button onClick={this.saveClick}>update database</button>
