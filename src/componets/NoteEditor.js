@@ -36,10 +36,11 @@ const initialValue = Value.fromJSON({
 class NoteEditor extends Component {
 	state = {
 		value: initialValue,
-		currentUser: this.props.currentUser
+		currentUserId: parseInt(localStorage.getItem('userId')),
+		currentNoteId: null
 	};
 
-	handleSubmit = (e) => {
+	createClick = (e) => {
 		e.preventDefault();
 		if (initialValue !== Value.fromJSON(this.state.value.document)) {
 			const content = JSON.stringify(this.state.value.toJSON());
@@ -59,10 +60,8 @@ class NoteEditor extends Component {
 
 	getNote = (noteId) => {
 		fetch('http://localhost:3000/notes/' + `${noteId}`).then((response) => response.json()).then((json) => {
-			console.log(JSON.parse(json.note_value));
 			if (JSON.parse(json.note_value)) {
 				const existingValue = Value.fromJSON(JSON.parse(json.note_value));
-				// console.log(existingValue);
 				this.setState(
 					{
 						value: existingValue
@@ -77,20 +76,31 @@ class NoteEditor extends Component {
 		});
 	};
 
-	handleClick = (e) => {
-		this.getNote(61);
-		// this.saveNote()
+	getCurrentNoteId = () => {
+		fetch(`http://localhost:3000/users/${this.state.currentUserId}`).then((res) => res.json()).then((json) => {
+			const noteId = json.notes[0].id;
+			this.setState({
+				currentNoteId: noteId
+			});
+		});
+	};
+
+	getNoteClick = (e) => {
+		e.preventDefault();
+		// this.getCurrentNoteId();
+		// this.getNote(this.state.currentNoteId);
+		this.getNote(94);
 	};
 
 	saveClick = (e) => {
 		if (initialValue !== Value.fromJSON(this.state.value.document)) {
 			const content = JSON.stringify(this.state.value.toJSON());
-			this.saveNote(61, content);
+			this.saveNote(this.state.currentUserId, content);
 		}
 	};
 
 	handleDelete = (noteId) => {
-		this.deleteNote(40);
+		this.deleteNote(this.state.currentUserId);
 	};
 
 	//create note
@@ -100,7 +110,7 @@ class NoteEditor extends Component {
 			headers: { 'Content-Type': 'application/json', Accepts: 'application/json' },
 			body: JSON.stringify({
 				note: {
-					user_id: 29,
+					user_id: this.state.currentUserId,
 					note_value: noteContent
 				}
 			})
@@ -112,7 +122,6 @@ class NoteEditor extends Component {
 	};
 
 	//update notes
-
 	saveNote = (noteId, noteContent) => {
 		// console.log('note ID ', noteId);
 		fetch(`http://localhost:3000/notes/${noteId}`, {
@@ -121,8 +130,10 @@ class NoteEditor extends Component {
 			body: JSON.stringify({
 				note: {
 					id: noteId,
-					// user_id: 29,
 					note_value: noteContent
+					// user: {
+					// 	id: this.currentUserId
+					// }
 				}
 			})
 		})
@@ -190,8 +201,7 @@ class NoteEditor extends Component {
 	};
 
 	render() {
-		console.log('currentUserid: ', localStorage.getItem('userId'));
-
+		console.log('currentUserid: ', this.state.currentUserId);
 		return (
 			<React.Fragment>
 				<FormatToolbar className="format-toolbar">
@@ -212,8 +222,8 @@ class NoteEditor extends Component {
 					renderMark={this.renderMark}
 				/>
 				{/* <input type="submit" value="create" /> */}
-				<button onClick={this.handleSubmit}>create</button>
-				<button onClick={this.handleClick}>get notes back from database</button>
+				<button onClick={this.createClick}>create</button>
+				<button onClick={this.getNoteClick}>get notes back from database</button>
 				<button onClick={this.saveClick}>update database</button>
 				<button onClick={this.handleDelete}>Delete Note</button>
 				{/* </form> */}
