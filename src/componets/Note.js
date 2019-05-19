@@ -8,7 +8,7 @@ class Note extends Component {
 		return (
 			<React.Fragment>
 				<NoteTitle />
-				<NoteEditor />
+				<NoteEditor currentUser={this.props.currentUser} />
 				<NoteOption />
 			</React.Fragment>
 		);

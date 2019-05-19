@@ -6,16 +6,21 @@ class LogIn extends Component {
 	};
 
 	handleChange = (e) => {
-		this.setState({
-			user: e.target.value
-		});
+		this.setState(
+			{
+				username: e.target.value
+			},
+			() => {
+				console.log(this.state.username);
+			}
+		);
 	};
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		// this.props.getUser(this.state.user);
-		// this.props.history.push('/');
-		console.log('hi imhere');
+		this.props.getUser(this.state.username);
+
+		this.props.history.push('/');
 	};
 
 	render() {
@@ -25,10 +30,10 @@ class LogIn extends Component {
 				<h5>Or Create Account</h5>
 				<form onSubmit={this.handleSubmit}>
 					<input
-						placeholder="Email Address"
+						placeholder="User Name"
 						onChange={this.handleChange}
 						type="text"
-						value={this.state.user}
+						value={this.state.username}
 					/>
 					<input type="submit" value="Log In" />
 				</form>

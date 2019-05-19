@@ -9,9 +9,9 @@ export default class Main extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<UserNotes />
-				<Note />
-				<Code />
+				<UserNotes currentUser={this.props.currentUser} />
+				<Note currentUser={this.props.currentUser} />
+				<Code currentUser={this.props.currentUser} />
 			</React.Fragment>
 		);
 	}

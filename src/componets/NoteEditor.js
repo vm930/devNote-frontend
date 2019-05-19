@@ -35,7 +35,8 @@ const initialValue = Value.fromJSON({
 
 class NoteEditor extends Component {
 	state = {
-		value: initialValue
+		value: initialValue,
+		currentUser: this.props.currentUser
 	};
 
 	handleSubmit = (e) => {
@@ -189,6 +190,8 @@ class NoteEditor extends Component {
 	};
 
 	render() {
+		console.log('currentUserid: ', localStorage.getItem('userId'));
+
 		return (
 			<React.Fragment>
 				<FormatToolbar className="format-toolbar">
