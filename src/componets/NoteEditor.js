@@ -179,20 +179,20 @@ class NoteEditor extends Component {
 						<Icon icon={italic} />
 					</button>
 				</FormatToolbar>
-				<form onSubmit={this.handleSubmit}>
-					<Editor
-						className="note-editor"
-						ref={this.ref}
-						value={this.state.value}
-						onChange={this.handleOnChange}
-						onKeyDown={this.onKeyDown}
-						renderMark={this.renderMark}
-					/>
-
-					<input type="submit" value="create" />
-					<button onClick={this.handleClick}>get notes back from database</button>
-					<button onClick={this.saveClick}>update database</button>
-				</form>
+				{/* <form onSubmit={this.handleSubmit}> */}
+				<Editor
+					className="note-editor"
+					ref={this.ref}
+					value={this.state.value}
+					onChange={this.handleOnChange}
+					onKeyDown={this.onKeyDown}
+					renderMark={this.renderMark}
+				/>
+				{/* <input type="submit" value="create" /> */}
+				<button onClick={this.handleSubmit}>create</button>
+				<button onClick={this.handleClick}>get notes back from database</button>
+				<button onClick={this.saveClick}>update database</button>
+				{/* </form> */}
 			</React.Fragment>
 		);
 	}
