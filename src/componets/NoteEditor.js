@@ -23,7 +23,7 @@ const initialValue = Value.fromJSON({
 						object: 'text',
 						leaves: [
 							{
-								text: 'My 1st paragraph wahaha!'
+								text: 'Write Your Notes Here'
 							}
 						]
 					}
@@ -88,6 +88,10 @@ class NoteEditor extends Component {
 		}
 	};
 
+	handleDelete = (noteId) => {
+		this.deleteNote(40);
+	};
+
 	//create note
 	createNote = (noteContent) => {
 		fetch('http://localhost:3000/notes', {
@@ -128,6 +132,22 @@ class NoteEditor extends Component {
 	};
 
 	//delete notes
+
+	deleteNote = (noteId) => {
+		fetch(`http://localhost:3000/notes/${noteId}`, {
+			method: 'DELETE',
+			headers: { 'Content-Type': 'application/json', Accepts: 'application/json' }
+			// body: JSON.stringify({
+			// 	note: {
+			// 		id: noteId
+			// 		// // user_id: 29,
+			// 		// note_value: noteContent
+			// 	}
+		});
+		this.setState({
+			value: initialValue
+		});
+	};
 
 	onKeyDown = (e, change, next) => {
 		if (!e.ctrlKey) {
@@ -192,6 +212,7 @@ class NoteEditor extends Component {
 				<button onClick={this.handleSubmit}>create</button>
 				<button onClick={this.handleClick}>get notes back from database</button>
 				<button onClick={this.saveClick}>update database</button>
+				<button onClick={this.handleDelete}>Delete Note</button>
 				{/* </form> */}
 			</React.Fragment>
 		);
