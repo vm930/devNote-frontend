@@ -11,7 +11,6 @@ import FormatToolbar from '../containers/FormatToolbar';
 //import tools components into NoteEditor toolBars
 import { italic } from 'react-icons-kit/fa/italic';
 import { bold } from 'react-icons-kit/fa/bold';
-import { tsThisType } from '@babel/types';
 
 const initialValue = Value.fromJSON({
 	document: {
@@ -34,6 +33,17 @@ const initialValue = Value.fromJSON({
 	}
 });
 
+const debounce = (fn, delay) => {
+	let timer = null;
+	return function(...args) {
+		const context = this;
+		timer && clearTimeout(timer);
+		timer = setTimeout(() => {
+			fn.apply(context, args);
+		}, delay);
+	};
+};
+
 class NoteEditor extends Component {
 	state = {
 		value: initialValue,
@@ -41,12 +51,14 @@ class NoteEditor extends Component {
 		currentNoteId: null
 	};
 
+	autoSaver = debounce(() => {
+		this.performSave();
+	}, 3000);
+
 	handleOnChange = ({ value }) => {
-		// if (initialValue !== Value.fromJSON(this.state.value.document)) {
-		// 	const content = JSON.stringify(this.state.value.toJSON());
-		// 	this.saveNote(58, content);
-		// }
-		this.setState({ value });
+		this.setState({ value }, () => {
+			this.autoSaver();
+		});
 	};
 
 	//Read exiting notes  -- base off which user is logging in from their userId
@@ -55,13 +67,10 @@ class NoteEditor extends Component {
 		fetch('http://localhost:3000/notes/' + `${noteId}`).then((response) => response.json()).then((json) => {
 			if (JSON.parse(json.note_value)) {
 				const existingValue = Value.fromJSON(JSON.parse(json.note_value));
-				this.setState(
-					{
-						value: existingValue,
-						currentNoteId: noteId
-					}
-					// () => console.log('data from database', this.state.value)
-				);
+				this.setState({
+					value: existingValue,
+					currentNoteId: noteId
+				});
 			} else {
 				this.setState({
 					value: initialValue
@@ -79,13 +88,6 @@ class NoteEditor extends Component {
 	// 	});
 	// };
 
-	// getNoteClick = (e) => {
-	// 	e.preventDefault();
-	// 	// this.getCurrentNoteId();
-	// 	// this.getNote(this.state.currentNoteId);
-	// 	this.getNote(94);
-	// };
-
 	// createClick = (e) => {
 	// 	e.preventDefault();
 	// 	if (initialValue !== Value.fromJSON(this.state.value.document)) {
@@ -94,7 +96,7 @@ class NoteEditor extends Component {
 	// 	}
 	// };
 
-	saveClick = (e) => {
+	performSave = () => {
 		if (initialValue !== Value.fromJSON(this.state.value.document)) {
 			const content = JSON.stringify(this.state.value.toJSON());
 			if (this.state.currentNoteId) {
@@ -210,8 +212,6 @@ class NoteEditor extends Component {
 	};
 
 	render() {
-		// console.log('currentUserid: ', this.state.currentUserId);
-		// console.log('current noteid', this.props.noteId);
 		if (this.props.noteId && this.props.noteId !== this.state.currentNoteId) {
 			this.getNote(this.props.noteId);
 		}
@@ -235,10 +235,7 @@ class NoteEditor extends Component {
 					onKeyDown={this.onKeyDown}
 					renderMark={this.renderMark}
 				/>
-				{/* <input type="submit" value="create" /> */}
-				{/* <button onClick={this.createClick}>create</button> */}
-				{/* <button onClick={this.getNoteClick}>get notes back from database</button> */}
-				<button onClick={this.saveClick}>save</button>
+				<button onClick={this.performSave}>save</button>
 				<button onClick={this.handleDelete}>Delete Note</button>
 				{/* </form> */}
 			</React.Fragment>
