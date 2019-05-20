@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class CreateUser extends Component {
 	state = {
@@ -11,7 +12,6 @@ class CreateUser extends Component {
 	};
 
 	handleChange = (e) => {
-		console.log(e.target.value);
 		this.setState({
 			[e.target.name]: e.target.value
 		});
@@ -19,6 +19,28 @@ class CreateUser extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
+		fetch('http://localhost:3000/users', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+			body: JSON.stringify({
+				user_name: this.state.userName,
+				full_name: this.state.fullName,
+				email: this.state.email,
+				avatar_url: this.state.avatarUrl,
+				bio: this.state.bio
+			})
+		})
+			.then((res) => res.json())
+			.then(console.log);
+
+		this.setState({
+			userName: '',
+			password: '',
+			fullName: '',
+			bio: '',
+			email: '',
+			avatarUrl: ''
+		});
 	};
 
 	render() {
