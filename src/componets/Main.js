@@ -3,15 +3,15 @@ import React, { Component } from 'react';
 
 import Code from './Code';
 import Note from './Note';
-import UserNotes from './UserNotes';
+import UserNav from './UserNav';
 
 export default class Main extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<UserNotes currentUser={this.props.currentUser} />
-				<Note currentUser={this.props.currentUser} />
-				<Code currentUser={this.props.currentUser} />
+				<UserNav />
+				<Note />
+				<Code />
 			</React.Fragment>
 		);
 	}

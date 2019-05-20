@@ -7,10 +7,6 @@ import Main from './componets/Main';
 import LogIn from './componets/LogIn';
 
 class App extends Component {
-	state = {
-		currentUser: null
-	};
-
 	getUser = (username) => {
 		fetch('http://localhost:3000/login/', {
 			method: 'POST',
@@ -24,11 +20,7 @@ class App extends Component {
 		})
 			.then((res) => res.json())
 			.then((json) => {
-				console.log('json', json);
 				localStorage.setItem('userId', json.id);
-				// this.setState({
-				// 	currentUser: json
-				// });
 			});
 	};
 
@@ -36,7 +28,7 @@ class App extends Component {
 		return (
 			<Switch>
 				<Route path="/login" render={(props) => <LogIn getUser={this.getUser} {...props} />} />
-				<Route path="/" render={(props) => <Main currentUser={this.state.currentUser} {...props} />} />
+				<Route path="/" render={(props) => <Main {...props} />} />
 			</Switch>
 		);
 	}
