@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 //import components for main page
 import Main from './componets/Main';
 import LogIn from './componets/LogIn';
+import CreateUser from './componets/CreateUser';
 
 class App extends Component {
 	getUser = (username) => {
@@ -27,7 +28,15 @@ class App extends Component {
 	render() {
 		return (
 			<Switch>
-				<Route path="/login" render={(props) => <LogIn getUser={this.getUser} {...props} />} />
+				<Route
+					path="/login"
+					render={(props) =>
+						localStorage.getItem('userId') ? (
+							<LogIn getUser={this.getUser} {...props} />
+						) : (
+							<CreateUser {...props} />
+						)}
+				/>
 				<Route path="/" render={(props) => <Main {...props} />} />
 			</Switch>
 		);

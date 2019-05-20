@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import NoteOption from './NoteOption';
 
 import NoteEditor from './NoteEditor';
 
@@ -12,7 +11,6 @@ class Note extends Component {
 					currentUser={this.props.currentUser}
 					noteTitle={this.props.noteTitle}
 				/>
-				<NoteOption noteId={this.props.noteId} />
 			</React.Fragment>
 		);
 	}

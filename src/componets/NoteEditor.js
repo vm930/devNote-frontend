@@ -240,6 +240,7 @@ class NoteEditor extends Component {
 				/>
 				<button onClick={this.performSave}>save</button>
 				<button onClick={this.handleDelete}>Delete Note</button>
+				<button>Cancel</button>
 			</React.Fragment>
 		);
 	}
