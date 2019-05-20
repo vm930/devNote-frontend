@@ -28,15 +28,8 @@ class App extends Component {
 	render() {
 		return (
 			<Switch>
-				<Route
-					path="/login"
-					render={(props) =>
-						localStorage.getItem('userId') ? (
-							<LogIn getUser={this.getUser} {...props} />
-						) : (
-							<CreateUser {...props} />
-						)}
-				/>
+				<Route path="/login" render={(props) => <LogIn getUser={this.getUser} {...props} />} />
+				<Route path="/signup" render={(props) => <CreateUser {...props} />} />
 				<Route path="/" render={(props) => <Main {...props} />} />
 			</Switch>
 		);
