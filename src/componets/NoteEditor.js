@@ -48,7 +48,8 @@ class NoteEditor extends Component {
 	state = {
 		value: initialValue,
 		currentUserId: parseInt(localStorage.getItem('userId')),
-		currentNoteId: null
+		currentNoteId: null,
+		currentNoteTitle: ''
 	};
 
 	autoSaver = debounce(() => {
@@ -69,7 +70,8 @@ class NoteEditor extends Component {
 				const existingValue = Value.fromJSON(JSON.parse(json.note_value));
 				this.setState({
 					value: existingValue,
-					currentNoteId: noteId
+					currentNoteId: noteId,
+					currentNoteTitle: json.title
 				});
 			} else {
 				this.setState({
@@ -78,15 +80,6 @@ class NoteEditor extends Component {
 			}
 		});
 	};
-
-	// getCurrentNoteId = () => {
-	// 	fetch(`http://localhost:3000/users/${this.state.currentUserId}`).then((res) => res.json()).then((json) => {
-	// 		const noteId = json.notes[0].id;
-	// 		this.setState({
-	// 			currentNoteId: noteId
-	// 		});
-	// 	});
-	// };
 
 	// createClick = (e) => {
 	// 	e.preventDefault();
@@ -100,9 +93,9 @@ class NoteEditor extends Component {
 		if (initialValue !== Value.fromJSON(this.state.value.document)) {
 			const content = JSON.stringify(this.state.value.toJSON());
 			if (this.state.currentNoteId) {
-				this.saveNote(this.state.currentNoteId, content);
+				this.saveNote(this.state.currentNoteId, content, this.state.currentNoteTitle);
 			} else {
-				this.createNote(content);
+				this.createNote(content, this.state.currentNoteTitle);
 			}
 		}
 	};
@@ -112,14 +105,15 @@ class NoteEditor extends Component {
 	};
 
 	//create note
-	createNote = (noteContent) => {
+	createNote = (noteContent, title) => {
 		fetch('http://localhost:3000/notes', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json', Accepts: 'application/json' },
 			body: JSON.stringify({
 				note: {
 					user_id: this.state.currentUserId,
-					note_value: noteContent
+					note_value: noteContent,
+					title: title
 				}
 			})
 		})
@@ -133,18 +127,15 @@ class NoteEditor extends Component {
 	};
 
 	//update notes
-	saveNote = (noteId, noteContent) => {
-		// console.log('note ID ', noteId);
+	saveNote = (noteId, noteContent, title) => {
 		fetch(`http://localhost:3000/notes/${noteId}`, {
 			method: 'PATCH',
 			headers: { 'Content-Type': 'application/json', Accepts: 'application/json' },
 			body: JSON.stringify({
 				note: {
 					id: noteId,
-					note_value: noteContent
-					// user: {
-					// 	id: this.currentUserId
-					// }
+					note_value: noteContent,
+					title: title
 				}
 			})
 		})
@@ -211,13 +202,25 @@ class NoteEditor extends Component {
 		this.editor = editor;
 	};
 
+	handleTitle = (e) => {
+		this.setState({
+			currentNoteTitle: e.target.value
+		});
+	};
+
 	render() {
 		if (this.props.noteId && this.props.noteId !== this.state.currentNoteId) {
 			this.getNote(this.props.noteId);
 		}
-		console.log('rendered noteeditor');
 		return (
 			<React.Fragment>
+				<input
+					className="note-title"
+					onChange={this.handleTitle}
+					type="text"
+					value={this.state.currentNoteTitle}
+					placeholder="Write Title Here"
+				/>
 				<FormatToolbar className="format-toolbar">
 					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'bold')}>
 						<Icon icon={bold} />
@@ -226,7 +229,7 @@ class NoteEditor extends Component {
 						<Icon icon={italic} />
 					</button>
 				</FormatToolbar>
-				{/* <form onSubmit={this.handleSubmit}> */}
+
 				<Editor
 					className="note-editor"
 					ref={this.ref}
@@ -237,7 +240,6 @@ class NoteEditor extends Component {
 				/>
 				<button onClick={this.performSave}>save</button>
 				<button onClick={this.handleDelete}>Delete Note</button>
-				{/* </form> */}
 			</React.Fragment>
 		);
 	}
