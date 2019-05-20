@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { set } from 'immutable';
 
 export default class UserNav extends Component {
 	state = {
 		currentUser: null,
-		currentUserId: parseInt(localStorage.getItem('userId')),
-		noteId: null
+		currentUserId: parseInt(localStorage.getItem('userId'))
 	};
 
 	componentDidMount() {
@@ -18,8 +16,10 @@ export default class UserNav extends Component {
 
 	handleClick = (e) => {
 		const noteId = parseInt(e.target.dataset.id);
+		const noteTitle = e.target.innerText;
 		// console.log(this.state.currentUser.notes);
 		this.props.getNoteId(noteId);
+		this.props.getNoteTitle(noteTitle);
 	};
 	render() {
 		return (
