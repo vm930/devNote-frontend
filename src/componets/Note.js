@@ -7,9 +7,9 @@ class Note extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<NoteTitle />
-				<NoteEditor currentUser={this.props.currentUser} />
-				<NoteOption />
+				<NoteTitle noteId={this.props.noteId} />
+				<NoteEditor noteId={this.props.noteId} currentUser={this.props.currentUser} />
+				<NoteOption noteId={this.props.noteId} />
 			</React.Fragment>
 		);
 	}
