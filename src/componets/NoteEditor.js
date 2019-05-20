@@ -11,6 +11,7 @@ import FormatToolbar from '../containers/FormatToolbar';
 //import tools components into NoteEditor toolBars
 import { italic } from 'react-icons-kit/fa/italic';
 import { bold } from 'react-icons-kit/fa/bold';
+import { tsThisType } from '@babel/types';
 
 const initialValue = Value.fromJSON({
 	document: {
@@ -64,9 +65,10 @@ class NoteEditor extends Component {
 				const existingValue = Value.fromJSON(JSON.parse(json.note_value));
 				this.setState(
 					{
-						value: existingValue
-					},
-					() => console.log('data from database', this.state.value)
+						value: existingValue,
+						currentNoteId: noteId
+					}
+					// () => console.log('data from database', this.state.value)
 				);
 			} else {
 				this.setState({
@@ -76,21 +78,21 @@ class NoteEditor extends Component {
 		});
 	};
 
-	getCurrentNoteId = () => {
-		fetch(`http://localhost:3000/users/${this.state.currentUserId}`).then((res) => res.json()).then((json) => {
-			const noteId = json.notes[0].id;
-			this.setState({
-				currentNoteId: noteId
-			});
-		});
-	};
+	// getCurrentNoteId = () => {
+	// 	fetch(`http://localhost:3000/users/${this.state.currentUserId}`).then((res) => res.json()).then((json) => {
+	// 		const noteId = json.notes[0].id;
+	// 		this.setState({
+	// 			currentNoteId: noteId
+	// 		});
+	// 	});
+	// };
 
-	getNoteClick = (e) => {
-		e.preventDefault();
-		// this.getCurrentNoteId();
-		// this.getNote(this.state.currentNoteId);
-		this.getNote(94);
-	};
+	// getNoteClick = (e) => {
+	// 	e.preventDefault();
+	// 	// this.getCurrentNoteId();
+	// 	// this.getNote(this.state.currentNoteId);
+	// 	this.getNote(94);
+	// };
 
 	saveClick = (e) => {
 		if (initialValue !== Value.fromJSON(this.state.value.document)) {
@@ -116,8 +118,11 @@ class NoteEditor extends Component {
 			})
 		})
 			.then((response) => response.json())
-			.then((json) => {
-				console.log('after create note', json);
+			.then((note) => {
+				console.log('after create note', note);
+				this.setState({
+					currentNoteId: note.id
+				});
 			});
 	};
 
@@ -201,7 +206,11 @@ class NoteEditor extends Component {
 	};
 
 	render() {
-		console.log('currentUserid: ', this.state.currentUserId);
+		// console.log('currentUserid: ', this.state.currentUserId);
+		// console.log('current noteid', this.props.noteId);
+		if (this.props.noteId && this.props.noteId !== this.state.currentNote) {
+			this.getNote(this.props.noteId);
+		}
 		return (
 			<React.Fragment>
 				<FormatToolbar className="format-toolbar">
@@ -223,7 +232,7 @@ class NoteEditor extends Component {
 				/>
 				{/* <input type="submit" value="create" /> */}
 				<button onClick={this.createClick}>create</button>
-				<button onClick={this.getNoteClick}>get notes back from database</button>
+				{/* <button onClick={this.getNoteClick}>get notes back from database</button> */}
 				<button onClick={this.saveClick}>update database</button>
 				<button onClick={this.handleDelete}>Delete Note</button>
 				{/* </form> */}

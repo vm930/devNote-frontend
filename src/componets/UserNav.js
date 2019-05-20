@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { set } from 'immutable';
 
 export default class UserNav extends Component {
 	state = {
 		currentUser: null,
-		currentUserId: parseInt(localStorage.getItem('userId'))
+		currentUserId: parseInt(localStorage.getItem('userId')),
+		noteId: null
 	};
 
 	componentDidMount() {
@@ -15,7 +17,9 @@ export default class UserNav extends Component {
 	}
 
 	handleClick = (e) => {
-		// console.log('im clicked', e.target);
+		const noteId = parseInt(e.target.dataset.id);
+		// console.log(this.state.currentUser.notes);
+		this.props.getNoteId(noteId);
 	};
 	render() {
 		return (
@@ -29,7 +33,11 @@ export default class UserNav extends Component {
 						<h4>{this.state.currentUser.bio}</h4>
 						<ul>
 							{this.state.currentUser.notes.map((note) => {
-								return <li onClick={this.handleClick}>{note.title}</li>;
+								return (
+									<li key={note.id} data-id={note.id} onClick={this.handleClick}>
+										{note.title}
+									</li>
+								);
 							})}
 						</ul>
 					</React.Fragment>

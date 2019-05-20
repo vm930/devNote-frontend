@@ -6,11 +6,20 @@ import Note from './Note';
 import UserNav from './UserNav';
 
 export default class Main extends Component {
+	state = {
+		noteId: null
+	};
+
+	getNoteId = (noteId) => {
+		this.setState({
+			noteId: noteId
+		});
+	};
 	render() {
 		return (
 			<React.Fragment>
-				<UserNav />
-				<Note />
+				<UserNav getNoteId={this.getNoteId} />
+				<Note noteId={this.state.noteId} />
 				<Code />
 			</React.Fragment>
 		);
