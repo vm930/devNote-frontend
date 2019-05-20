@@ -41,14 +41,6 @@ class NoteEditor extends Component {
 		currentNoteId: null
 	};
 
-	createClick = (e) => {
-		e.preventDefault();
-		if (initialValue !== Value.fromJSON(this.state.value.document)) {
-			const content = JSON.stringify(this.state.value.toJSON());
-			this.createNote(content);
-		}
-	};
-
 	handleOnChange = ({ value }) => {
 		// if (initialValue !== Value.fromJSON(this.state.value.document)) {
 		// 	const content = JSON.stringify(this.state.value.toJSON());
@@ -94,10 +86,22 @@ class NoteEditor extends Component {
 	// 	this.getNote(94);
 	// };
 
+	// createClick = (e) => {
+	// 	e.preventDefault();
+	// 	if (initialValue !== Value.fromJSON(this.state.value.document)) {
+	// 		const content = JSON.stringify(this.state.value.toJSON());
+	// 		this.createNote(content);
+	// 	}
+	// };
+
 	saveClick = (e) => {
 		if (initialValue !== Value.fromJSON(this.state.value.document)) {
 			const content = JSON.stringify(this.state.value.toJSON());
-			this.saveNote(this.state.currentUserId, content);
+			if (this.state.currentNoteId) {
+				this.saveNote(this.state.currentNoteId, content);
+			} else {
+				this.createNote(content);
+			}
 		}
 	};
 
@@ -208,9 +212,10 @@ class NoteEditor extends Component {
 	render() {
 		// console.log('currentUserid: ', this.state.currentUserId);
 		// console.log('current noteid', this.props.noteId);
-		if (this.props.noteId && this.props.noteId !== this.state.currentNote) {
+		if (this.props.noteId && this.props.noteId !== this.state.currentNoteId) {
 			this.getNote(this.props.noteId);
 		}
+		console.log('rendered noteeditor');
 		return (
 			<React.Fragment>
 				<FormatToolbar className="format-toolbar">
@@ -231,9 +236,9 @@ class NoteEditor extends Component {
 					renderMark={this.renderMark}
 				/>
 				{/* <input type="submit" value="create" /> */}
-				<button onClick={this.createClick}>create</button>
+				{/* <button onClick={this.createClick}>create</button> */}
 				{/* <button onClick={this.getNoteClick}>get notes back from database</button> */}
-				<button onClick={this.saveClick}>update database</button>
+				<button onClick={this.saveClick}>save</button>
 				<button onClick={this.handleDelete}>Delete Note</button>
 				{/* </form> */}
 			</React.Fragment>
