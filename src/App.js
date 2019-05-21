@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 
 //import components for main page
 import Main from './componets/Main';
@@ -8,6 +8,12 @@ import LogIn from './componets/LogIn';
 import CreateUser from './componets/CreateUser';
 
 class App extends Component {
+	componentDidMount() {}
+
+	logout = () => {
+		localStorage.clear();
+	};
+
 	getUser = (username) => {
 		fetch('http://localhost:3000/login/', {
 			method: 'POST',
@@ -30,10 +36,10 @@ class App extends Component {
 			<Switch>
 				<Route path="/login" render={(props) => <LogIn getUser={this.getUser} {...props} />} />
 				<Route path="/signup" render={(props) => <CreateUser {...props} />} />
-				<Route path="/" render={(props) => <Main {...props} />} />
+				<Route path="/" render={(props) => <Main {...props} logout={this.logout} />} />
 			</Switch>
 		);
 	}
 }
 
-export default App;
+export default withRouter(App);
