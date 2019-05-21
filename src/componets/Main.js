@@ -22,9 +22,15 @@ export default class Main extends Component {
 			noteTitle: noteTitle
 		});
 	};
+
+	handleClick = () => {
+		this.props.logout();
+	};
+
 	render() {
 		return (
 			<React.Fragment>
+				<button onClick={this.handleClick}>Log Out</button>
 				<UserNav getNoteId={this.getNoteId} getNoteTitle={this.getNoteTitle} />
 				<Note noteId={this.state.noteId} noteTitle={this.state.noteTitle} />
 				<Code />

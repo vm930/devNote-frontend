@@ -3,18 +3,13 @@ import { Link } from 'react-router-dom';
 
 class LogIn extends Component {
 	state = {
-		user: ''
+		username: ''
 	};
 
 	handleChange = (e) => {
-		this.setState(
-			{
-				username: e.target.value
-			},
-			() => {
-				console.log(this.state.username);
-			}
-		);
+		this.setState({
+			username: e.target.value
+		});
 	};
 
 	handleSubmit = (e) => {
