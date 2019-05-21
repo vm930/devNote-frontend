@@ -89,16 +89,8 @@ class NoteEditor extends Component {
 		});
 	};
 
-	// createClick = (e) => {
-	// 	e.preventDefault();
-	// 	if (initialValue !== Value.fromJSON(this.state.value.document)) {
-	// 		const content = JSON.stringify(this.state.value.toJSON());
-	// 		this.createNote(content);
-	// 	}
-	// };
-
 	performSave = () => {
-		if (initialValue !== Value.fromJSON(this.state.value.document)) {
+		if (initialValue !== this.state.value) {
 			const content = JSON.stringify(this.state.value.toJSON());
 			if (this.state.currentNoteId) {
 				this.saveNote(this.state.currentNoteId, content, this.state.currentNoteTitle);
@@ -127,12 +119,21 @@ class NoteEditor extends Component {
 		})
 			.then((response) => response.json())
 			.then((note) => {
-				console.log('after create note', note);
+				// console.log('create note', note);
+				this.props.addNewNote(note);
 				this.setState({
 					currentNoteId: note.id
+					// currentNoteTitle: note.title
 				});
 			});
 	};
+
+	// state = {
+	// 	value: initialValue,
+	// 	currentUserId: parseInt(localStorage.getItem('userId')),
+	// 	currentNoteId: null,
+	// 	currentNoteTitle: ''
+	// };
 
 	//update notes
 	saveNote = (noteId, noteContent, title) => {
@@ -148,8 +149,9 @@ class NoteEditor extends Component {
 			})
 		})
 			.then((response) => response.json())
-			.then((json) => {
-				console.log('saved note', json);
+			.then((note) => {
+				console.log('saved note', note);
+				this.props.updateNote(note);
 			});
 	};
 

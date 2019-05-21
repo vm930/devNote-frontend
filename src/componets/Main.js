@@ -31,17 +31,24 @@ export default class Main extends Component {
 		return (
 			<React.Fragment>
 				<button onClick={this.handleClick}>Log Out</button>
-				<UserNav
-					currentUser={this.props.currentUser}
-					getNoteId={this.getNoteId}
-					getNoteTitle={this.getNoteTitle}
-				/>
-				<Note
-					noteId={this.state.noteId}
-					noteTitle={this.state.noteTitle}
-					currentUser={this.props.currentUser}
-				/>
-				<Code />
+				<div className="main-page">
+					<UserNav
+						currentUser={this.props.currentUser}
+						getNoteId={this.getNoteId}
+						getNoteTitle={this.getNoteTitle}
+						notes={this.props.notes}
+					/>
+					<Note
+						updateNote={this.props.updateNote}
+						addNewNote={this.props.addNewNote}
+						deleteNote={this.props.deleteNote}
+						notes={this.props.notes}
+						noteId={this.state.noteId}
+						noteTitle={this.state.noteTitle}
+						currentUser={this.props.currentUser}
+					/>
+					<Code />
+				</div>
 			</React.Fragment>
 		);
 	}
