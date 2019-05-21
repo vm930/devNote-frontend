@@ -43,8 +43,18 @@ text box css styling below:
 	margin: 65px auto 45px;
 	border-radius: 2px;
 }
-/* 
-.create-account {
+
+.main-page {
 	display: grid;
-	grid-template: 1fr, 50%;
-} */
+	grid-template-columns: 1fr 2fr 1fr;
+	grid-gap: 3%;
+}
+
+.user-profile {
+	display: flex;
+	flex-direction: column;
+}
+
+.user-detail {
+	font-size: 15px;
+}

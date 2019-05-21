@@ -8,18 +8,19 @@ export default class UserNav extends Component {
 		this.props.getNoteTitle(noteTitle);
 	};
 	render() {
-		console.log(this.props.currentUser);
 		return (
-			<React.Fragment>
-				{this.props.currentUser ? (
+			<div className="user-profile">
+				{this.props.currentUser || this.props.notes ? (
 					<React.Fragment>
 						<img src={`${this.props.currentUser.vatar_url}`} />
-						<h4>{this.props.currentUser.full_name}</h4>
-						<h4>{this.props.currentUser.user_name}</h4>
-						<h4>{this.props.currentUser.email}</h4>
-						<h4>{this.props.currentUser.bio}</h4>
+						<div className="user-detail">
+							<h4>{this.props.currentUser.full_name}</h4>
+							<h4>{this.props.currentUser.user_name}</h4>
+							<h4>{this.props.currentUser.email}</h4>
+							<h4>{this.props.currentUser.bio}</h4>
+						</div>
 						<ul>
-							{this.props.currentUser.notes.map((note) => {
+							{this.props.notes.map((note) => {
 								return (
 									<li key={note.id} data-id={note.id} onClick={this.handleClick}>
 										{note.title}
@@ -31,7 +32,7 @@ export default class UserNav extends Component {
 				) : (
 					<div>loading!</div>
 				)}
-			</React.Fragment>
+			</div>
 		);
 	}
 }
