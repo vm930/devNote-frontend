@@ -8,10 +8,34 @@ import LogIn from './componets/LogIn';
 import CreateUser from './componets/CreateUser';
 
 class App extends Component {
-	componentDidMount() {}
+	state = {
+		currentUser: null,
+		currentUserId: null
+	};
+
+	componentDidMount() {
+		//if local storage has userid then continue
+		const token = localStorage.getItem('userId');
+		if (token) {
+			fetch(`http://localhost:3000/users/${token}`).then((res) => res.json()).then((json) => {
+				this.setState({
+					currentUser: json,
+					currentUserId: json.id
+				});
+			});
+		} else {
+			console.log('im here');
+			// this.props.history.push('/login');
+		}
+	}
 
 	logout = () => {
 		localStorage.clear();
+		this.setState({
+			currentUser: null,
+			currentUserId: null
+		});
+		this.props.history.push('/login');
 	};
 
 	getUser = (username) => {
@@ -28,6 +52,10 @@ class App extends Component {
 			.then((res) => res.json())
 			.then((json) => {
 				localStorage.setItem('userId', json.id);
+				this.setState({
+					currentUser: json,
+					currentUserId: json.id
+				});
 			});
 	};
 
@@ -36,7 +64,10 @@ class App extends Component {
 			<Switch>
 				<Route path="/login" render={(props) => <LogIn getUser={this.getUser} {...props} />} />
 				<Route path="/signup" render={(props) => <CreateUser {...props} />} />
-				<Route path="/" render={(props) => <Main {...props} logout={this.logout} />} />
+				<Route
+					path="/"
+					render={(props) => <Main {...props} logout={this.logout} currentUser={this.state.currentUser} />}
+				/>
 			</Switch>
 		);
 	}

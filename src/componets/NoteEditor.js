@@ -9,7 +9,7 @@ import ItalicMark from '../containers/ItalicMark';
 import Underline from '../containers/Underlne';
 import Code from '../containers/Code';
 import List from '../containers/List';
-import Link from '../containers/Link';
+// import Link from '../containers/Link';
 import FormatToolbar from '../containers/FormatToolbar';
 
 //import tools components into NoteEditor toolBars
@@ -18,7 +18,7 @@ import { bold } from 'react-icons-kit/fa/bold';
 import { code } from 'react-icons-kit/fa/code';
 import { list } from 'react-icons-kit/fa/list';
 import { underline } from 'react-icons-kit/fa/underline';
-import { link } from 'react-icons-kit/fa/link';
+// import { link } from 'react-icons-kit/fa/link';
 
 const initialValue = Value.fromJSON({
 	document: {
@@ -198,10 +198,7 @@ class NoteEditor extends Component {
 				change.toggleMark('code');
 				return true;
 			}
-			case 'l': {
-				change.toggleMark('inline');
-				return true;
-			}
+
 			default: {
 				return;
 			}
@@ -220,8 +217,8 @@ class NoteEditor extends Component {
 				return <Code {...props} />;
 			case 'list':
 				return <List {...props} />;
-			case 'link':
-				return <Link {...props} />;
+			// case 'link':
+			// 	return <Link {...props} />;
 		}
 	};
 
@@ -269,15 +266,14 @@ class NoteEditor extends Component {
 					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'code')}>
 						<Icon icon={code} />
 					</button>
-					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'code')}>
+					{/* <button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'code')}>
 						<Icon icon={link} />
-					</button>
+					</button> */}
 				</FormatToolbar>
 
 				<Editor
 					className="note-editor"
 					ref={this.ref}
-					placeholder="Enter some notes..."
 					value={this.state.value}
 					onChange={this.handleOnChange}
 					onKeyDown={this.onKeyDown}
