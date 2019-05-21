@@ -6,11 +6,17 @@ import Icon from 'react-icons-kit';
 //import styling components into NoteEditor
 import BoldMark from '../containers/BoldMark';
 import ItalicMark from '../containers/ItalicMark';
+import Underline from '../containers/Underlne';
+import Code from '../containers/Code';
+import List from '../containers/List';
 import FormatToolbar from '../containers/FormatToolbar';
 
 //import tools components into NoteEditor toolBars
 import { italic } from 'react-icons-kit/fa/italic';
 import { bold } from 'react-icons-kit/fa/bold';
+import { code } from 'react-icons-kit/fa/code';
+import { list } from 'react-icons-kit/fa/list';
+import { underline } from 'react-icons-kit/fa/underline';
 
 const initialValue = Value.fromJSON({
 	document: {
@@ -178,6 +184,18 @@ class NoteEditor extends Component {
 				change.toggleMark('italic');
 				return true;
 			}
+			case 'u': {
+				change.toggleMark('underline');
+				return true;
+			}
+			case 'l': {
+				change.toggleMark('list');
+				return true;
+			}
+			case 'c': {
+				change.toggleMark('code');
+				return true;
+			}
 			default: {
 				return;
 			}
@@ -190,6 +208,12 @@ class NoteEditor extends Component {
 				return <BoldMark {...props} />;
 			case 'italic':
 				return <ItalicMark {...props} />;
+			case 'underline':
+				return <Underline {...props} />;
+			case 'code':
+				return <Code {...props} />;
+			case 'list':
+				return <List {...props} />;
 		}
 	};
 
@@ -227,6 +251,15 @@ class NoteEditor extends Component {
 					</button>
 					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'italic')}>
 						<Icon icon={italic} />
+					</button>
+					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'underline')}>
+						<Icon icon={underline} />
+					</button>
+					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'list')}>
+						<Icon icon={list} />
+					</button>
+					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'code')}>
+						<Icon icon={code} />
 					</button>
 				</FormatToolbar>
 

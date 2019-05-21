@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class LogIn extends Component {
 	state = {
@@ -26,7 +27,10 @@ class LogIn extends Component {
 		return (
 			<div>
 				<h3>Log into devNote</h3>
-				<h5>Or Create Account</h5>
+				<h5>
+					Or
+					<Link to="/signup"> Create Account</Link>
+				</h5>
 				<form onSubmit={this.handleSubmit}>
 					<input
 						placeholder="User Name"

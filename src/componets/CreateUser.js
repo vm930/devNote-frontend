@@ -47,8 +47,10 @@ class CreateUser extends Component {
 		return (
 			<React.Fragment>
 				<h1>Create Account</h1>
-				<h3>Already have an account?</h3>
-				<Link to="/login">Log In</Link>
+				<h3>
+					Already have an account?
+					<Link to="/login"> Log In</Link>
+				</h3>
 				<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
 					<input type="text" name="userName" value={this.state.userName} placeholder="User Name" />
 					<br />
