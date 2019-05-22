@@ -92,6 +92,7 @@ class NoteEditor extends Component {
 	performSave = () => {
 		if (initialValue !== this.state.value) {
 			const content = JSON.stringify(this.state.value.toJSON());
+			debugger;
 			if (this.state.currentNoteId) {
 				this.saveNote(this.state.currentNoteId, content, this.state.currentNoteTitle);
 			} else {
@@ -101,7 +102,13 @@ class NoteEditor extends Component {
 	};
 
 	handleDelete = (noteId) => {
-		this.deleteNote(this.state.currentUserId);
+		// console.log('pass in note id', noteId);
+		console.log('currentNoteId', this.state.currentNoteId);
+		this.props.deleteNote(this.state.currentNoteId);
+		this.setState({
+			value: initialValue,
+			currentNoteTitle: ''
+		});
 	};
 
 	//create note
@@ -128,13 +135,6 @@ class NoteEditor extends Component {
 			});
 	};
 
-	// state = {
-	// 	value: initialValue,
-	// 	currentUserId: parseInt(localStorage.getItem('userId')),
-	// 	currentNoteId: null,
-	// 	currentNoteTitle: ''
-	// };
-
 	//update notes
 	saveNote = (noteId, noteContent, title) => {
 		fetch(`http://localhost:3000/notes/${noteId}`, {
@@ -153,24 +153,6 @@ class NoteEditor extends Component {
 				console.log('saved note', note);
 				this.props.updateNote(note);
 			});
-	};
-
-	//delete notes
-
-	deleteNote = (noteId) => {
-		fetch(`http://localhost:3000/notes/${noteId}`, {
-			method: 'DELETE',
-			headers: { 'Content-Type': 'application/json', Accepts: 'application/json' }
-			// body: JSON.stringify({
-			// 	note: {
-			// 		id: noteId
-			// 		// // user_id: 29,
-			// 		// note_value: noteContent
-			// 	}
-		});
-		this.setState({
-			value: initialValue
-		});
 	};
 
 	onKeyDown = (e, change, next) => {
