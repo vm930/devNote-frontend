@@ -81,8 +81,17 @@ class App extends Component {
 		});
 	};
 
-	deleteNote = (deleteNote) => {
-		console.log('delete me ');
+	deleteNote = (deleteNoteId) => {
+		//remove it from the front end
+		const newNotes = this.state.notes.filter((note) => deleteNoteId !== note.id);
+		this.setState({
+			notes: newNotes
+		});
+		//update the backend
+
+		fetch(`http://localhost:3000/notes/${deleteNoteId}`, {
+			method: 'DELETE'
+		});
 	};
 
 	render() {

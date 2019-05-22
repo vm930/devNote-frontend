@@ -22,6 +22,16 @@ text box css styling below:
 	border-radius: 4.5px;
 }
 
+.code-editor {
+	color: rgb(17, 17, 17);
+	max-width: 740px;
+	background-color: rgb(255, 255, 255);
+	box-shadow: 0px 16px 24px 0px;
+	padding: 30px;
+	margin: 65px auto 45px;
+	border-radius: 4.5px;
+}
+
 .format-toolbar {
 	display: flex;
 	border-bottom: solid 1.7px;
@@ -33,21 +43,12 @@ text box css styling below:
 	border: 0;
 }
 
-.note-title {
-	color: rgb(17, 17, 17);
-
-	max-width: 740px;
-	background-color: rgb(190, 181, 228);
-	box-shadow: 0px 8px 10px 0px;
-	padding: 15px;
-	margin: 65px auto 45px;
-	border-radius: 2px;
-}
-
 .main-page {
 	display: grid;
-	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-columns: 1fr 2.5fr 1fr;
 	grid-gap: 3%;
+	padding-left: 5%;
+	padding-right: 5%;
 }
 
 .user-profile {
