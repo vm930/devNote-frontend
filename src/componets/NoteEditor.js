@@ -236,9 +236,9 @@ class NoteEditor extends Component {
 		});
 	};
 	handleButtonClick = () => {
-		console.log('im clicked');
 		this.setState({
 			value: initialValue,
+			currentNoteId: null,
 			currentNoteTitle: ''
 		});
 	};
