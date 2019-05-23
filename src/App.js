@@ -106,6 +106,7 @@ class App extends Component {
 							{...props}
 							logout={this.logout}
 							currentUser={this.state.currentUser}
+							currentUserId={this.state.currentUserId}
 							notes={this.state.notes}
 							addNewNote={this.addNewNote}
 							updateNote={this.updateNote}

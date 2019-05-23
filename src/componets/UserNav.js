@@ -20,6 +20,7 @@ export default class UserNav extends Component {
 		//i should open the modal
 	};
 	render() {
+		console.log(this.props.notes);
 		return (
 			<div className="card">
 				<div className="user-profile">

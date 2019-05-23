@@ -62,7 +62,7 @@ const debounce = (fn, delay) => {
 class NoteEditor extends Component {
 	state = {
 		value: initialValue,
-		currentUserId: parseInt(localStorage.getItem('userId')),
+		currentUserId: null,
 		currentNoteId: null,
 		currentNoteTitle: ''
 	};
@@ -126,7 +126,7 @@ class NoteEditor extends Component {
 			headers: { 'Content-Type': 'application/json', Accepts: 'application/json' },
 			body: JSON.stringify({
 				note: {
-					user_id: this.state.currentUserId,
+					user_id: this.props.currentUserId,
 					note_value: noteContent,
 					title: title
 				}
@@ -244,9 +244,11 @@ class NoteEditor extends Component {
 	};
 
 	render() {
+		console.log('current user id', this.props.currentUserId);
 		if (this.props.noteId && this.props.noteId !== this.state.currentNoteId) {
 			this.getNote(this.props.noteId);
 		}
+		// console.log(this.state.currentNoteId);
 		return (
 			<div className="note-component">
 				<input
