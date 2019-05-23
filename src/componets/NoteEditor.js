@@ -3,7 +3,6 @@ import { Editor } from 'slate-react';
 import { Value } from 'slate';
 import Icon from 'react-icons-kit';
 import ReactTooltip from 'react-tooltip';
-import { Link } from 'react-router-dom';
 
 //import styling components into NoteEditor
 import BoldMark from '../containers/BoldMark';
@@ -316,12 +315,13 @@ class NoteEditor extends Component {
 					renderMark={this.renderMark}
 				/>
 				<div className="note-options">
-					<button onClick={this.handleButtonClick} id="addnotebtn" data-tip="Create New Note">
-						<Icon icon={documentAdd} />
-					</button>
-					<button onClick={this.performSave} data-tip="Save Note">
+					<button onClick={this.performSave} data-tip="Save">
 						<Icon icon={floppyDisk} />
 					</button>
+					<button onClick={this.handleButtonClick} id="addnotebtn" data-tip="New Note">
+						<Icon icon={documentAdd} />
+					</button>
+
 					<button onClick={this.handleDelete} data-tip="Delete Note">
 						<Icon icon={documentDelete} />
 					</button>
