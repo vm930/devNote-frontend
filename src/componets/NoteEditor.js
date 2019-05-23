@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Editor } from 'slate-react';
 import { Value } from 'slate';
 import Icon from 'react-icons-kit';
+import ReactTooltip from 'react-tooltip';
+import { Link } from 'react-router-dom';
 
 //import styling components into NoteEditor
 import BoldMark from '../containers/BoldMark';
@@ -18,6 +20,12 @@ import { bold } from 'react-icons-kit/fa/bold';
 import { code } from 'react-icons-kit/fa/code';
 import { list } from 'react-icons-kit/fa/list';
 import { underline } from 'react-icons-kit/fa/underline';
+import { documentAdd } from 'react-icons-kit/typicons/documentAdd';
+import { documentDelete } from 'react-icons-kit/typicons/documentDelete';
+import { google } from 'react-icons-kit/icomoon/google';
+import { github } from 'react-icons-kit/icomoon/github';
+import { floppyDisk } from 'react-icons-kit/icomoon/floppyDisk';
+
 // import { link } from 'react-icons-kit/fa/link';
 
 const initialValue = Value.fromJSON({
@@ -92,7 +100,7 @@ class NoteEditor extends Component {
 	performSave = () => {
 		if (initialValue !== this.state.value) {
 			const content = JSON.stringify(this.state.value.toJSON());
-			debugger;
+			// debugger;
 			if (this.state.currentNoteId) {
 				this.saveNote(this.state.currentNoteId, content, this.state.currentNoteTitle);
 			} else {
@@ -103,7 +111,8 @@ class NoteEditor extends Component {
 
 	handleDelete = (noteId) => {
 		// console.log('pass in note id', noteId);
-		console.log('currentNoteId', this.state.currentNoteId);
+		// console.log('currentNoteId', this.state.currentNoteId);
+		alert('Are you sure?');
 		this.props.deleteNote(this.state.currentNoteId);
 		this.setState({
 			value: initialValue,
@@ -189,6 +198,13 @@ class NoteEditor extends Component {
 		}
 	};
 
+	handleGithubClick = (e) => {
+		window.open('https://github.com/', '_blank');
+	};
+	handleGoogleClick = () => {
+		window.open('https://www.google.com/', '_blank');
+	};
+
 	renderMark = (props) => {
 		switch (props.mark.type) {
 			case 'bold':
@@ -220,6 +236,13 @@ class NoteEditor extends Component {
 			currentNoteTitle: e.target.value
 		});
 	};
+	handleButtonClick = () => {
+		this.setState({
+			value: initialValue,
+			currentNoteId: null,
+			currentNoteTitle: ''
+		});
+	};
 
 	render() {
 		if (this.props.noteId && this.props.noteId !== this.state.currentNoteId) {
@@ -235,21 +258,50 @@ class NoteEditor extends Component {
 					placeholder="Write Title Here"
 				/>
 				<FormatToolbar className="format-toolbar">
-					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'bold')}>
+					<ReactTooltip />
+					<button className="tooltip-icon-button" data-tip="Bold" onClick={(e) => this.styleClick(e, 'bold')}>
 						<Icon icon={bold} />
 					</button>
-					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'italic')}>
+					<button
+						className="tooltip-icon-button"
+						data-tip="Italic"
+						onClick={(e) => this.styleClick(e, 'italic')}
+					>
 						<Icon icon={italic} />
 					</button>
-					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'underline')}>
+					<button
+						className="tooltip-icon-button"
+						data-tip="Underline"
+						onClick={(e) => this.styleClick(e, 'underline')}
+					>
 						<Icon icon={underline} />
 					</button>
-					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'list')}>
+					<button className="tooltip-icon-button" data-tip="List" onClick={(e) => this.styleClick(e, 'list')}>
 						<Icon icon={list} />
 					</button>
-					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'code')}>
+					<button
+						className="tooltip-icon-button"
+						data-tip="Code Block"
+						onClick={(e) => this.styleClick(e, 'code')}
+					>
 						<Icon icon={code} />
 					</button>
+
+					<button
+						className="tooltip-icon-button"
+						data-tip="Take me to Google"
+						onClick={this.handleGoogleClick}
+					>
+						<Icon icon={google} />
+					</button>
+					<button
+						className="tooltip-icon-button"
+						data-tip="Take me to GitHub"
+						onClick={this.handleGithubClick}
+					>
+						<Icon icon={github} />
+					</button>
+
 					{/* <button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'code')}>
 						<Icon icon={link} />
 					</button> */}
@@ -263,9 +315,17 @@ class NoteEditor extends Component {
 					onKeyDown={this.onKeyDown}
 					renderMark={this.renderMark}
 				/>
-				<button onClick={this.performSave}>save</button>
-				<button onClick={this.handleDelete}>Delete Note</button>
-				<button>Cancel</button>
+				<div className="note-options">
+					<button onClick={this.handleButtonClick} id="addnotebtn" data-tip="Create New Note">
+						<Icon icon={documentAdd} />
+					</button>
+					<button onClick={this.performSave} data-tip="Save Note">
+						<Icon icon={floppyDisk} />
+					</button>
+					<button onClick={this.handleDelete} data-tip="Delete Note">
+						<Icon icon={documentDelete} />
+					</button>
+				</div>
 			</div>
 		);
 	}

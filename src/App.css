@@ -49,6 +49,11 @@ text box css styling below:
 	margin: 0 0 10px 0;
 }
 
+/* #addnotebtn {
+	display: flex;
+	flex-direction: row-reverse;
+} */
+
 .tooltip-icon-button {
 	border: 0;
 }
@@ -128,6 +133,10 @@ nav {
 
 .handleSignIn h6 {
 	color: lightgrey;
+}
+
+.note-options {
+	float: right;
 }
 /* 
 button {

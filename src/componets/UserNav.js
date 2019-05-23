@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 export default class UserNav extends Component {
-	handleButtonClick = (e) => {
-		console.log('im clicked');
-	};
-
 	handleClick = (e) => {
 		const noteId = parseInt(e.target.dataset.id);
 		const noteTitle = e.target.innerText;
@@ -21,12 +17,7 @@ export default class UserNav extends Component {
 								<img src={`${this.props.currentUser.avatar_url}`} />
 							</div>
 							<span className="card-title">{this.props.currentUser.full_name}</span>
-							<button
-								onClick={this.handleButtonClick}
-								className="btn-floating halfway-fab waves-effect waves-light grey"
-							>
-								+
-							</button>
+
 							<div className="card-content">
 								<h6>{this.props.currentUser.user_name}</h6>
 								<h6>{this.props.currentUser.email}</h6>
