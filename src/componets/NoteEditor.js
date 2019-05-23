@@ -3,6 +3,7 @@ import { Editor } from 'slate-react';
 import { Value } from 'slate';
 import Icon from 'react-icons-kit';
 import ReactTooltip from 'react-tooltip';
+import { Link } from 'react-router-dom';
 
 //import styling components into NoteEditor
 import BoldMark from '../containers/BoldMark';
@@ -198,10 +199,10 @@ class NoteEditor extends Component {
 	};
 
 	handleGithubClick = (e) => {
-		console.log('go to github');
+		window.open('https://github.com/', '_blank');
 	};
-	handleGoogleClick = (e) => {
-		console.log('go to google');
+	handleGoogleClick = () => {
+		window.open('https://www.google.com/', '_blank');
 	};
 
 	renderMark = (props) => {
