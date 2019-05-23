@@ -1,3 +1,8 @@
+html,
+body {
+	height: 100%;
+}
+
 body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
@@ -12,6 +17,10 @@ code {
 /*
 text box css styling below:
 */
+
+.note-component {
+	margin: 10px auto 10px;
+}
 .note-editor {
 	color: rgb(17, 17, 17);
 	max-width: 740px;
@@ -25,10 +34,11 @@ text box css styling below:
 .code-editor {
 	color: rgb(17, 17, 17);
 	max-width: 740px;
+	height: 100%;
 	background-color: rgb(255, 255, 255);
 	box-shadow: 0px 16px 24px 0px;
 	padding: 30px;
-	margin: 65px auto 45px;
+	margin: 10px auto 10px;
 	border-radius: 4.5px;
 }
 
@@ -45,10 +55,11 @@ text box css styling below:
 
 .main-page {
 	display: grid;
-	grid-template-columns: 1fr 2.5fr 1fr;
+	height: 94vh;
+	grid-template-columns: 1fr 4fr;
 	grid-gap: 3%;
-	padding-left: 5%;
-	padding-right: 5%;
+	/* padding-left: 5%;
+	padding-right: 5%; */
 }
 
 .user-profile {
@@ -56,6 +67,92 @@ text box css styling below:
 	flex-direction: column;
 }
 
-.user-detail {
-	font-size: 15px;
+nav {
+	background-color: #24292e;
+	height: 40px;
+	display: flex;
+	flex-direction: row-reverse;
 }
+
+.notes-title li {
+	color: #24292e;
+}
+
+.card {
+	/* color: rgb(17, 17, 17);
+	background-color: rgb(255, 255, 255);
+	box-shadow: 0px 16px 24px 0px; */
+}
+
+.btn-floating halfway-fab waves-effect waves-light black {
+	color: rgb(224, 224, 224);
+}
+
+.note-title {
+	font-family: fantasy;
+}
+
+.code-and-note {
+	display: grid;
+	grid-template-columns: 1.5fr 1fr;
+	grid-gap: 3%;
+}
+
+.login-card {
+	width: 500px;
+	height: 50vh;
+	padding: auto;
+	color: #24292e;
+	box-shadow: 0px 10px 16px 0px;
+	display: block;
+	margin: auto;
+}
+.input {
+	background-color: #24292e;
+}
+
+.create-account {
+	width: 500px;
+	height: 50vh;
+	padding: auto;
+	color: #24292e;
+	box-shadow: 0px 10px 16px 0px;
+	display: block;
+	margin: auto;
+}
+
+.handleSignIn {
+	font-size: 40px;
+	text-align: center;
+}
+
+.handleSignIn h6 {
+	color: lightgrey;
+}
+/* 
+button {
+	-moz-box-shadow: inset 0px 1px 0px 0px #fbafe3;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #fbafe3;
+	box-shadow: inset 0px 1px 0px 0px #fbafe3;
+	background-color: #f089b2;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	border: 1px solid #f5f5f5;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Trebuchet MS;
+	font-size: 15px;
+	font-style: italic;
+	padding: 6px 13px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #c70067;
+}
+button:hover {
+	background-color: #d13689;
+}
+button:active {
+	position: relative;
+	top: 1px;
+} */
