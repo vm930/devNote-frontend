@@ -6,24 +6,27 @@ import 'brace/theme/monokai';
 import 'brace/theme/xcode';
 
 class Code extends Component {
+	state = { value: 'foo' };
+
+	handleChange = (value) => {
+		this.setState({ value });
+	};
+
 	render() {
-		// console.log('value is ', this.value);
-		// console.log(' is ', this.mode);
 		return (
 			<div className="code-editor">
+				<button onClick={() => console.log(this.state.value)}>Log the text</button>
 				<AceEditor
 					placeholder="Write some code here..."
 					mode="javascript"
 					theme="xcode"
 					name="blah2"
-					// onChange={this.onChange}
+					onChange={this.handleChange}
 					fontSize={14}
 					showPrintMargin={true}
 					showGutter={true}
 					highlightActiveLine={true}
-					value={`function biteMe(editor) {
-  console.log("i've loaded");
-}`}
+					value={this.state.value}
 					setOptions={{
 						enableBasicAutocompletion: false,
 						enableLiveAutocompletion: false,
