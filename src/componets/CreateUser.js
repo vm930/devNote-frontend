@@ -41,6 +41,8 @@ class CreateUser extends Component {
 			email: '',
 			avatarUrl: ''
 		});
+
+		this.props.history.push('/login');
 	};
 
 	render() {
