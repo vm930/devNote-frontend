@@ -18,6 +18,8 @@ import { bold } from 'react-icons-kit/fa/bold';
 import { code } from 'react-icons-kit/fa/code';
 import { list } from 'react-icons-kit/fa/list';
 import { underline } from 'react-icons-kit/fa/underline';
+import { documentAdd } from 'react-icons-kit/typicons/documentAdd';
+
 // import { link } from 'react-icons-kit/fa/link';
 
 const initialValue = Value.fromJSON({
@@ -92,7 +94,7 @@ class NoteEditor extends Component {
 	performSave = () => {
 		if (initialValue !== this.state.value) {
 			const content = JSON.stringify(this.state.value.toJSON());
-			debugger;
+			// debugger;
 			if (this.state.currentNoteId) {
 				this.saveNote(this.state.currentNoteId, content, this.state.currentNoteTitle);
 			} else {
@@ -220,6 +222,13 @@ class NoteEditor extends Component {
 			currentNoteTitle: e.target.value
 		});
 	};
+	handleButtonClick = () => {
+		console.log('im clicked');
+		this.setState({
+			value: initialValue,
+			currentNoteTitle: ''
+		});
+	};
 
 	render() {
 		if (this.props.noteId && this.props.noteId !== this.state.currentNoteId) {
@@ -250,6 +259,7 @@ class NoteEditor extends Component {
 					<button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'code')}>
 						<Icon icon={code} />
 					</button>
+
 					{/* <button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'code')}>
 						<Icon icon={link} />
 					</button> */}
@@ -266,6 +276,9 @@ class NoteEditor extends Component {
 				<button onClick={this.performSave}>save</button>
 				<button onClick={this.handleDelete}>Delete Note</button>
 				<button>Cancel</button>
+				<button onClick={this.handleButtonClick} className="tooltip-icon-button" id="addnotebtn">
+					<Icon icon={documentAdd} />
+				</button>
 			</div>
 		);
 	}
