@@ -49,18 +49,13 @@ text box css styling below:
 	margin: 0 0 10px 0;
 }
 
-/* #addnotebtn {
-	display: flex;
-	flex-direction: row-reverse;
-} */
-
 .tooltip-icon-button {
 	border: 0;
 }
 
 .main-page {
 	display: grid;
-	height: 94vh;
+	height: 92vh;
 	grid-template-columns: 1fr 4fr;
 	grid-gap: 3%;
 	/* padding-left: 5%;
@@ -74,7 +69,7 @@ text box css styling below:
 
 nav {
 	background-color: #24292e;
-	height: 40px;
+	height: 45px;
 	display: flex;
 	flex-direction: row-reverse;
 }
@@ -137,6 +132,11 @@ nav {
 
 .note-options {
 	float: right;
+}
+
+.note-options button {
+	border: 0px;
+	color: #24292e;
 }
 /* 
 button {

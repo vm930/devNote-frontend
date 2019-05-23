@@ -316,12 +316,13 @@ class NoteEditor extends Component {
 					renderMark={this.renderMark}
 				/>
 				<div className="note-options">
-					<button onClick={this.handleButtonClick} id="addnotebtn" data-tip="Create New Note">
-						<Icon icon={documentAdd} />
-					</button>
-					<button onClick={this.performSave} data-tip="Save Note">
+					<button onClick={this.performSave} data-tip="Save">
 						<Icon icon={floppyDisk} />
 					</button>
+					<button onClick={this.handleButtonClick} id="addnotebtn" data-tip="New Note">
+						<Icon icon={documentAdd} />
+					</button>
+
 					<button onClick={this.handleDelete} data-tip="Delete Note">
 						<Icon icon={documentDelete} />
 					</button>
