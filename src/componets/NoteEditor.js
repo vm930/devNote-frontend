@@ -3,7 +3,6 @@ import { Editor } from 'slate-react';
 import { Value } from 'slate';
 import Icon from 'react-icons-kit';
 import ReactTooltip from 'react-tooltip';
-import { Link } from 'react-router-dom';
 
 //import styling components into NoteEditor
 import BoldMark from '../containers/BoldMark';

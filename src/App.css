@@ -134,6 +134,11 @@ nav {
 	float: right;
 }
 
+#setting {
+	float: right;
+	color: #24292e;
+}
+
 .note-options button {
 	border: 0px;
 	color: #24292e;
