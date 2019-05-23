@@ -134,6 +134,10 @@ nav {
 .handleSignIn h6 {
 	color: lightgrey;
 }
+
+.note-options {
+	float: right;
+}
 /* 
 button {
 	-moz-box-shadow: inset 0px 1px 0px 0px #fbafe3;
