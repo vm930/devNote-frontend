@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 // import { Connect } from 'react-redux';
-
 import Code from './Code';
 import Note from './Note';
 import UserNav from './UserNav';
@@ -9,6 +8,10 @@ export default class Main extends Component {
 	state = {
 		noteId: null,
 		noteTitle: null
+	};
+
+	handleClick = () => {
+		this.props.logout();
 	};
 
 	getNoteId = (noteId) => {
@@ -23,14 +26,15 @@ export default class Main extends Component {
 		});
 	};
 
-	handleClick = () => {
-		this.props.logout();
-	};
-
 	render() {
 		return (
 			<React.Fragment>
-				<button onClick={this.handleClick}>Log Out</button>
+				<nav>
+					<div id="navbar">
+						<img className="logo" />
+						<button onClick={this.handleClick}>Log Out</button>
+					</div>
+				</nav>
 				<div className="main-page">
 					<UserNav
 						currentUser={this.props.currentUser}
@@ -38,20 +42,22 @@ export default class Main extends Component {
 						getNoteTitle={this.getNoteTitle}
 						notes={this.props.notes}
 					/>
-					<Note
-						updateNote={this.props.updateNote}
-						addNewNote={this.props.addNewNote}
-						deleteNote={this.props.deleteNote}
-						notes={this.props.notes}
-						noteId={this.state.noteId}
-						noteTitle={this.state.noteTitle}
-						currentUser={this.props.currentUser}
-					/>
-					<Code />
+					<div className="code-and-note">
+						<Note
+							updateNote={this.props.updateNote}
+							addNewNote={this.props.addNewNote}
+							deleteNote={this.props.deleteNote}
+							notes={this.props.notes}
+							noteId={this.state.noteId}
+							noteTitle={this.state.noteTitle}
+							currentUser={this.props.currentUser}
+						/>
+						<Code />
+					</div>
 				</div>
 			</React.Fragment>
 		);
 	}
 }
 
-// export default connect()(Main);
+// export default connect()(Main)

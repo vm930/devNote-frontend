@@ -20,22 +20,26 @@ class LogIn extends Component {
 
 	render() {
 		return (
-			<div>
-				<h3>Log into devNote</h3>
-				<h5>
-					Or
-					<Link to="/signup"> Create Account</Link>
-				</h5>
-				<form onSubmit={this.handleSubmit}>
-					<input
-						placeholder="User Name"
-						onChange={this.handleChange}
-						type="text"
-						value={this.state.username}
-					/>
-					<input type="submit" value="Log In" />
-				</form>
-			</div>
+			<React.Fragment>
+				<div className="handleSignIn">
+					<h5>Log into devNote</h5>
+					<h6>
+						Or
+						<Link to="/signup"> Create Account</Link>
+					</h6>
+				</div>
+				<div className="login-card">
+					<form onSubmit={this.handleSubmit}>
+						<input
+							placeholder="User Name"
+							onChange={this.handleChange}
+							type="text"
+							value={this.state.username}
+						/>
+						<input type="submit" value="Log In" />
+					</form>
+				</div>
+			</React.Fragment>
 		);
 	}
 }

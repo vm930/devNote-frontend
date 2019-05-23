@@ -226,7 +226,7 @@ class NoteEditor extends Component {
 			this.getNote(this.props.noteId);
 		}
 		return (
-			<React.Fragment>
+			<div className="note-component">
 				<input
 					className="note-title"
 					onChange={this.handleTitle}
@@ -266,7 +266,7 @@ class NoteEditor extends Component {
 				<button onClick={this.performSave}>save</button>
 				<button onClick={this.handleDelete}>Delete Note</button>
 				<button>Cancel</button>
-			</React.Fragment>
+			</div>
 		);
 	}
 }

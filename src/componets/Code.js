@@ -7,10 +7,12 @@ import 'brace/theme/xcode';
 
 class Code extends Component {
 	render() {
+		// console.log('value is ', this.value);
+		// console.log(' is ', this.mode);
 		return (
 			<div className="code-editor">
 				<AceEditor
-					placeholder="what is this for?"
+					placeholder="Write some code here..."
 					mode="javascript"
 					theme="xcode"
 					name="blah2"
