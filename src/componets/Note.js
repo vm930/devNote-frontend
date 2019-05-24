@@ -5,12 +5,6 @@ class Note extends Component {
 	render() {
 		return (
 			<div>
-				{/* <Dropdown
-					options={notes.codes}
-					onChange={this.selectCode}
-					placeholder="Code Snippets"
-					value={this.state.notes}
-				/> */}
 				<NoteEditor
 					addNewNote={this.props.addNewNote}
 					currentUser={this.props.currentUser}

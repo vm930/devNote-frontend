@@ -29,8 +29,11 @@ export default class Main extends Component {
 
 	getCodeSnippet = (noteId) => {
 		if (noteId) {
-			// console.log(noteId);
-			fetch(`http://localhost:3000/notes/${noteId}`).then((res) => res.json()).then(console.log);
+			fetch(`http://localhost:3000/notes/${noteId}`).then((res) => res.json()).then((note) => {
+				this.setState({
+					codes: note.codes
+				});
+			});
 		} else {
 			alert('oops! No notes selected!');
 		}
@@ -64,7 +67,7 @@ export default class Main extends Component {
 							noteTitle={this.state.noteTitle}
 							updateNote={this.props.updateNote}
 						/>
-						<Code />
+						<Code codes={this.state.codes} noteId={this.state.noteId} />
 					</div>
 				</div>
 			</React.Fragment>
