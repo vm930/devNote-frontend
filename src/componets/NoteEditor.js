@@ -99,7 +99,6 @@ class NoteEditor extends Component {
 	performSave = () => {
 		if (initialValue !== this.state.value) {
 			const content = JSON.stringify(this.state.value.toJSON());
-			// debugger;
 			if (this.state.currentNoteId) {
 				this.saveNote(this.state.currentNoteId, content, this.state.currentNoteTitle);
 			} else {
@@ -109,8 +108,6 @@ class NoteEditor extends Component {
 	};
 
 	handleDelete = (noteId) => {
-		// console.log('pass in note id', noteId);
-		// console.log('currentNoteId', this.state.currentNoteId);
 		alert('Are you sure?');
 		this.props.deleteNote(this.state.currentNoteId);
 		this.setState({
@@ -138,7 +135,6 @@ class NoteEditor extends Component {
 				this.props.addNewNote(note);
 				this.setState({
 					currentNoteId: note.id
-					// currentNoteTitle: note.title
 				});
 			});
 	};
@@ -235,20 +231,18 @@ class NoteEditor extends Component {
 			currentNoteTitle: e.target.value
 		});
 	};
-	handleButtonClick = () => {
+	handleAddClick = () => {
 		this.setState({
 			value: initialValue,
-			currentNoteId: null,
-			currentNoteTitle: ''
+			currentNoteTitle: '',
+			currentNoteId: null
 		});
 	};
 
 	render() {
-		console.log('current user id', this.props.currentUserId);
 		if (this.props.noteId && this.props.noteId !== this.state.currentNoteId) {
 			this.getNote(this.props.noteId);
 		}
-		// console.log(this.state.currentNoteId);
 		return (
 			<div className="note-component">
 				<input
@@ -320,10 +314,9 @@ class NoteEditor extends Component {
 					<button onClick={this.performSave} data-tip="Save">
 						<Icon icon={floppyDisk} />
 					</button>
-					<button onClick={this.handleButtonClick} id="addnotebtn" data-tip="New Note">
+					<button onClick={this.handleAddClick} id="addnotebtn" data-tip="New Note">
 						<Icon icon={documentAdd} />
 					</button>
-
 					<button onClick={this.handleDelete} data-tip="Delete Note">
 						<Icon icon={documentDelete} />
 					</button>
