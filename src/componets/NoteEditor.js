@@ -3,6 +3,8 @@ import { Editor } from 'slate-react';
 import { Value } from 'slate';
 import Icon from 'react-icons-kit';
 import ReactTooltip from 'react-tooltip';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 //import styling components into NoteEditor
 import BoldMark from '../containers/BoldMark';
@@ -301,7 +303,9 @@ class NoteEditor extends Component {
 						<Icon icon={link} />
 					</button> */}
 				</FormatToolbar>
-
+				<button onClick={() => this.props.getCodeSnippet(this.state.currentNoteId)} className="code-btn">
+					code snippets
+				</button>
 				<Editor
 					className="note-editor"
 					ref={this.ref}

@@ -7,7 +7,8 @@ import UserNav from './UserNav';
 export default class Main extends Component {
 	state = {
 		noteId: null,
-		noteTitle: null
+		noteTitle: null,
+		codes: null
 	};
 
 	handleClick = () => {
@@ -24,6 +25,15 @@ export default class Main extends Component {
 		this.setState({
 			noteTitle: noteTitle
 		});
+	};
+
+	getCodeSnippet = (noteId) => {
+		if (noteId) {
+			// console.log(noteId);
+			fetch(`http://localhost:3000/notes/${noteId}`).then((res) => res.json()).then(console.log);
+		} else {
+			alert('oops! No notes selected!');
+		}
 	};
 
 	render() {
@@ -44,14 +54,15 @@ export default class Main extends Component {
 					/>
 					<div className="code-and-note">
 						<Note
-							updateNote={this.props.updateNote}
 							addNewNote={this.props.addNewNote}
+							currentUser={this.props.currentUser}
+							currentUserId={this.props.currentUserId}
 							deleteNote={this.props.deleteNote}
+							getCodeSnippet={this.getCodeSnippet}
 							notes={this.props.notes}
 							noteId={this.state.noteId}
 							noteTitle={this.state.noteTitle}
-							currentUser={this.props.currentUser}
-							currentUserId={this.props.currentUserId}
+							updateNote={this.props.updateNote}
 						/>
 						<Code />
 					</div>
