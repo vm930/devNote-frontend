@@ -14,7 +14,13 @@ export default class UserNav extends Component {
 		this.props.getNoteId(noteId);
 		this.props.getNoteTitle(noteTitle);
 	};
+
+	handleSetting = () => {
+		console.log('im clicked');
+		//i should open the modal
+	};
 	render() {
+		console.log(this.props.notes);
 		return (
 			<div className="card">
 				<div className="user-profile">
@@ -27,7 +33,7 @@ export default class UserNav extends Component {
 							<span className="card-title">
 								{this.props.currentUser.full_name}
 								<ReactTooltip />
-								<Icon data-tip="Edit Profile" id="setting" icon={cog} />
+								<Icon onClick={this.handleSetting} data-tip="Edit Profile" id="setting" icon={cog} />
 							</span>
 
 							<div className="card-content">

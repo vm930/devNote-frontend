@@ -51,6 +51,7 @@ export default class Main extends Component {
 							noteId={this.state.noteId}
 							noteTitle={this.state.noteTitle}
 							currentUser={this.props.currentUser}
+							currentUserId={this.props.currentUserId}
 						/>
 						<Code />
 					</div>
