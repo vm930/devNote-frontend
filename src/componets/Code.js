@@ -51,9 +51,10 @@ const THEME = [ 'monokai', 'github', 'xcode', 'tomorrow', 'solarized_dark' ];
 class Code extends Component {
 	state = {
 		value: '//Write some code here...',
-		language: 'javascript',
+		mode: 'javascript',
 		theme: 'xcode',
-		currentCodeTitle: ''
+		currentCodeTitle: '',
+		currentCode: null
 	};
 
 	handleChange = (value) => {
@@ -62,7 +63,7 @@ class Code extends Component {
 
 	handleSelect = (e) => {
 		this.setState({
-			language: e.value
+			mode: e.value
 		});
 	};
 
@@ -78,7 +79,7 @@ class Code extends Component {
 					options={LANGUAGES}
 					onChange={this.handleSelect}
 					placeholder="Select a language"
-					value={this.state.language}
+					value={this.state.mode}
 				/>
 
 				<Dropdown
@@ -89,10 +90,10 @@ class Code extends Component {
 				/>
 
 				<button onClick={() => console.log(this.state.value)}>Log the text</button>
-
 				<button>add code</button>
 				<button>update code</button>
 				<button>delete code</button>
+
 				<input
 					className="code-title"
 					onChange={this.handleCodeTitle}
