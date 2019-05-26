@@ -90,7 +90,8 @@ class Code extends Component {
 				value: foundCode.code_value,
 				mode: foundCode.mode,
 				theme: foundCode.style,
-				currentCodeTitle: foundCode.title
+				currentCodeTitle: foundCode.title,
+				currentCodeId: foundCode.id
 			},
 			() => {
 				console.log(this.state);
@@ -99,8 +100,8 @@ class Code extends Component {
 	};
 
 	// codes = { this.props.codes }
-	//create code
 
+	//create code
 	createCode = () => {
 		const newCode = {
 			code_value: this.state.value,
@@ -108,7 +109,6 @@ class Code extends Component {
 			style: this.state.theme,
 			title: this.state.currentCodeTitle
 		};
-
 		// console.log(newCode);
 		fetch(`${URL}/codes`, {
 			method: 'POST',
@@ -133,7 +133,31 @@ class Code extends Component {
 							.then((response) => response.json())
 							.then((code) => console.log(code))
 				);
+				this.props.getCodeSnippet(this.props.noteId);
 			});
+	};
+
+	//update codes
+
+	updateCode = (value, title) => {
+		if (this.state.currentCodeId) {
+			// console.log(this.state.currentCodeId)
+			fetch(`${URL}/codes/${this.state.currentCodeId}`, {
+				method: 'PATCH',
+				headers: { 'Content-Type': 'application/json', Accepts: 'application/json' },
+				body: JSON.stringify({
+					id: this.state.currentCodeId,
+					code_value: this.state.value,
+					mode: this.state.mode,
+					style: this.state.theme,
+					title: this.state.currentCodeTitle
+				})
+			})
+				.then((response) => response.json())
+				.then((code) => {
+					this.props.getCodeSnippet(this.props.noteId);
+				});
+		}
 	};
 
 	render() {
@@ -169,7 +193,9 @@ class Code extends Component {
 					/>
 					{/* <button onClick={() => console.log(this.state.value)}>Log the text</button> */}
 					<button onClick={() => this.createCode(this.state.value)}>add code</button>
-					<button>update code</button>
+					<button onClick={() => this.updateCode(this.selectCodeTitle.value, this.state.currentCodeTitle)}>
+						update code
+					</button>
 					<button>delete code</button>
 
 					<input

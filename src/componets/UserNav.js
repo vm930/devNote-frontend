@@ -13,10 +13,11 @@ export default class UserNav extends Component {
 		const noteTitle = e.target.innerText;
 		this.props.getNoteId(noteId);
 		this.props.getNoteTitle(noteTitle);
+		this.props.getCodeSnippet(noteId);
 	};
 
 	handleSetting = () => {
-		console.log('im clicked');
+		console.log('im clicked to set usersettings');
 		//i should open the modal
 	};
 	render() {
