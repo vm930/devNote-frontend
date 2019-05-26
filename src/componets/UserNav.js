@@ -5,7 +5,7 @@ import { cog } from 'react-icons-kit/icomoon/cog';
 import { pacman } from 'react-icons-kit/icomoon/pacman';
 import { envelop } from 'react-icons-kit/icomoon/envelop';
 import { bubble } from 'react-icons-kit/icomoon/bubble';
-import { quill } from 'react-icons-kit/icomoon/quill';
+import { ic_bookmark } from 'react-icons-kit/md/ic_bookmark';
 
 export default class UserNav extends Component {
 	handleClick = (e) => {
@@ -26,37 +26,42 @@ export default class UserNav extends Component {
 				<div className="user-profile">
 					{this.props.currentUser || this.props.notes ? (
 						<React.Fragment>
-							<div className="card-image ">
+							<div className="card-image">
 								<img src={`${this.props.currentUser.avatar_url}`} />
 							</div>
 
-							<span className="card-title">
+							<span id="card-title">
 								{this.props.currentUser.full_name}
 								<ReactTooltip />
 								<Icon onClick={this.handleSetting} data-tip="Edit Profile" id="setting" icon={cog} />
 							</span>
 
 							<div className="card-content">
-								<p>
-									<Icon icon={pacman} />
+								<p id="userDetails">
+									<Icon id="icon-user" icon={pacman} />
 									{this.props.currentUser.user_name}
 								</p>
 
-								<p>
-									<Icon icon={envelop} />
+								<p id="userDetails">
+									<Icon id="icon-user" icon={envelop} />
 									{this.props.currentUser.email}
 								</p>
 
-								<p>
-									<Icon icon={bubble} />
+								<p id="userDetails">
+									<Icon id="icon-user" icon={bubble} />
 									{this.props.currentUser.bio}
 								</p>
 							</div>
 							<ul className="notes-title">
 								{this.props.notes.map((note) => {
 									return (
-										<li key={note.id} data-id={note.id} onClick={this.handleClick}>
-											<Icon icon={quill} />
+										<li
+											className="userNote"
+											key={note.id}
+											data-id={note.id}
+											onClick={this.handleClick}
+										>
+											<Icon className="icon" icon={ic_bookmark} />
 											{note.title}
 										</li>
 									);

@@ -55,26 +55,56 @@ class CreateUser extends Component {
 						<Link to="/login"> Log In</Link>
 					</h6>
 				</div>
-				<div className="create-account">
-					<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-						<input type="text" name="userName" value={this.state.userName} placeholder="User Name" />
-						<br />
-						<input type="password" name="password" value={this.state.password} placeholder="password" />
-						<br />
-						<input type="text" name="fullName" value={this.state.fullName} placeholder="full Name" />
-						<br />
-						<input type="text" name="email" value={this.state.email} placeholder="email address" />
-						<br />
-						<input type="text" name="bio" value={this.state.bio} placeholder="something about you" />
-						<br />
+				<div className="create-account create-acount--2">
+					<form className="loginForm" onChange={this.handleChange} onSubmit={this.handleSubmit}>
 						<input
+							id="loginInput"
+							type="text"
+							name="userName"
+							value={this.state.userName}
+							placeholder="User Name"
+						/>
+
+						<input
+							id="loginInput"
+							type="password"
+							name="password"
+							value={this.state.password}
+							placeholder="Password"
+						/>
+
+						<input
+							id="loginInput"
+							type="text"
+							name="fullName"
+							value={this.state.fullName}
+							placeholder="Full Name"
+						/>
+
+						<input
+							id="loginInput"
+							type="text"
+							name="email"
+							value={this.state.email}
+							placeholder="Email Address"
+						/>
+
+						<input
+							id="loginInput"
+							type="text"
+							name="bio"
+							value={this.state.bio}
+							placeholder="something about you"
+						/>
+						{/* <input
+							id="loginInput"
 							type="text"
 							name="avatarUrl"
 							value={this.state.avatarUrl}
 							placeholder="upload an image url here"
-						/>
-						<br />
-						<input type="submit" value="Create Account" />
+						/> */}
+
+						<input className="loginBtn" type="submit" value="Create Account" />
 					</form>
 				</div>
 			</React.Fragment>

@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 
 class LogIn extends Component {
 	state = {
-		username: ''
+		username: '',
+		password: ''
 	};
 
 	handleChange = (e) => {
 		this.setState({
-			username: e.target.value
+			[e.target.name]: e.target.value
 		});
 	};
 
@@ -22,21 +23,32 @@ class LogIn extends Component {
 		return (
 			<React.Fragment>
 				<div className="handleSignIn">
-					<h5>Log into devNote</h5>
+					<h3>Log into devNote</h3>
 					<h6>
 						Or
 						<Link to="/signup"> Create Account</Link>
 					</h6>
 				</div>
 				<div className="login-card">
-					<form onSubmit={this.handleSubmit}>
+					<form onSubmit={this.handleSubmit} className="loginForm">
 						<input
+							id="loginInput"
 							placeholder="User Name"
 							onChange={this.handleChange}
 							type="text"
 							value={this.state.username}
+							required
+							name="username"
 						/>
-						<input type="submit" value="Log In" />
+						<input
+							id="loginInput"
+							placeholder="Password"
+							onChange={this.handleChange}
+							type="password"
+							value={this.state.password}
+							name="password"
+						/>
+						<input className="loginBtn" type="submit" value="Log In" />
 					</form>
 				</div>
 			</React.Fragment>
