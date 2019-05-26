@@ -1,3 +1,8 @@
+:root {
+	--colorBtn: #41bf84;
+	--shadowMain: 5px 5px 10px 5px rgba(0, 0, 0, .12);
+}
+
 html,
 body {
 	height: 100%;
@@ -25,7 +30,7 @@ text box css styling below:
 	color: rgb(17, 17, 17);
 	max-width: 740px;
 	background-color: rgb(255, 255, 255);
-	box-shadow: 0px 16px 24px 0px;
+	box-shadow: var(--shadowMain);
 	padding: 30px;
 	margin: 65px auto 45px;
 	border-radius: 4.5px;
@@ -36,7 +41,7 @@ text box css styling below:
 	max-width: 740px;
 	height: 150%;
 	background-color: rgb(255, 255, 255);
-	box-shadow: 0px 16px 24px 0px;
+	box-shadow: 0px 5px 0px rgba(148, 81, 81, 0.20);
 	padding: 30px;
 	margin: 10px auto 10px;
 	border-radius: 4.5px;
@@ -58,8 +63,7 @@ text box css styling below:
 	height: 92vh;
 	grid-template-columns: 1fr 4fr;
 	grid-gap: 3%;
-	/* padding-left: 5%;
-	padding-right: 5%; */
+	margin-top: 15px;
 }
 
 .user-profile {
@@ -75,13 +79,28 @@ nav {
 }
 
 .notes-title li {
-	color: #24292e;
+}
+.card-title {
+	background: #dffaed;
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+}
+.card-content {
+	background: #daf0e5;
 }
 
-.card {
-	/* color: rgb(17, 17, 17);
-	background-color: rgb(255, 255, 255);
-	box-shadow: 0px 16px 24px 0px; */
+.userNote {
+	background: none;
+	border-bottom: 1px solid #eee;
+	border-top: 1px solid #eee;
+	color: #24292e;
+	padding: 10px 20px;
+	margin: 1rem 0;
+}
+.icon {
+	color: var(--colorBtn);
+	margin-right: 7px;
 }
 
 .btn-floating halfway-fab waves-effect waves-light black {
@@ -103,12 +122,59 @@ nav {
 	height: 50vh;
 	padding: auto;
 	color: #24292e;
-	box-shadow: 0px 10px 16px 0px;
+	border-radius: 4px;
+	box-shadow: var(--shadowMain);
 	display: block;
 	margin: auto;
 }
-.input {
-	background-color: #24292e;
+
+.loginForm {
+	width: 90%;
+	height: 100%;
+	margin: 0 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+#loginInput {
+	background: none;
+	width: 100%;
+	color: #24292e;
+	margin: 10px 0;
+	padding: 7px 0;
+}
+#loginInput:first-child {
+	margin-top: 20px;
+}
+#loginInput::placeholder {
+	opacity: .8;
+	color: #777;
+}
+
+.loginBtn {
+	text-decoration: none;
+	text-transform: uppercase;
+	padding: 8px 35px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	background: var(--colorBtn);
+	color: #fff;
+	font-weight: 400;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, .15);
+	transition: transform .25s;
+	outline: none;
+	margin: 25px 0 35px 0;
+}
+
+.loginBtn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 5px 9px rgba(0, 0, 0, .11);
+}
+.loginBtn:active {
+	transform: translateY(0);
+	box-shadow: 0 5px 9px rgba(0, 0, 0, .14);
 }
 
 .create-account {
@@ -116,14 +182,23 @@ nav {
 	height: 50vh;
 	padding: auto;
 	color: #24292e;
-	box-shadow: 0px 10px 16px 0px;
 	display: block;
 	margin: auto;
+	box-shadow: var(--shadowMain);
+}
+
+.create-acount--2 {
+	height: 60vh;
 }
 
 .handleSignIn {
 	font-size: 40px;
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 25vh;
 }
 
 .handleSignIn h6 {

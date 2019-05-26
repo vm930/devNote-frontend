@@ -39,6 +39,12 @@ export default class Main extends Component {
 		}
 	};
 
+	getCodeTemplate = (noteid) => {
+		this.setState({
+			noteId: noteid
+		});
+	};
+
 	render() {
 		return (
 			<React.Fragment>
@@ -63,6 +69,7 @@ export default class Main extends Component {
 							currentUserId={this.props.currentUserId}
 							deleteNote={this.props.deleteNote}
 							getCodeSnippet={this.getCodeSnippet}
+							getCodeTemplate={this.getCodeTemplate}
 							notes={this.props.notes}
 							noteId={this.state.noteId}
 							noteTitle={this.state.noteTitle}

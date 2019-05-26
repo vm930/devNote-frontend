@@ -131,9 +131,10 @@ class Code extends Component {
 							})
 						})
 							.then((response) => response.json())
-							.then((code) => console.log(code))
+							.then((code) => {
+								this.props.getCodeSnippet(this.props.noteId);
+							})
 				);
-				this.props.getCodeSnippet(this.props.noteId);
 			});
 	};
 
