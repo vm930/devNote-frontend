@@ -303,9 +303,9 @@ class NoteEditor extends Component {
 						<Icon icon={link} />
 					</button> */}
 				</FormatToolbar>
-				<button onClick={() => this.props.getCodeSnippet(this.state.currentNoteId)} className="code-btn">
+				{/* <button onClick={() => this.props.getCodeSnippet(this.state.currentNoteId)} className="code-btn">
 					code snippets
-				</button>
+				</button> */}
 				<Editor
 					className="note-editor"
 					ref={this.ref}

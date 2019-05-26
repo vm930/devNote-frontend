@@ -54,6 +54,7 @@ export default class Main extends Component {
 						getNoteId={this.getNoteId}
 						getNoteTitle={this.getNoteTitle}
 						notes={this.props.notes}
+						getCodeSnippet={this.getCodeSnippet}
 					/>
 					<div className="code-and-note">
 						<Note
@@ -67,7 +68,11 @@ export default class Main extends Component {
 							noteTitle={this.state.noteTitle}
 							updateNote={this.props.updateNote}
 						/>
-						<Code codes={this.state.codes} noteId={this.state.noteId} />
+						<Code
+							codes={this.state.codes}
+							getCodeSnippet={this.getCodeSnippet}
+							noteId={this.state.noteId}
+						/>
 					</div>
 				</div>
 			</React.Fragment>
