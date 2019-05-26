@@ -30,25 +30,25 @@ export default class UserNav extends Component {
 								<img src={`${this.props.currentUser.avatar_url}`} />
 							</div>
 
-							<span className="card-title">
+							<span id="card-title">
 								{this.props.currentUser.full_name}
 								<ReactTooltip />
 								<Icon onClick={this.handleSetting} data-tip="Edit Profile" id="setting" icon={cog} />
 							</span>
 
 							<div className="card-content">
-								<p>
-									<Icon icon={pacman} />
+								<p id="userDetails">
+									<Icon id="icon-user" icon={pacman} />
 									{this.props.currentUser.user_name}
 								</p>
 
-								<p>
-									<Icon icon={envelop} />
+								<p id="userDetails">
+									<Icon id="icon-user" icon={envelop} />
 									{this.props.currentUser.email}
 								</p>
 
-								<p>
-									<Icon icon={bubble} />
+								<p id="userDetails">
+									<Icon id="icon-user" icon={bubble} />
 									{this.props.currentUser.bio}
 								</p>
 							</div>
