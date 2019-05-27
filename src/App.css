@@ -19,6 +19,38 @@ body {
 text box css styling below:
 */
 
+.navLogIn {
+	color: rgba(255, 255, 255, 0.90);
+	background-color: rgb(0, 0, 0, 0);
+	text-transform: uppercase;
+	font-weight: 500;
+	cursor: pointer;
+	font-family: 'Montserrat', sans-serif;
+	margin-right: 20px;
+	cursor: pointer;
+}
+
+.navStart {
+	color: grey;
+	background-color: rgba(255, 255, 255, 0.80);
+	border-bottom-color: rgb(0, 0, 0);
+	border-bottom-style: none;
+	border-left-color: black;
+	border-right-color: black;
+	border-top-color: black;
+	box-sizing: border-box;
+	font-weight: 900;
+	text-transform: uppercase;
+	white-space: nowrap;
+	transition-delay: 0s, 0s, 0s;
+	transition-duration: 0.3s, 0.1s, 0.1s;
+	margin-right: 20px;
+}
+.navStart:hover {
+	background-color: rgba(255, 255, 255, 0.90);
+	color: #24292e;
+}
+
 .note-component {
 	margin: 10px auto 10px;
 }
@@ -72,10 +104,10 @@ nav {
 	height: 45px;
 	display: flex;
 	flex-direction: row-reverse;
+	text-align: center;
+	justify-content: flex-start;
 }
 
-.notes-title li {
-}
 #card-title {
 	background: #fff;
 	font-size: 30px;
