@@ -3,7 +3,6 @@ import { Editor } from 'slate-react';
 import { Value } from 'slate';
 import Icon from 'react-icons-kit';
 import ReactTooltip from 'react-tooltip';
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 //import styling components into NoteEditor
@@ -316,13 +315,13 @@ class NoteEditor extends Component {
 				/>
 				<div className="note-options">
 					<button onClick={this.performSave} data-tip="Save">
-						<Icon icon={floppyDisk} />
+						<Icon id="setting" icon={floppyDisk} />
 					</button>
 					<button onClick={this.handleAddClick} id="addnotebtn" data-tip="New Note">
-						<Icon icon={documentAdd} />
+						<Icon id="setting" icon={documentAdd} />
 					</button>
 					<button onClick={this.handleDelete} data-tip="Delete Note">
-						<Icon icon={documentDelete} />
+						<Icon id="setting" icon={documentDelete} />
 					</button>
 				</div>
 			</div>
