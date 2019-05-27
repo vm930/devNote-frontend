@@ -4,6 +4,8 @@ import { Value } from 'slate';
 import Icon from 'react-icons-kit';
 import ReactTooltip from 'react-tooltip';
 import 'react-dropdown/style.css';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //import styling components into NoteEditor
 import BoldMark from '../containers/BoldMark';
@@ -110,9 +112,10 @@ class NoteEditor extends Component {
 		}
 	};
 
+	//delete note
 	handleDelete = (noteId) => {
-		alert('Are you sure?');
 		this.props.deleteNote(this.state.currentNoteId);
+		this.notifyDelete();
 		this.setState({
 			value: initialValue,
 			currentNoteTitle: ''
@@ -134,7 +137,7 @@ class NoteEditor extends Component {
 		})
 			.then((response) => response.json())
 			.then((note) => {
-				// console.log('create note', note);
+				this.notifyCreate();
 				this.props.addNewNote(note);
 				this.setState({
 					currentNoteId: note.id
@@ -157,7 +160,7 @@ class NoteEditor extends Component {
 		})
 			.then((response) => response.json())
 			.then((note) => {
-				console.log('saved note', note);
+				this.notifySave();
 				this.props.updateNote(note);
 			});
 	};
@@ -244,8 +247,11 @@ class NoteEditor extends Component {
 		});
 	};
 
+	notifySave = () => toast('saved!', { containerId: 'S' });
+	notifyDelete = () => toast('deleted!', { containerId: 'D' });
+	notifyCreate = () => toast('created!', { containerId: 'C' });
+
 	componentDidUpdate() {
-		// console.log(this.state);
 		if (this.props.noteId) {
 			if (this.props.noteId !== this.state.currentNoteId) {
 				this.getNote(this.props.noteId);
@@ -333,6 +339,9 @@ class NoteEditor extends Component {
 					<button onClick={this.handleDelete} data-tip="Delete Note">
 						<Icon id="setting" icon={documentDelete} />
 					</button>
+					<ToastContainer enableMultiContainer containerId={'S'} transition={Bounce} autoClose={1000} />
+					<ToastContainer enableMultiContainer containerId={'C'} transition={Bounce} autoClose={1000} />
+					<ToastContainer enableMultiContainer containerId={'D'} transition={Bounce} autoClose={1000} />
 				</div>
 			</div>
 		);

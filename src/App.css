@@ -162,6 +162,18 @@ nav {
 .note-title {
 	font-family: fantasy;
 }
+.note-title::placeholder {
+	opacity: .8;
+	color: #777;
+}
+
+.code-title {
+	font-family: fantasy;
+}
+.code-title::placeholder {
+	opacity: .8;
+	color: #777;
+}
 
 .code-and-note {
 	display: grid;

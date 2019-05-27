@@ -69,6 +69,7 @@ class CreateUser extends Component {
 							name="userName"
 							value={this.state.userName}
 							placeholder="User Name"
+							required
 						/>
 
 						<input
@@ -77,6 +78,7 @@ class CreateUser extends Component {
 							name="password"
 							value={this.state.password}
 							placeholder="Password"
+							required
 						/>
 
 						<input
@@ -85,6 +87,7 @@ class CreateUser extends Component {
 							name="fullName"
 							value={this.state.fullName}
 							placeholder="Full Name"
+							required
 						/>
 
 						<input
@@ -93,6 +96,7 @@ class CreateUser extends Component {
 							name="email"
 							value={this.state.email}
 							placeholder="Email Address"
+							required
 						/>
 
 						<input

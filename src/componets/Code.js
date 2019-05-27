@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import AceEditor from 'react-ace';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
@@ -55,9 +57,13 @@ class Code extends Component {
 		value: '',
 		mode: 'javascript',
 		theme: 'xcode',
-		currentCodeTitle: 'untitle',
+		currentCodeTitle: '',
 		currentCodeId: null
 	};
+
+	notifySave = () => toast('saved!', { containerId: 'S' });
+	notifyDelete = () => toast('deleted!', { containerId: 'D' });
+	notifyCreate = () => toast('created!', { containerId: 'C' });
 
 	handleChange = (value) => {
 		this.setState({ value });
@@ -109,7 +115,6 @@ class Code extends Component {
 			style: this.state.theme,
 			title: this.state.currentCodeTitle
 		};
-		// console.log(newCode);
 		fetch(`${URL}/codes`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json', Accepts: 'application/json' },
@@ -133,6 +138,7 @@ class Code extends Component {
 							.then((response) => response.json())
 							.then((code) => {
 								this.props.getCodeSnippet(this.props.noteId);
+								this.notifyCreate();
 							})
 				);
 			});
@@ -157,6 +163,7 @@ class Code extends Component {
 				.then((response) => response.json())
 				.then((code) => {
 					this.props.getCodeSnippet(this.props.noteId);
+					this.notifySave();
 				});
 		}
 	};
@@ -171,6 +178,7 @@ class Code extends Component {
 				.then((response) => response.json())
 				.then((code) => {
 					this.props.getCodeSnippet(this.props.noteId);
+					this.notifyDelete();
 					this.setState({
 						value: '',
 						mode: 'javascript',
@@ -198,7 +206,7 @@ class Code extends Component {
 						</select>
 					</React.Fragment>
 				) : (
-					<div>No Codes</div>
+					<div className="progress indeterminate">no code</div>
 				)}
 				<React.Fragment>
 					<Dropdown
@@ -214,18 +222,12 @@ class Code extends Component {
 						value={this.state.theme}
 					/>
 					{/* <button onClick={() => console.log(this.state.value)}>Log the text</button> */}
-					<button onClick={() => this.createCode(this.state.value)}>add code</button>
-					<button onClick={() => this.updateCode(this.selectCodeTitle.value, this.state.currentCodeTitle)}>
-						update code
-					</button>
-					<button onClick={() => this.deleteCode(this.state.currentCodeId)}>delete code</button>
-
 					<input
 						className="code-title"
 						onChange={this.handleCodeTitle}
 						type="text"
 						value={this.state.currentCodeTitle}
-						placeholder="Title"
+						placeholder="untitle"
 					/>
 					<AceEditor
 						className="code-editor"
@@ -250,6 +252,14 @@ class Code extends Component {
 							$blockScrolling: Infinity
 						}}
 					/>
+					<button onClick={() => this.createCode(this.state.value)}>add code</button>
+					<button onClick={() => this.updateCode(this.selectCodeTitle.value, this.state.currentCodeTitle)}>
+						update code
+					</button>
+					<button onClick={() => this.deleteCode(this.state.currentCodeId)}>delete code</button>
+					<ToastContainer enableMultiContainer containerId={'S'} transition={Bounce} autoClose={1000} />
+					<ToastContainer enableMultiContainer containerId={'C'} transition={Bounce} autoClose={1000} />
+					<ToastContainer enableMultiContainer containerId={'D'} transition={Bounce} autoClose={1000} />
 				</React.Fragment>
 			</div>
 		);
