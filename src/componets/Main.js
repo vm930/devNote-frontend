@@ -6,9 +6,9 @@ import UserNav from './UserNav';
 
 export default class Main extends Component {
 	state = {
+		codes: null,
 		noteId: null,
-		noteTitle: null,
-		codes: null
+		noteTitle: null
 	};
 
 	handleClick = () => {
@@ -39,6 +39,14 @@ export default class Main extends Component {
 		}
 	};
 
+	resetNote = () => {
+		this.setState({
+			codes: null,
+			noteId: null,
+			noteTitle: null
+		});
+	};
+
 	getCodeTemplate = (noteid) => {
 		this.setState({
 			noteId: noteid
@@ -46,7 +54,6 @@ export default class Main extends Component {
 	};
 
 	render() {
-		console.log(this.props.notes);
 		return (
 			<React.Fragment>
 				<nav>
@@ -65,6 +72,7 @@ export default class Main extends Component {
 					/>
 					<div className="code-and-note">
 						<Note
+							resetNote={this.resetNote}
 							addNewNote={this.props.addNewNote}
 							currentUser={this.props.currentUser}
 							currentUserId={this.props.currentUserId}

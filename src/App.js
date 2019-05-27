@@ -10,11 +10,18 @@ class App extends Component {
 	state = {
 		currentUser: null,
 		currentUserId: null,
-		notes: null
+		notes: []
 	};
 
 	componentDidMount() {
-		//if local storage has userid then continue
+		this.handleAuth();
+	}
+
+	componentWillUpdate() {
+		// this.handleAuth();
+	}
+
+	handleAuth = () => {
 		const token = localStorage.getItem('token');
 		const userId = localStorage.getItem('id');
 		if (token) {
@@ -24,12 +31,13 @@ class App extends Component {
 					currentUserId: json.id,
 					notes: json.notes
 				});
+				this.props.history.push('/');
 			});
 		} else {
 			// console.log('im here');
 			this.props.history.push('/login');
 		}
-	}
+	};
 
 	logout = () => {
 		localStorage.clear();
@@ -60,7 +68,7 @@ class App extends Component {
 				if (json.errors) {
 					console.log('errors');
 				} else {
-					// console.log(json.user);
+					console.log(json.user);
 					if (json.user.id) {
 						localStorage.setItem('token', json.jwt);
 						localStorage.setItem('username', json.user.user_name);
@@ -70,6 +78,7 @@ class App extends Component {
 							currentUser: json.user,
 							currentUserId: json.user.id
 						});
+						this.handleAuth();
 					}
 				}
 			});
