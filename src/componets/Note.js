@@ -6,6 +6,7 @@ class Note extends Component {
 		return (
 			<div>
 				<NoteEditor
+					resetNote={this.props.resetNote}
 					addNewNote={this.props.addNewNote}
 					currentUser={this.props.currentUser}
 					currentUserId={this.props.currentUserId}

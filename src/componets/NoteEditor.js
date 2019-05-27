@@ -84,6 +84,7 @@ class NoteEditor extends Component {
 		fetch('http://localhost:3000/notes/' + `${noteId}`).then((response) => response.json()).then((json) => {
 			if (JSON.parse(json.note_value)) {
 				const existingValue = Value.fromJSON(JSON.parse(json.note_value));
+				// console.log('got the note for note id', noteId);
 				this.setState({
 					value: existingValue,
 					currentNoteId: noteId,
@@ -95,6 +96,7 @@ class NoteEditor extends Component {
 				});
 			}
 		});
+		// .catch(console.error);
 	};
 
 	performSave = () => {
@@ -232,7 +234,9 @@ class NoteEditor extends Component {
 			currentNoteTitle: e.target.value
 		});
 	};
+
 	handleAddClick = () => {
+		this.props.resetNote();
 		this.setState({
 			value: initialValue,
 			currentNoteTitle: '',
@@ -240,10 +244,16 @@ class NoteEditor extends Component {
 		});
 	};
 
-	render() {
-		if (this.props.noteId && this.props.noteId !== this.state.currentNoteId) {
-			this.getNote(this.props.noteId);
+	componentDidUpdate() {
+		// console.log(this.state);
+		if (this.props.noteId) {
+			if (this.props.noteId !== this.state.currentNoteId) {
+				this.getNote(this.props.noteId);
+			}
 		}
+	}
+
+	render() {
 		return (
 			<div className="note-component">
 				<input
