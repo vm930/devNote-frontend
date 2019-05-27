@@ -68,37 +68,35 @@ class NoteEditor extends Component {
 		currentNoteTitle: ''
 	};
 
-	// autoSaver = debounce(() => {
-	// 	this.performSave();
-	// }, 3000);
+	autoSaver = debounce(() => {
+		this.performSave();
+	}, 3000);
 
 	handleOnChange = ({ value }) => {
 		this.setState({ value }, () => {
-			// this.autoSaver();
+			this.autoSaver();
 		});
 	};
 
 	//Read exiting notes  -- base off which user is logging in from their userId
 
 	getNote = (noteId) => {
-		fetch('http://localhost:3000/notes/' + `${noteId}`)
-			.then((response) => response.json())
-			.then((json) => {
-				if (JSON.parse(json.note_value)) {
-					const existingValue = Value.fromJSON(JSON.parse(json.note_value));
-					console.log('got the note for note id', noteId);
-					this.setState({
-						value: existingValue,
-						currentNoteId: noteId,
-						currentNoteTitle: json.title
-					});
-				} else {
-					this.setState({
-						value: initialValue
-					});
-				}
-			})
-			.catch(console.error);
+		fetch('http://localhost:3000/notes/' + `${noteId}`).then((response) => response.json()).then((json) => {
+			if (JSON.parse(json.note_value)) {
+				const existingValue = Value.fromJSON(JSON.parse(json.note_value));
+				// console.log('got the note for note id', noteId);
+				this.setState({
+					value: existingValue,
+					currentNoteId: noteId,
+					currentNoteTitle: json.title
+				});
+			} else {
+				this.setState({
+					value: initialValue
+				});
+			}
+		});
+		// .catch(console.error);
 	};
 
 	performSave = () => {
@@ -247,27 +245,13 @@ class NoteEditor extends Component {
 	};
 
 	componentDidUpdate() {
-		console.log(this.state);
+		// console.log(this.state);
 		if (this.props.noteId) {
 			if (this.props.noteId !== this.state.currentNoteId) {
 				this.getNote(this.props.noteId);
 			}
 		}
 	}
-
-	// shouldComponentUpdate(nextProps, nextState) {
-	// 	if (nextProps.noteId === null) {
-	// 		return true;
-	// 	}
-
-	// 	if (nextState.currentNoteId !== null) {
-	// 		return false;
-	// 	}
-
-	// 	console.log(nextState);
-
-	// 	return true;
-	// }
 
 	render() {
 		return (
