@@ -17,10 +17,6 @@ class App extends Component {
 		this.handleAuth();
 	}
 
-	componentWillUpdate() {
-		// this.handleAuth();
-	}
-
 	handleAuth = () => {
 		const token = localStorage.getItem('token');
 		const userId = localStorage.getItem('id');
@@ -84,6 +80,16 @@ class App extends Component {
 			});
 	};
 
+	getCurrentUser = (userid) => {
+		fetch(`http://localhost:3000/users/${userid}`).then((res) => res.json()).then((json) => {
+			this.setState({
+				currentUser: json,
+				currentUserId: json.id,
+				notes: json.notes
+			});
+		});
+	};
+
 	addNewNote = (newNote) => {
 		this.setState({
 			notes: [ ...this.state.notes, newNote ]
@@ -133,6 +139,7 @@ class App extends Component {
 							addNewNote={this.addNewNote}
 							updateNote={this.updateNote}
 							deleteNote={this.deleteNote}
+							getCurrentUser={this.getCurrentUser}
 						/>
 					)}
 				/>

@@ -15,20 +15,23 @@ export default class UserNav extends Component {
 		open: false,
 		userName: '',
 		password: '',
+		password_confirmation: '',
 		fullName: '',
 		bio: '',
-		email: ''
+		email: '',
+		avatarUrl: ''
 	};
 
 	onOpenModal = () => {
 		this.setState({
 			open: true,
 			userName: this.props.currentUser.user_name,
-			// password: this.props.currentUser.password,
+			password: this.props.currentUser.password,
+			password_confirmation: this.props.currentUser.password_confirmation,
 			fullName: this.props.currentUser.full_name,
 			email: this.props.currentUser.email,
 			bio: this.props.currentUser.bio,
-			avatar_url: ''
+			avatarUrl: this.props.currentUser.avatar_url
 		});
 	};
 
@@ -57,16 +60,19 @@ export default class UserNav extends Component {
 			headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
 			body: JSON.stringify({
 				user_name: this.state.userName,
-				// password: this.state.password,
-				// password_confirmation: this.state.password,
+				password: this.state.password,
+				password_confirmation: this.state.password_confirmation,
 				full_name: this.state.fullName,
 				email: this.state.email,
 				bio: this.state.bio,
-				avatar_url: this.state.avatar_url
+				avatar_url: this.state.avatarUrl
 			})
 		})
 			.then((res) => res.json())
-			.then(console.log);
+			.then((json) => {
+				//insert a toast notification
+				this.props.getCurrentUser(this.props.currentUser.id);
+			});
 	};
 
 	render() {
@@ -84,60 +90,55 @@ export default class UserNav extends Component {
 								{this.props.currentUser.full_name}
 								<ReactTooltip />
 								<Icon data-tip="Edit Profile" id="setting" icon={cog} onClick={this.onOpenModal} />
-								<Modal open={open} onClose={this.onCloseModal} center>
-									<form
-										className="loginForm"
-										onChange={this.handleSetting}
-										onSubmit={this.handleSubmit}
-									>
+								<Modal open={open} onClose={this.onCloseModal}>
+									<form onChange={this.handleSetting} onSubmit={this.handleSubmit}>
 										<input
-											id="loginInput"
 											type="text"
 											name="userName"
 											value={this.state.userName}
 											placeholder="User Name"
 										/>
+										<label>User Name</label>
 
-										{/* <input
-											id="loginInput"
+										<input
 											type="password"
 											name="password"
 											value={this.state.password}
 											placeholder="Password"
-										/> */}
+										/>
+										<label>Password</label>
 
 										<input
-											id="loginInput"
 											type="text"
 											name="fullName"
 											value={this.state.fullName}
 											placeholder="Full Name"
 										/>
+										<label>Full Name</label>
 
 										<input
-											id="loginInput"
 											type="text"
 											name="email"
 											value={this.state.email}
 											placeholder="Email Address"
 										/>
+										<label>Email</label>
 
 										<input
-											id="loginInput"
 											type="text"
 											name="bio"
 											value={this.state.bio}
 											placeholder="something about you"
 										/>
+										<label>Bio</label>
 
 										<input
-											id="loginInput"
 											type="text"
 											name="avatarUrl"
 											value={this.state.avatarUrl}
 											placeholder="upload an image url here"
 										/>
-
+										<label>Profile Picture</label>
 										<input className="loginBtn" type="submit" value="Save" />
 									</form>
 								</Modal>

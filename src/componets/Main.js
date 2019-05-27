@@ -69,6 +69,7 @@ export default class Main extends Component {
 						getNoteTitle={this.getNoteTitle}
 						notes={this.props.notes}
 						getCodeSnippet={this.getCodeSnippet}
+						getCurrentUser={this.props.getCurrentUser}
 					/>
 					<div className="code-and-note">
 						<Note
