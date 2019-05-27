@@ -16,11 +16,17 @@ class LogIn extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.getUser(this.state.username, this.state.password);
+		this.props.history.push('/notes');
 	};
 
 	render() {
 		return (
 			<React.Fragment>
+				<nav>
+					<div id="navbar">
+						<img alt="logo" className="logo" />
+					</div>
+				</nav>
 				<div className="handleSignIn">
 					<h3>Log into devNote</h3>
 					<h6>

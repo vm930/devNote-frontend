@@ -7,6 +7,8 @@ import { envelop } from 'react-icons-kit/icomoon/envelop';
 import { bubble } from 'react-icons-kit/icomoon/bubble';
 import { ic_bookmark } from 'react-icons-kit/md/ic_bookmark';
 import Modal from 'react-responsive-modal';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const URL = 'http://localhost:3000';
 
@@ -71,9 +73,12 @@ export default class UserNav extends Component {
 			.then((res) => res.json())
 			.then((json) => {
 				//insert a toast notification
+				this.notify();
 				this.props.getCurrentUser(this.props.currentUser.id);
 			});
 	};
+
+	notify = () => toast('saved!');
 
 	render() {
 		const { open } = this.state;
@@ -139,7 +144,9 @@ export default class UserNav extends Component {
 											placeholder="upload an image url here"
 										/>
 										<label>Profile Picture</label>
+										<br />
 										<input className="loginBtn" type="submit" value="Save" />
+										<ToastContainer transition={Bounce} autoClose={1000} />
 									</form>
 								</Modal>
 							</span>

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import './App.css';
 //import components for main page
 import Main from './componets/Main';
 import LogIn from './componets/LogIn';
 import CreateUser from './componets/CreateUser';
+import Welcome from './componets/Welcome';
 
 class App extends Component {
 	state = {
@@ -27,11 +28,10 @@ class App extends Component {
 					currentUserId: json.id,
 					notes: json.notes
 				});
-				this.props.history.push('/');
+				this.props.history.push('/notes');
 			});
 		} else {
-			// console.log('im here');
-			this.props.history.push('/login');
+			this.props.history.push('/');
 		}
 	};
 
@@ -125,10 +125,11 @@ class App extends Component {
 	render() {
 		return (
 			<Switch>
-				<Route path="/login" render={(props) => <LogIn getUser={this.getUser} {...props} />} />
-				<Route path="/signup" render={(props) => <CreateUser {...props} />} />
+				<Route exact path="/login" render={(props) => <LogIn getUser={this.getUser} {...props} />} />
+				<Route exact path="/signup" render={(props) => <CreateUser {...props} />} />
 				<Route
-					path="/"
+					exact
+					path="/notes"
 					render={(props) => (
 						<Main
 							{...props}
@@ -143,6 +144,9 @@ class App extends Component {
 						/>
 					)}
 				/>
+				<Route path="/" component={Welcome} />
+				{/* <Route
+					path="/" */}
 			</Switch>
 		);
 	}

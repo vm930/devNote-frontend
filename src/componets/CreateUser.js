@@ -49,6 +49,11 @@ class CreateUser extends Component {
 	render() {
 		return (
 			<React.Fragment>
+				<nav>
+					<div id="navbar">
+						<img alt="logo" className="logo" />
+					</div>
+				</nav>
 				<div className="handleSignIn">
 					<h3>Create Account</h3>
 					<h6>
@@ -64,6 +69,7 @@ class CreateUser extends Component {
 							name="userName"
 							value={this.state.userName}
 							placeholder="User Name"
+							required
 						/>
 
 						<input
@@ -72,6 +78,7 @@ class CreateUser extends Component {
 							name="password"
 							value={this.state.password}
 							placeholder="Password"
+							required
 						/>
 
 						<input
@@ -80,6 +87,7 @@ class CreateUser extends Component {
 							name="fullName"
 							value={this.state.fullName}
 							placeholder="Full Name"
+							required
 						/>
 
 						<input
@@ -88,6 +96,7 @@ class CreateUser extends Component {
 							name="email"
 							value={this.state.email}
 							placeholder="Email Address"
+							required
 						/>
 
 						<input
