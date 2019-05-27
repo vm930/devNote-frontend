@@ -91,18 +91,13 @@ class Code extends Component {
 		const foundCode = this.props.codes.find((code) => {
 			return code.id === parseInt(e.target.value);
 		});
-		this.setState(
-			{
-				value: foundCode.code_value,
-				mode: foundCode.mode,
-				theme: foundCode.style,
-				currentCodeTitle: foundCode.title,
-				currentCodeId: foundCode.id
-			},
-			() => {
-				console.log(this.state);
-			}
-		);
+		this.setState({
+			value: foundCode.code_value,
+			mode: foundCode.mode,
+			theme: foundCode.style,
+			currentCodeTitle: foundCode.title,
+			currentCodeId: foundCode.id
+		});
 	};
 
 	// codes = { this.props.codes }
@@ -145,7 +140,6 @@ class Code extends Component {
 	};
 
 	//update codes
-
 	updateCode = (value, title) => {
 		if (this.state.currentCodeId) {
 			// console.log(this.state.currentCodeId)
@@ -232,7 +226,7 @@ class Code extends Component {
 					<AceEditor
 						className="code-editor"
 						placeholder="Write some code here..."
-						mode={this.state.language}
+						mode={this.state.mode}
 						theme={this.state.theme}
 						name="blah2"
 						onChange={this.handleChange}
