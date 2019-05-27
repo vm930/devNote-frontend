@@ -101,7 +101,6 @@ class Code extends Component {
 	};
 
 	// codes = { this.props.codes }
-
 	//create code
 	createCode = () => {
 		const newCode = {
@@ -161,9 +160,7 @@ class Code extends Component {
 				});
 		}
 	};
-
 	//delete codes
-
 	deleteCode = (codeid) => {
 		if (this.state.currentCodeId) {
 			fetch(`${URL}/codes/${codeid}`, {
