@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+const URL = 'http://localhost:3000';
+
 class CreateUser extends Component {
 	state = {
 		userName: '',
@@ -18,7 +20,7 @@ class CreateUser extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		fetch('http://localhost:3000/users', {
+		fetch(`${URL}/users`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
 			body: JSON.stringify({
