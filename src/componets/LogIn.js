@@ -15,7 +15,7 @@ class LogIn extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.getUser(this.state.username);
+		this.props.getUser(this.state.username, this.state.password);
 		this.props.history.push('/');
 	};
 

@@ -46,11 +46,12 @@ export default class Main extends Component {
 	};
 
 	render() {
+		console.log(this.props.notes);
 		return (
 			<React.Fragment>
 				<nav>
 					<div id="navbar">
-						<img className="logo" />
+						<img alt="logo" className="logo" />
 						<button onClick={this.handleClick}>Log Out</button>
 					</div>
 				</nav>

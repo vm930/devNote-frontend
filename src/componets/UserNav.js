@@ -24,10 +24,10 @@ export default class UserNav extends Component {
 		return (
 			<div className="card">
 				<div className="user-profile">
-					{this.props.currentUser || this.props.notes ? (
+					{this.props.currentUser && this.props.notes ? (
 						<React.Fragment>
 							<div className="card-image">
-								<img src={`${this.props.currentUser.avatar_url}`} />
+								<img alt="user profile" src={`${this.props.currentUser.avatar_url}`} />
 							</div>
 
 							<span id="card-title">

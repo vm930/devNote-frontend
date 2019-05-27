@@ -7,8 +7,7 @@ class CreateUser extends Component {
 		password: '',
 		fullName: '',
 		bio: '',
-		email: '',
-		avatarUrl: ''
+		email: ''
 	};
 
 	handleChange = (e) => {
@@ -24,9 +23,10 @@ class CreateUser extends Component {
 			headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
 			body: JSON.stringify({
 				user_name: this.state.userName,
+				password: this.state.password,
+				password_confirmation: this.state.password,
 				full_name: this.state.fullName,
 				email: this.state.email,
-				avatar_url: this.state.avatarUrl,
 				bio: this.state.bio
 			})
 		})
@@ -38,8 +38,7 @@ class CreateUser extends Component {
 			password: '',
 			fullName: '',
 			bio: '',
-			email: '',
-			avatarUrl: ''
+			email: ''
 		});
 
 		this.props.history.push('/login');

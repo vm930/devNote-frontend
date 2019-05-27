@@ -161,6 +161,27 @@ class Code extends Component {
 		}
 	};
 
+	//delete codes
+
+	deleteCode = (codeid) => {
+		if (this.state.currentCodeId) {
+			fetch(`${URL}/codes/${codeid}`, {
+				method: 'DELETE'
+			})
+				.then((response) => response.json())
+				.then((code) => {
+					this.props.getCodeSnippet(this.props.noteId);
+					this.setState({
+						value: '',
+						mode: 'javascript',
+						theme: 'xcode',
+						currentCodeTitle: 'untitle',
+						currentCodeId: null
+					});
+				});
+		} else alert('oops! no code to select!');
+	};
+
 	render() {
 		return (
 			<div>
@@ -197,7 +218,7 @@ class Code extends Component {
 					<button onClick={() => this.updateCode(this.selectCodeTitle.value, this.state.currentCodeTitle)}>
 						update code
 					</button>
-					<button>delete code</button>
+					<button onClick={() => this.deleteCode(this.state.currentCodeId)}>delete code</button>
 
 					<input
 						className="code-title"

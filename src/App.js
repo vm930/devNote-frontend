@@ -15,9 +15,10 @@ class App extends Component {
 
 	componentDidMount() {
 		//if local storage has userid then continue
-		const token = localStorage.getItem('userId');
+		const token = localStorage.getItem('token');
+		const userId = localStorage.getItem('id');
 		if (token) {
-			fetch(`http://localhost:3000/users/${token}`).then((res) => res.json()).then((json) => {
+			fetch(`http://localhost:3000/users/${userId}`).then((res) => res.json()).then((json) => {
 				this.setState({
 					currentUser: json,
 					currentUserId: json.id,
@@ -25,8 +26,8 @@ class App extends Component {
 				});
 			});
 		} else {
-			console.log('im here');
-			// this.props.history.push('/login');
+			// console.log('im here');
+			this.props.history.push('/login');
 		}
 	}
 
@@ -40,7 +41,7 @@ class App extends Component {
 		this.props.history.push('/login');
 	};
 
-	getUser = (username) => {
+	getUser = (username, password) => {
 		fetch('http://localhost:3000/login/', {
 			method: 'POST',
 			headers: {
@@ -48,17 +49,29 @@ class App extends Component {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				user: { user_name: username }
+				user: {
+					user_name: username,
+					password_digest: password
+				}
 			})
 		})
 			.then((res) => res.json())
 			.then((json) => {
-				localStorage.setItem('userId', json.id);
-				this.setState({
-					currentUser: json,
-					currentUserId: json.id,
-					notes: json.notes
-				});
+				if (json.errors) {
+					console.log('errors');
+				} else {
+					// console.log(json.user);
+					if (json.user.id) {
+						localStorage.setItem('token', json.jwt);
+						localStorage.setItem('username', json.user.user_name);
+						localStorage.setItem('id', json.user.id);
+
+						this.setState({
+							currentUser: json.user,
+							currentUserId: json.user.id
+						});
+					}
+				}
 			});
 	};
 

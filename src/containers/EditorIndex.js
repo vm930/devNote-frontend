@@ -1,4 +1,3 @@
-import NoteEditor from '../componets/NoteEditor';
 import BoldMark from './BoldMark';
 import ItalicMark from './ItalicMark';
 import Underline from './Underline';
