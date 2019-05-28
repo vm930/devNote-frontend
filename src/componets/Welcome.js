@@ -31,10 +31,10 @@ class Welcome extends Component {
 				</div>
 				<footer className="page-footer">
 					<div className="footer-links">
-						<Link className="footer-link" to="/">
-							source
+						<Link className="footer-link" target="https://github.com/vm930/devNote-frontend">
+							source code
 						</Link>
-						<Link className="footer-link" to="/">
+						<Link className="footer-link" to="vickysdailystand">
 							feedback
 						</Link>
 						<Link className="footer-link" to="/">

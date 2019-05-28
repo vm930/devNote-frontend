@@ -49,8 +49,9 @@ class CreateUser extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<img alt="logo" src="devNote.png" className="applogo" />
-
+				<Link to="/">
+					<img src="devNote.png" alt="logo" className="applogo" />
+				</Link>
 				<div className="handleSignIn">
 					<h3>Create Account</h3>
 					<h6>
