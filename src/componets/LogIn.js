@@ -23,8 +23,8 @@ class LogIn extends Component {
 		return (
 			<React.Fragment>
 				<nav>
-					<div id="navbar">
-						<img alt="logo" className="logo" />
+					<div id="devNote">
+						<img src="devNote.png" alt="logo" />
 					</div>
 				</nav>
 				<div className="handleSignIn">
