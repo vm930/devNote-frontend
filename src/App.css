@@ -1,5 +1,5 @@
 :root {
-	--colorBtn: #41bf84;
+	--colorBtn: #3fbf83;
 	--shadowMain: 5px 5px 10px 5px rgba(0, 0, 0, .12);
 }
 
@@ -14,11 +14,32 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+.applogo {
+	height: 25vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.page-footer div {
+	display: flex;
+	flex-direction: coloumn-reverse;
+	justify-content: space-evenly;
+	color: white;
+	text-align: center;
+	margin-bottom: 5%;
+	margin-top: 3%;
+}
+
+.page-footer p {
+	text-align: center;
+	margin-bottom: 5%;
+	background: #121212;
+}
 
 /*
 text box css styling below:
 */
-
 .navLogIn {
 	color: rgba(255, 255, 255, 0.90);
 	background-color: rgb(0, 0, 0, 0);
@@ -107,6 +128,10 @@ nav {
 	flex-direction: row-reverse;
 	text-align: center;
 	justify-content: flex-start;
+}
+
+#devNote {
+	height: 20px;
 }
 
 #card-title {
