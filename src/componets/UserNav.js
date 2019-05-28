@@ -94,7 +94,12 @@ export default class UserNav extends Component {
 							<span id="card-title">
 								{this.props.currentUser.full_name}
 								<ReactTooltip />
-								<Icon data-tip="Edit Profile" id="setting" icon={cog} onClick={this.onOpenModal} />
+								<Icon
+									data-tip="Edit Profile"
+									className="setting"
+									icon={cog}
+									onClick={this.onOpenModal}
+								/>
 								<Modal open={open} onClose={this.onCloseModal}>
 									<form onChange={this.handleSetting} onSubmit={this.handleSubmit}>
 										<input

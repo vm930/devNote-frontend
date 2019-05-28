@@ -9,7 +9,10 @@ import Icon from 'react-icons-kit';
 import { paintBrush } from 'react-icons-kit/fa/paintBrush';
 import { globe } from 'react-icons-kit/entypo/globe';
 
-// import ReactTooltip from 'react-tooltip';
+import ReactTooltip from 'react-tooltip';
+import { floppyDisk } from 'react-icons-kit/icomoon/floppyDisk';
+import { fileEmpty } from 'react-icons-kit/icomoon/fileEmpty';
+import { folderMinus } from 'react-icons-kit/icomoon/folderMinus';
 
 //adding options to code eidtior
 import 'brace/mode/javascript';
@@ -187,6 +190,15 @@ class Code extends Component {
 		} else alert('oops! no code to select!');
 	};
 
+	export = () => {
+		const element = document.createElement('a');
+		const file = new Blob([ this.state.value ], { type: 'text/plain' });
+		element.href = window.URL.createObjectURL(file);
+		element.download = 'myFile.txt';
+		document.body.appendChild(element);
+		element.click();
+	};
+
 	render() {
 		return (
 			<div>
@@ -258,11 +270,24 @@ class Code extends Component {
 							$blockScrolling: Infinity
 						}}
 					/>
-					<button onClick={() => this.createCode(this.state.value)}>add code</button>
-					<button onClick={() => this.updateCode(this.selectCodeTitle.value, this.state.currentCodeTitle)}>
-						update code
+
+					<Icon className="setting" icon={fileEmpty} onClick={() => this.createCode(this.state.value)}>
+						add code
+					</Icon>
+					<Icon
+						className="setting"
+						icon={floppyDisk}
+						onClick={() => this.updateCode(this.selectCodeTitle.value, this.state.currentCodeTitle)}
+					/>
+					<Icon
+						className="setting"
+						icon={folderMinus}
+						onClick={() => this.deleteCode(this.state.currentCodeId)}
+					/>
+					<button className="setting" onClick={this.export}>
+						export
 					</button>
-					<button onClick={() => this.deleteCode(this.state.currentCodeId)}>delete code</button>
+
 					<ToastContainer enableMultiContainer containerId={'S'} transition={Bounce} autoClose={1000} />
 					<ToastContainer enableMultiContainer containerId={'C'} transition={Bounce} autoClose={1000} />
 					<ToastContainer enableMultiContainer containerId={'D'} transition={Bounce} autoClose={1000} />

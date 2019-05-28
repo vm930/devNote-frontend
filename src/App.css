@@ -224,6 +224,8 @@ nav {
 	text-align: center;
 	color: #24292e;
 	font-weight: 400;
+	letter-spacing: 2px;
+	margin-right: 2px;
 }
 .card-content {
 	color: #24292e;
@@ -238,6 +240,7 @@ nav {
 	padding: 10px 20px;
 	margin: 1rem 0;
 	transition: all 0.1s;
+	cursor: pointer;
 }
 
 .userNote:hover {
@@ -384,7 +387,7 @@ nav {
 
 .setting > svg {
 	float: right;
-	margin-right: 20px;
+	margin-left: 20px;
 	color: var(--colorBtn);
 	transition: transform .1s;
 	backface-visibility: hidden;
