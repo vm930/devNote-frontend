@@ -5,6 +5,12 @@ import AceEditor from 'react-ace';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
+import Icon from 'react-icons-kit';
+import { paintBrush } from 'react-icons-kit/fa/paintBrush';
+import { globe } from 'react-icons-kit/entypo/globe';
+
+// import ReactTooltip from 'react-tooltip';
+
 //adding options to code eidtior
 import 'brace/mode/javascript';
 import 'brace/mode/java';
@@ -185,8 +191,8 @@ class Code extends Component {
 		return (
 			<div>
 				{this.props.codes ? (
-					<React.Fragment>
-						<select className="dropdown-trigger btn white" onChange={this.selectCodeTitle}>
+					<div>
+						<select className="dropdown-container" onChange={this.selectCodeTitle}>
 							{this.props.codes.map((code) => {
 								return (
 									<option key={code.id} value={code.id}>
@@ -195,23 +201,32 @@ class Code extends Component {
 								);
 							})}
 						</select>
-					</React.Fragment>
+					</div>
 				) : (
-					<div className="progress indeterminate">no code</div>
+					<div className="progress indeterminate" />
 				)}
 				<React.Fragment>
-					<Dropdown
-						options={LANGUAGES}
-						onChange={this.handleSelect}
-						placeholder="Select a language"
-						value={this.state.mode}
-					/>
-					<Dropdown
-						options={THEME}
-						onChange={this.handleTheme}
-						placeholder="Select a theme"
-						value={this.state.theme}
-					/>
+					<div className="dropdown-container">
+						<div className="dropdown">
+							<Icon className="icon" icon={globe} />
+							<Dropdown
+								options={LANGUAGES}
+								onChange={this.handleSelect}
+								placeholder="Select a language"
+								value={this.state.mode}
+							/>
+						</div>
+						<div className="dropdown">
+							<Icon className="icon" icon={paintBrush} />
+							<Dropdown
+								className="dropdown"
+								options={THEME}
+								onChange={this.handleTheme}
+								placeholder="Select a theme"
+								value={this.state.theme}
+							/>
+						</div>
+					</div>
 					{/* <button onClick={() => console.log(this.state.value)}>Log the text</button> */}
 					<input
 						className="code-title"

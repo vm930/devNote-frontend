@@ -22,11 +22,10 @@ class LogIn extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<nav>
-					<div id="devNote">
-						<img src="devNote.png" alt="logo" />
-					</div>
-				</nav>
+				<div id="devNote">
+					<img src="devNote.png" alt="logo" className="applogo" />
+				</div>
+
 				<div className="handleSignIn">
 					<h3>Log into devNote</h3>
 					<h6>
