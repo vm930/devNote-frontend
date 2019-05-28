@@ -20,6 +20,14 @@ body {
 	align-items: center;
 	justify-content: center;
 }
+#Dropdown-disabled {
+	background-color: red;
+	color: red;
+}
+.myControlClassName {
+	background-color: red;
+	color: red;
+}
 
 .page-footer div {
 	display: flex;
