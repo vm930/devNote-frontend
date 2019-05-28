@@ -3,9 +3,9 @@ import { Editor } from 'slate-react';
 import { Value } from 'slate';
 import Icon from 'react-icons-kit';
 import ReactTooltip from 'react-tooltip';
-import 'react-dropdown/style.css';
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-dropdown/style.css';
 
 //import styling components into NoteEditor
 import BoldMark from '../containers/BoldMark';
@@ -81,7 +81,6 @@ class NoteEditor extends Component {
 	};
 
 	//Read exiting notes  -- base off which user is logging in from their userId
-
 	getNote = (noteId) => {
 		fetch('http://localhost:3000/notes/' + `${noteId}`).then((response) => response.json()).then((json) => {
 			if (JSON.parse(json.note_value)) {
@@ -250,7 +249,7 @@ class NoteEditor extends Component {
 		});
 	};
 
-	notifySave = () => toast('saved!', { containerId: 'S' });
+	notifySave = () => toast('auto saved!', { containerId: 'S' });
 	notifyDelete = () => toast('deleted!', { containerId: 'D' });
 	notifyCreate = () => toast('created!', { containerId: 'C' });
 
@@ -336,7 +335,6 @@ class NoteEditor extends Component {
 					<Icon onClick={this.performSave} className="setting" icon={floppyDisk} data-tip="Save" />
 					<Icon onClick={this.handleAddClick} data-tip="New Note" className="setting" icon={fileEmpty} />
 					<Icon onClick={this.handleDelete} data-tip="Delete Note" className="setting" icon={folderMinus} />
-
 					<ToastContainer enableMultiContainer containerId={'S'} transition={Bounce} autoClose={1000} />
 					<ToastContainer enableMultiContainer containerId={'C'} transition={Bounce} autoClose={1000} />
 					<ToastContainer enableMultiContainer containerId={'D'} transition={Bounce} autoClose={1000} />

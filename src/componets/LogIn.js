@@ -22,9 +22,9 @@ class LogIn extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<div id="devNote">
+				<Link to="/">
 					<img src="devNote.png" alt="logo" className="applogo" />
-				</div>
+				</Link>
 
 				<div className="handleSignIn">
 					<h3>Log into devNote</h3>
@@ -51,6 +51,7 @@ class LogIn extends Component {
 							type="password"
 							value={this.state.password}
 							name="password"
+							required
 						/>
 						<input className="loginBtn" type="submit" value="Log In" />
 					</form>

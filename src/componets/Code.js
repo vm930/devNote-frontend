@@ -9,7 +9,11 @@ import Icon from 'react-icons-kit';
 import { paintBrush } from 'react-icons-kit/fa/paintBrush';
 import { globe } from 'react-icons-kit/entypo/globe';
 
-// import ReactTooltip from 'react-tooltip';
+import ReactTooltip from 'react-tooltip';
+import { floppyDisk } from 'react-icons-kit/icomoon/floppyDisk';
+import { fileEmpty } from 'react-icons-kit/icomoon/fileEmpty';
+import { folderMinus } from 'react-icons-kit/icomoon/folderMinus';
+import { download2 } from 'react-icons-kit/icomoon/download2';
 
 //adding options to code eidtior
 import 'brace/mode/javascript';
@@ -187,6 +191,15 @@ class Code extends Component {
 		} else alert('oops! no code to select!');
 	};
 
+	export = () => {
+		const element = document.createElement('a');
+		const file = new Blob([ this.state.value ], { type: 'text/plain' });
+		element.href = window.URL.createObjectURL(file);
+		element.download = 'myFile.txt';
+		document.body.appendChild(element);
+		element.click();
+	};
+
 	render() {
 		return (
 			<div>
@@ -207,6 +220,7 @@ class Code extends Component {
 				)}
 				<React.Fragment>
 					<div className="dropdown-container">
+						<Icon className="setting" onClick={this.export} data-tip="export" icon={download2} />
 						<div className="dropdown">
 							<Icon className="icon" icon={globe} />
 							<Dropdown
@@ -258,11 +272,27 @@ class Code extends Component {
 							$blockScrolling: Infinity
 						}}
 					/>
-					<button onClick={() => this.createCode(this.state.value)}>add code</button>
-					<button onClick={() => this.updateCode(this.selectCodeTitle.value, this.state.currentCodeTitle)}>
-						update code
-					</button>
-					<button onClick={() => this.deleteCode(this.state.currentCodeId)}>delete code</button>
+
+					<Icon
+						className="setting"
+						data-tip="create"
+						icon={fileEmpty}
+						onClick={() => this.createCode(this.state.value)}
+					>
+						add code
+					</Icon>
+					<Icon
+						className="setting"
+						icon={floppyDisk}
+						data-tip="save"
+						onClick={() => this.updateCode(this.selectCodeTitle.value, this.state.currentCodeTitle)}
+					/>
+					<Icon
+						className="setting"
+						icon={folderMinus}
+						data-tip="delete"
+						onClick={() => this.deleteCode(this.state.currentCodeId)}
+					/>
 					<ToastContainer enableMultiContainer containerId={'S'} transition={Bounce} autoClose={1000} />
 					<ToastContainer enableMultiContainer containerId={'C'} transition={Bounce} autoClose={1000} />
 					<ToastContainer enableMultiContainer containerId={'D'} transition={Bounce} autoClose={1000} />

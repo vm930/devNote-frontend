@@ -63,8 +63,9 @@ class App extends Component {
 			.then((json) => {
 				if (json.errors) {
 					console.log('errors');
+					this.props.history.push('/login');
 				} else {
-					console.log(json.user);
+					// console.log(json.user);
 					if (json.user.id) {
 						localStorage.setItem('token', json.jwt);
 						localStorage.setItem('username', json.user.user_name);
