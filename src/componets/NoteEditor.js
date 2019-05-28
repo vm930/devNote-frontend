@@ -22,11 +22,11 @@ import { bold } from 'react-icons-kit/fa/bold';
 import { code } from 'react-icons-kit/fa/code';
 import { list } from 'react-icons-kit/fa/list';
 import { underline } from 'react-icons-kit/fa/underline';
-import { documentAdd } from 'react-icons-kit/typicons/documentAdd';
-import { documentDelete } from 'react-icons-kit/typicons/documentDelete';
 import { google } from 'react-icons-kit/icomoon/google';
 import { github } from 'react-icons-kit/icomoon/github';
 import { floppyDisk } from 'react-icons-kit/icomoon/floppyDisk';
+import { fileEmpty } from 'react-icons-kit/icomoon/fileEmpty';
+import { folderMinus } from 'react-icons-kit/icomoon/folderMinus';
 
 // import { link } from 'react-icons-kit/fa/link';
 
@@ -218,6 +218,9 @@ class NoteEditor extends Component {
 				return <Code {...props} />;
 			case 'list':
 				return <List {...props} />;
+			default: {
+				return;
+			}
 			// case 'link':
 			// 	return <Link {...props} />;
 		}
@@ -330,15 +333,10 @@ class NoteEditor extends Component {
 					renderMark={this.renderMark}
 				/>
 				<div className="note-options">
-					<button onClick={this.performSave} data-tip="Save">
-						<Icon id="setting" icon={floppyDisk} />
-					</button>
-					<button onClick={this.handleAddClick} id="addnotebtn" data-tip="New Note">
-						<Icon id="setting" icon={documentAdd} />
-					</button>
-					<button onClick={this.handleDelete} data-tip="Delete Note">
-						<Icon id="setting" icon={documentDelete} />
-					</button>
+					<Icon onClick={this.performSave} className="setting" icon={floppyDisk} data-tip="Save" />
+					<Icon onClick={this.handleAddClick} data-tip="New Note" className="setting" icon={fileEmpty} />
+					<Icon onClick={this.handleDelete} data-tip="Delete Note" className="setting" icon={folderMinus} />
+
 					<ToastContainer enableMultiContainer containerId={'S'} transition={Bounce} autoClose={1000} />
 					<ToastContainer enableMultiContainer containerId={'C'} transition={Bounce} autoClose={1000} />
 					<ToastContainer enableMultiContainer containerId={'D'} transition={Bounce} autoClose={1000} />

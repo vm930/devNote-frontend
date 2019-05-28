@@ -88,13 +88,22 @@ body {
 	border-bottom: 1px solid var(--colorBtn);
 	font-weight: 600;
 }
-#Dropdown-disabled {
-	background-color: red;
-	color: red;
+
+.dropdown-container {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 20px 0;
 }
-.myControlClassName {
-	background-color: red;
-	color: red;
+.dropdown {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.dropdown .icon {
+	margin-right: 10px;
 }
 
 /*
@@ -144,6 +153,10 @@ text box css styling below:
 	background: #fff;
 	border: 2px solid #24292e;
 	color: #24292e;
+}
+
+navStart--logout {
+	color: #fff;
 }
 
 .note-component {
@@ -204,10 +217,6 @@ nav {
 	text-align: center;
 	justify-content: flex-start;
 }
-
-/* #devNote {
-	height: 20px;
-} */
 
 #card-title {
 	background: #fff;
@@ -373,21 +382,19 @@ nav {
 	float: right;
 }
 
-#setting {
+.setting > svg {
 	float: right;
 	margin-right: 20px;
 	color: var(--colorBtn);
 	transition: transform .1s;
 	backface-visibility: hidden;
+	width: 25px;
+	height: 25px;
+	outline: none;
 }
 
-#setting:hover {
+.setting:hover {
 	transform: scale(1.12);
-}
-
-.note-options button {
-	border: 0px;
-	color: #24292e;
 }
 
 /* #code-btn {
@@ -441,31 +448,3 @@ nav {
 	position: relative;
 	top: 2px;
 }
-
-/* 
-button {
-	-moz-box-shadow: inset 0px 1px 0px 0px #fbafe3;
-	-webkit-box-shadow: inset 0px 1px 0px 0px #fbafe3;
-	box-shadow: inset 0px 1px 0px 0px #fbafe3;
-	background-color: #f089b2;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-	border: 1px solid #f5f5f5;
-	display: inline-block;
-	cursor: pointer;
-	color: #ffffff;
-	font-family: Trebuchet MS;
-	font-size: 15px;
-	font-style: italic;
-	padding: 6px 13px;
-	text-decoration: none;
-	text-shadow: 0px 1px 0px #c70067;
-}
-button:hover {
-	background-color: #d13689;
-}
-button:active {
-	position: relative;
-	top: 1px;
-} */

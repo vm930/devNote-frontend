@@ -59,9 +59,9 @@ export default class Main extends Component {
 			<React.Fragment>
 				<div className="navbar navbar--app">
 					<Link to="/">
-						<img className="applogo" alt="logo" src="devNote.png" />
+						<img className="applogo" alt="logo" src="devNote--3.png" />
 					</Link>
-					<Link onClick={this.handleClick} className="navLogIn">
+					<Link onClick={this.handleClick} className="navLogIn navStart navStart--logout">
 						log out
 					</Link>
 				</div>
