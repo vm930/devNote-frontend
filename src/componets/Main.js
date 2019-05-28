@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import { Connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Code from './Code';
 import Note from './Note';
 import UserNav from './UserNav';
@@ -56,12 +57,15 @@ export default class Main extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<nav>
-					<div id="navbar">
-						<img alt="logo" className="logo" />
-						<button onClick={this.handleClick}>Log Out</button>
-					</div>
-				</nav>
+				<div className="navbar navbar--app">
+					<Link to="/">
+						<img className="applogo" alt="logo" src="devNote.png" />
+					</Link>
+					<Link onClick={this.handleClick} className="navLogIn">
+						log out
+					</Link>
+				</div>
+
 				<div className="main-page">
 					<UserNav
 						currentUser={this.props.currentUser}

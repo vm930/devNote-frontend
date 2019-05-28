@@ -15,10 +15,78 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 .applogo {
-	height: 25vh;
+	height: 90px;
+	margin-left: 70px;
+}
+
+.heading-tertiary {
+	text-align: center;
+	padding: 0 45px;
+	font-size: 35px;
+	animation: arrival 1s ease-in-out;
+	letter-spacing: 2px;
+	margin-top: 70px;
+}
+.heading-tertiary--2 {
+	margin-top: 0;
+}
+.main-content {
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
+	background: yellowgreen;
+	margin-top: 100px;
+	height: 355px;
+	width: 100%;
+	clip-path: polygon(0 20%, 100% 0, 100% 100%, 0% 100%);
+}
+
+@keyframes arrival {
+	0% {
+		transform: translateY(70px);
+		opacity: 0;
+	}
+	70% {
+		transform: translateY(-15px);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.welcome-container {
+	/* position: relative; */
+	height: 100vh;
+	width: 100%;
+}
+.page-footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	background: #24292e;
+	font-weight: 500;
+}
+.footer-links {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.footer-link {
+	margin: 0 50px;
+	border-bottom: 1px solid #fff;
+	color: #fff;
+}
+.footer-project {
+	display: inline-block;
+	margin-top: 35px;
+}
+.Vicky {
+	color: var(--colorBtn);
+	border-bottom: 1px solid var(--colorBtn);
+	font-weight: 600;
 }
 #Dropdown-disabled {
 	background-color: red;
@@ -29,55 +97,52 @@ body {
 	color: red;
 }
 
-.page-footer div {
-	display: flex;
-	flex-direction: coloumn-reverse;
-	justify-content: space-evenly;
-	color: white;
-	text-align: center;
-	margin-bottom: 5%;
-	margin-top: 3%;
-}
-
-.page-footer p {
-	text-align: center;
-	margin-bottom: 5%;
-	background: #121212;
-}
-
 /*
 text box css styling below:
 */
 .navLogIn {
-	color: rgba(255, 255, 255, 0.90);
+	color: rgba(0, 0, 0, 0.90);
 	background-color: rgb(0, 0, 0, 0);
 	text-transform: uppercase;
 	font-weight: 500;
 	cursor: pointer;
 	font-family: 'Montserrat', sans-serif;
-	margin-right: 20px;
+	margin-right: 50px;
 	cursor: pointer;
 }
+.navbar {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.navbar--app {
+	background: #24292e;
+}
 
+.navbar-login {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 70px;
+	font-weight: 700px;
+	letter-spacing: 2px;
+}
 .navStart {
-	color: grey;
-	background-color: rgba(255, 255, 255, 0.80);
-	border-bottom-color: rgb(0, 0, 0);
-	border-bottom-style: none;
-	border-left-color: black;
-	border-right-color: black;
-	border-top-color: black;
-	box-sizing: border-box;
-	font-weight: 900;
+	text-decoration: none;
+	background: #24292e;
+	padding: 15px 25px;
+	color: #fff;
+	transition: background .2s, border .2s, color .2s;
+	font-weight: 500;
 	text-transform: uppercase;
-	white-space: nowrap;
-	transition-delay: 0s, 0s, 0s;
-	transition-duration: 0.3s, 0.1s, 0.1s;
-	margin-right: 20px;
-	border-radius: 2px;
+	font-size: 14px;
+	letter-spacing: 2px;
+	border: 2px solid #24292e;
 }
 .navStart:hover {
-	background-color: rgba(255, 255, 255, 0.90);
+	background: #fff;
+	border: 2px solid #24292e;
 	color: #24292e;
 }
 
@@ -123,6 +188,8 @@ text box css styling below:
 	grid-gap: 3%;
 	margin-top: 15px;
 }
+.main-content {
+}
 
 .user-profile {
 	display: flex;
@@ -138,9 +205,9 @@ nav {
 	justify-content: flex-start;
 }
 
-#devNote {
+/* #devNote {
 	height: 20px;
-}
+} */
 
 #card-title {
 	background: #fff;
@@ -295,7 +362,7 @@ nav {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 25vh;
+	height: 20vh;
 }
 
 .handleSignIn h6 {

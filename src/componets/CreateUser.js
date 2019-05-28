@@ -49,11 +49,8 @@ class CreateUser extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<nav>
-					<div id="navbar">
-						<img alt="logo" className="logo" />
-					</div>
-				</nav>
+				<img alt="logo" src="devNote.png" className="applogo" />
+
 				<div className="handleSignIn">
 					<h3>Create Account</h3>
 					<h6>
