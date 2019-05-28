@@ -13,6 +13,7 @@ import ReactTooltip from 'react-tooltip';
 import { floppyDisk } from 'react-icons-kit/icomoon/floppyDisk';
 import { fileEmpty } from 'react-icons-kit/icomoon/fileEmpty';
 import { folderMinus } from 'react-icons-kit/icomoon/folderMinus';
+import { download2 } from 'react-icons-kit/icomoon/download2';
 
 //adding options to code eidtior
 import 'brace/mode/javascript';
@@ -219,6 +220,7 @@ class Code extends Component {
 				)}
 				<React.Fragment>
 					<div className="dropdown-container">
+						<Icon className="setting" onClick={this.export} data-tip="export" icon={download2} />
 						<div className="dropdown">
 							<Icon className="icon" icon={globe} />
 							<Dropdown
@@ -271,23 +273,26 @@ class Code extends Component {
 						}}
 					/>
 
-					<Icon className="setting" icon={fileEmpty} onClick={() => this.createCode(this.state.value)}>
+					<Icon
+						className="setting"
+						data-tip="create"
+						icon={fileEmpty}
+						onClick={() => this.createCode(this.state.value)}
+					>
 						add code
 					</Icon>
 					<Icon
 						className="setting"
 						icon={floppyDisk}
+						data-tip="save"
 						onClick={() => this.updateCode(this.selectCodeTitle.value, this.state.currentCodeTitle)}
 					/>
 					<Icon
 						className="setting"
 						icon={folderMinus}
+						data-tip="delete"
 						onClick={() => this.deleteCode(this.state.currentCodeId)}
 					/>
-					<button className="setting" onClick={this.export}>
-						export
-					</button>
-
 					<ToastContainer enableMultiContainer containerId={'S'} transition={Bounce} autoClose={1000} />
 					<ToastContainer enableMultiContainer containerId={'C'} transition={Bounce} autoClose={1000} />
 					<ToastContainer enableMultiContainer containerId={'D'} transition={Bounce} autoClose={1000} />

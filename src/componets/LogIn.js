@@ -51,6 +51,7 @@ class LogIn extends Component {
 							type="password"
 							value={this.state.password}
 							name="password"
+							required
 						/>
 						<input className="loginBtn" type="submit" value="Log In" />
 					</form>
