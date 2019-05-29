@@ -6,14 +6,13 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 import Icon from 'react-icons-kit';
-import { paintBrush } from 'react-icons-kit/fa/paintBrush';
-import { globe } from 'react-icons-kit/entypo/globe';
 
-import ReactTooltip from 'react-tooltip';
 import { floppyDisk } from 'react-icons-kit/icomoon/floppyDisk';
 import { fileEmpty } from 'react-icons-kit/icomoon/fileEmpty';
 import { folderMinus } from 'react-icons-kit/icomoon/folderMinus';
 import { download2 } from 'react-icons-kit/icomoon/download2';
+import { globe } from 'react-icons-kit/entypo/globe';
+import { paintBrush } from 'react-icons-kit/fa/paintBrush';
 
 //adding options to code eidtior
 import 'brace/mode/javascript';
@@ -208,7 +207,6 @@ class Code extends Component {
 	};
 
 	render() {
-		// console.log('whats here?', this.props.noteValue);
 		return (
 			<div>
 				{this.props.codes ? (
@@ -227,7 +225,7 @@ class Code extends Component {
 					<div className="progress indeterminate" />
 				)}
 				<React.Fragment>
-					<ToastContainer enableMultiContainer containerId={'E'} transition={Bounce} autoClose={2000} />
+					<ToastContainer enableMultiContainer containerId={'E'} transition={Bounce} autoClose={1000} />
 					<div className="dropdown-container">
 						<Icon className="setting" onClick={this.export} data-tip="export" icon={download2} />
 						<div className="dropdown">
