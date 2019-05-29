@@ -6,14 +6,13 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 import Icon from 'react-icons-kit';
-import { paintBrush } from 'react-icons-kit/fa/paintBrush';
-import { globe } from 'react-icons-kit/entypo/globe';
 
-import ReactTooltip from 'react-tooltip';
 import { floppyDisk } from 'react-icons-kit/icomoon/floppyDisk';
 import { fileEmpty } from 'react-icons-kit/icomoon/fileEmpty';
 import { folderMinus } from 'react-icons-kit/icomoon/folderMinus';
 import { download2 } from 'react-icons-kit/icomoon/download2';
+import { globe } from 'react-icons-kit/entypo/globe';
+import { paintBrush } from 'react-icons-kit/fa/paintBrush';
 
 //adding options to code eidtior
 import 'brace/mode/javascript';
@@ -62,6 +61,17 @@ const LANGUAGES = [
 
 const THEME = [ 'monokai', 'github', 'xcode', 'tomorrow', 'solarized_dark' ];
 
+const debounce = (fn, delay) => {
+	let timer = null;
+	return function(...args) {
+		const context = this;
+		timer && clearTimeout(timer);
+		timer = setTimeout(() => {
+			fn.apply(context, args);
+		}, delay);
+	};
+};
+
 class Code extends Component {
 	state = {
 		value: '',
@@ -71,12 +81,19 @@ class Code extends Component {
 		currentCodeId: null
 	};
 
-	notifySave = () => toast('saved!', { containerId: 'S' });
-	notifyDelete = () => toast('deleted!', { containerId: 'D' });
-	notifyCreate = () => toast('created!', { containerId: 'C' });
+	autoSaver = debounce(() => {
+		this.performSave();
+	}, 5000);
+
+	notifySave = () => toast('auto saved!', { containerId: 'S' });
+	notifyDelete = () => toast('code deleted!', { containerId: 'D' });
+	notifyCreate = () => toast('code created!', { containerId: 'C' });
+	notifyDownload = () => toast('please create code to download!', { containerId: 'E' });
 
 	handleChange = (value) => {
-		this.setState({ value });
+		this.setState({ value }, () => {
+			this.autoSaver();
+		});
 	};
 
 	handleSelect = (e) => {
@@ -110,7 +127,18 @@ class Code extends Component {
 		});
 	};
 
-	// codes = { this.props.codes }
+	performSave = () => {
+		if (this.state.value !== '') {
+			if (this.state.currentCodeId === null) {
+				this.createCode(this.state.value);
+				this.notifyCreate();
+			}
+			if (this.state.currentCodeId) {
+				this.updateCode(this.selectCodeTitle.value, this.state.currentCodeTitle);
+			}
+		}
+	};
+
 	//create code
 	createCode = () => {
 		const newCode = {
@@ -142,7 +170,6 @@ class Code extends Component {
 							.then((response) => response.json())
 							.then((code) => {
 								this.props.getCodeSnippet(this.props.noteId);
-								this.notifyCreate();
 							})
 				);
 			});
@@ -192,12 +219,29 @@ class Code extends Component {
 	};
 
 	export = () => {
-		const element = document.createElement('a');
-		const file = new Blob([ this.state.value ], { type: 'text/plain' });
-		element.href = window.URL.createObjectURL(file);
-		element.download = 'myFile.txt';
-		document.body.appendChild(element);
-		element.click();
+		if (this.state.currentCodeId) {
+			const element = document.createElement('a');
+			const file = new Blob([ 'notes:\n', this.props.noteValue, '\ncode blocks:\n', this.state.value ], {
+				type: 'text/plain'
+			});
+			element.href = window.URL.createObjectURL(file);
+			element.download = `${this.state.currentCodeTitle}.txt`;
+			document.body.appendChild(element);
+			element.click();
+		} else {
+			this.notifyDownload();
+		}
+	};
+
+	addCode = () => {
+		this.props.resetCode();
+		this.setState({
+			value: '',
+			mode: 'javascript',
+			theme: 'xcode',
+			currentCodeTitle: '',
+			currentCodeId: null
+		});
 	};
 
 	render() {
@@ -219,8 +263,14 @@ class Code extends Component {
 					<div className="progress indeterminate" />
 				)}
 				<React.Fragment>
+					<ToastContainer enableMultiContainer containerId={'E'} transition={Bounce} autoClose={1000} />
 					<div className="dropdown-container">
-						<Icon className="setting" onClick={this.export} data-tip="export" icon={download2} />
+						<Icon
+							className="setting"
+							onClick={this.export}
+							data-tip="export as txt file"
+							icon={download2}
+						/>
 						<div className="dropdown">
 							<Icon className="icon" icon={globe} />
 							<Dropdown
@@ -273,20 +323,8 @@ class Code extends Component {
 						}}
 					/>
 
-					<Icon
-						className="setting"
-						data-tip="create"
-						icon={fileEmpty}
-						onClick={() => this.createCode(this.state.value)}
-					>
-						add code
-					</Icon>
-					<Icon
-						className="setting"
-						icon={floppyDisk}
-						data-tip="save"
-						onClick={() => this.updateCode(this.selectCodeTitle.value, this.state.currentCodeTitle)}
-					/>
+					<Icon className="setting" icon={floppyDisk} data-tip="save" onClick={() => this.performSave} />
+					<Icon className="setting" data-tip="New code snippet" icon={fileEmpty} onClick={this.addCode} />
 					<Icon
 						className="setting"
 						icon={folderMinus}

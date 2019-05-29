@@ -9,7 +9,8 @@ export default class Main extends Component {
 	state = {
 		codes: null,
 		noteId: null,
-		noteTitle: null
+		noteTitle: null,
+		noteValue: ''
 	};
 
 	handleClick = () => {
@@ -40,6 +41,12 @@ export default class Main extends Component {
 		}
 	};
 
+	resetCode = () => {
+		this.setState({
+			codes: null
+		});
+	};
+
 	resetNote = () => {
 		this.setState({
 			codes: null,
@@ -48,9 +55,15 @@ export default class Main extends Component {
 		});
 	};
 
-	getCodeTemplate = (noteid) => {
+	// getCodeTemplate = (noteid) => {
+	// 	this.setState({
+	// 		noteId: noteid
+	// 	});
+	// };
+
+	getNoteContent = (value) => {
 		this.setState({
-			noteId: noteid
+			noteValue: value
 		});
 	};
 
@@ -65,7 +78,6 @@ export default class Main extends Component {
 						log out
 					</Link>
 				</div>
-
 				<div className="main-page">
 					<UserNav
 						currentUser={this.props.currentUser}
@@ -83,16 +95,20 @@ export default class Main extends Component {
 							currentUserId={this.props.currentUserId}
 							deleteNote={this.props.deleteNote}
 							getCodeSnippet={this.getCodeSnippet}
-							getCodeTemplate={this.getCodeTemplate}
+							// getCodeTemplate={this.getCodeTemplate}
 							notes={this.props.notes}
 							noteId={this.state.noteId}
 							noteTitle={this.state.noteTitle}
 							updateNote={this.props.updateNote}
+							callit={this.callit}
+							getNoteContent={this.getNoteContent}
 						/>
 						<Code
 							codes={this.state.codes}
 							getCodeSnippet={this.getCodeSnippet}
 							noteId={this.state.noteId}
+							noteValue={this.state.noteValue}
+							resetCode={this.resetCode}
 						/>
 					</div>
 				</div>

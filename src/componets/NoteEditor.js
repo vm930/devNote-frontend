@@ -27,8 +27,10 @@ import { github } from 'react-icons-kit/icomoon/github';
 import { floppyDisk } from 'react-icons-kit/icomoon/floppyDisk';
 import { fileEmpty } from 'react-icons-kit/icomoon/fileEmpty';
 import { folderMinus } from 'react-icons-kit/icomoon/folderMinus';
+import { copy } from 'react-icons-kit/icomoon/copy';
 
 // import { link } from 'react-icons-kit/fa/link';
+import Plain from 'slate-plain-serializer';
 
 const initialValue = Value.fromJSON({
 	document: {
@@ -72,7 +74,7 @@ class NoteEditor extends Component {
 
 	autoSaver = debounce(() => {
 		this.performSave();
-	}, 3000);
+	}, 5000);
 
 	handleOnChange = ({ value }) => {
 		this.setState({ value }, () => {
@@ -85,7 +87,6 @@ class NoteEditor extends Component {
 		fetch('http://localhost:3000/notes/' + `${noteId}`).then((response) => response.json()).then((json) => {
 			if (JSON.parse(json.note_value)) {
 				const existingValue = Value.fromJSON(JSON.parse(json.note_value));
-				// console.log('got the note for note id', noteId);
 				this.setState({
 					value: existingValue,
 					currentNoteId: noteId,
@@ -191,7 +192,6 @@ class NoteEditor extends Component {
 				change.toggleMark('code');
 				return true;
 			}
-
 			default: {
 				return;
 			}
@@ -250,8 +250,9 @@ class NoteEditor extends Component {
 	};
 
 	notifySave = () => toast('auto saved!', { containerId: 'S' });
-	notifyDelete = () => toast('deleted!', { containerId: 'D' });
-	notifyCreate = () => toast('created!', { containerId: 'C' });
+	notifyDelete = () => toast('note deleted!', { containerId: 'D' });
+	notifyCreate = () => toast('note created!', { containerId: 'C' });
+	notifyExport = () => toast('added to export!', { containerId: 'A' });
 
 	componentDidUpdate() {
 		if (this.props.noteId) {
@@ -260,6 +261,13 @@ class NoteEditor extends Component {
 			}
 		}
 	}
+
+	handleCodeClick = () => {
+		const value = Plain.serialize(this.state.value);
+		//pass value back up to main
+		this.props.getNoteContent(value);
+		this.notifyExport();
+	};
 
 	render() {
 		return (
@@ -273,6 +281,7 @@ class NoteEditor extends Component {
 				/>
 				<FormatToolbar className="format-toolbar">
 					<ReactTooltip />
+					<ToastContainer enableMultiContainer containerId={'A'} transition={Bounce} autoClose={1000} />
 					<button className="tooltip-icon-button" data-tip="Bold" onClick={(e) => this.styleClick(e, 'bold')}>
 						<Icon icon={bold} />
 					</button>
@@ -315,14 +324,21 @@ class NoteEditor extends Component {
 					>
 						<Icon icon={github} />
 					</button>
+					<button
+						className="tooltip-icon-button"
+						data-tip="add notes to code snippet to export"
+						onClick={this.handleCodeClick}
+					>
+						<Icon icon={copy} />
+					</button>
 
 					{/* <button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'code')}>
 						<Icon icon={link} />
 					</button> */}
 				</FormatToolbar>
-				<button onClick={() => this.props.getCodeTemplate(this.state.currentNoteId)} className="code-btn">
+				{/* <button onClick={() => this.props.getCodeTemplate(this.state.currentNoteId)} className="code-btn">
 					add code snippet
-				</button>
+				</button> */}
 				<Editor
 					className="note-editor"
 					ref={this.ref}

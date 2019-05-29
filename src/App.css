@@ -398,16 +398,7 @@ nav {
 .setting:hover {
 	transform: scale(1.12);
 }
-
-/* #code-btn {
-	float: right;
-	background-color: black;
-	color: aliceblue;
-	font-size: 10px;
-	font-family: monospace;
-	height: 40px;
-} */
-
+/* 
 .code-btn {
 	-moz-box-shadow: inset 0px -5px 5px 0px #ffffff;
 	-webkit-box-shadow: inset 0px -5px 5px 0px #ffffff;
@@ -449,4 +440,4 @@ nav {
 .code-btn:active {
 	position: relative;
 	top: 2px;
-}
+} */
