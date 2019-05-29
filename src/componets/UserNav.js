@@ -15,7 +15,7 @@ const URL = 'http://localhost:3000';
 export default class UserNav extends Component {
 	state = {
 		open: false,
-		userName: '',
+		// userName: '',
 		password: '',
 		password_confirmation: '',
 		fullName: '',
@@ -27,7 +27,7 @@ export default class UserNav extends Component {
 	onOpenModal = () => {
 		this.setState({
 			open: true,
-			userName: this.props.currentUser.user_name,
+			// userName: this.props.currentUser.user_name,
 			password: this.props.currentUser.password,
 			password_confirmation: this.props.currentUser.password_confirmation,
 			fullName: this.props.currentUser.full_name,
@@ -61,7 +61,7 @@ export default class UserNav extends Component {
 			method: 'PATCH',
 			headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
 			body: JSON.stringify({
-				user_name: this.state.userName,
+				// user_name: this.state.userName,
 				password: this.state.password,
 				password_confirmation: this.state.password_confirmation,
 				full_name: this.state.fullName,
@@ -72,7 +72,6 @@ export default class UserNav extends Component {
 		})
 			.then((res) => res.json())
 			.then((json) => {
-				//insert a toast notification
 				this.notify();
 				this.props.getCurrentUser(this.props.currentUser.id);
 			});
@@ -102,53 +101,61 @@ export default class UserNav extends Component {
 								/>
 								<Modal open={open} onClose={this.onCloseModal}>
 									<form onChange={this.handleSetting} onSubmit={this.handleSubmit}>
-										<input
+										{/* <input
 											type="text"
 											name="userName"
 											value={this.state.userName}
 											placeholder="User Name"
 										/>
-										<label>User Name</label>
-
+										<label>User Name</label> */}
+										<label>Password</label>
 										<input
 											type="password"
 											name="password"
 											value={this.state.password}
 											placeholder="Password"
 										/>
-										<label>Password</label>
 
+										<label>Confirm Password</label>
+										<input
+											type="password"
+											name="password_confirmation"
+											value={this.state.password_confirmation}
+											placeholder="Password"
+										/>
+
+										<label>Full Name</label>
 										<input
 											type="text"
 											name="fullName"
 											value={this.state.fullName}
 											placeholder="Full Name"
 										/>
-										<label>Full Name</label>
 
+										<label>Email</label>
 										<input
 											type="text"
 											name="email"
 											value={this.state.email}
 											placeholder="Email Address"
 										/>
-										<label>Email</label>
 
+										<label>Bio</label>
 										<input
 											type="text"
 											name="bio"
 											value={this.state.bio}
 											placeholder="something about you"
 										/>
-										<label>Bio</label>
 
+										<label>Profile Picture</label>
 										<input
 											type="text"
 											name="avatarUrl"
 											value={this.state.avatarUrl}
 											placeholder="upload an image url here"
 										/>
-										<label>Profile Picture</label>
+
 										<br />
 										<input className="loginBtn" type="submit" value="Save" />
 										<ToastContainer transition={Bounce} autoClose={1000} />
@@ -189,7 +196,7 @@ export default class UserNav extends Component {
 							</ul>
 						</React.Fragment>
 					) : (
-						<div>loading!</div>
+						<div className="progress indeterminate" />
 					)}
 				</div>
 			</div>

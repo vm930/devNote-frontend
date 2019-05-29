@@ -398,7 +398,7 @@ nav {
 .setting:hover {
 	transform: scale(1.12);
 }
-
+/* 
 .code-btn {
 	-moz-box-shadow: inset 0px -5px 5px 0px #ffffff;
 	-webkit-box-shadow: inset 0px -5px 5px 0px #ffffff;
@@ -440,4 +440,4 @@ nav {
 .code-btn:active {
 	position: relative;
 	top: 2px;
-}
+} */

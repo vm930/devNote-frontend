@@ -31,23 +31,23 @@ class Welcome extends Component {
 				</div>
 				<footer className="page-footer">
 					<div className="footer-links">
-						<Link className="footer-link" target="https://github.com/vm930/devNote-frontend">
+						<a className="footer-link" href="https://github.com/vm930/devNote-frontend" target="_blank">
 							source code
-						</Link>
-						<Link className="footer-link" to="vickysdailystand">
+						</a>
+						<a className="footer-link" href="mailto:vickysdailystandup@gmail.com" target="_blank">
 							feedback
-						</Link>
-						<Link className="footer-link" to="/">
+						</a>
+						<a className="footer-link" href="/" target="_blank">
 							about
-						</Link>
+						</a>
 					</div>
 					<p className="footer-project">
 						{' '}
 						a project by{' '}
-						<Link className="Vicky" to="/">
+						<a className="Vicky" href="https://linktr.ee/vickysdailystandup" target="_blank">
 							{' '}
 							VickysDailyStandup
-						</Link>
+						</a>
 					</p>
 				</footer>
 			</div>
