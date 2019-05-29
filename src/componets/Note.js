@@ -11,7 +11,7 @@ class Note extends Component {
 					currentUserId={this.props.currentUserId}
 					deleteNote={this.props.deleteNote}
 					resetNote={this.props.resetNote}
-					getCodeTemplate={this.props.getCodeTemplate}
+					// getCodeTemplate={this.props.getCodeTemplate}
 					noteTitle={this.props.noteTitle}
 					noteId={this.props.noteId}
 					updateNote={this.props.updateNote}

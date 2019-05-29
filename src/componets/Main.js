@@ -55,17 +55,16 @@ export default class Main extends Component {
 		});
 	};
 
-	getCodeTemplate = (noteid) => {
-		this.setState({
-			noteId: noteid
-		});
-	};
+	// getCodeTemplate = (noteid) => {
+	// 	this.setState({
+	// 		noteId: noteid
+	// 	});
+	// };
 
 	getNoteContent = (value) => {
 		this.setState({
 			noteValue: value
 		});
-		//invoke a function that set state to existing value + value here
 	};
 
 	render() {
@@ -96,7 +95,7 @@ export default class Main extends Component {
 							currentUserId={this.props.currentUserId}
 							deleteNote={this.props.deleteNote}
 							getCodeSnippet={this.getCodeSnippet}
-							getCodeTemplate={this.getCodeTemplate}
+							// getCodeTemplate={this.getCodeTemplate}
 							notes={this.props.notes}
 							noteId={this.state.noteId}
 							noteTitle={this.state.noteTitle}

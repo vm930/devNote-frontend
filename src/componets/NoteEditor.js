@@ -87,7 +87,6 @@ class NoteEditor extends Component {
 		fetch('http://localhost:3000/notes/' + `${noteId}`).then((response) => response.json()).then((json) => {
 			if (JSON.parse(json.note_value)) {
 				const existingValue = Value.fromJSON(JSON.parse(json.note_value));
-				// console.log('got the note for note id', noteId);
 				this.setState({
 					value: existingValue,
 					currentNoteId: noteId,
@@ -337,9 +336,9 @@ class NoteEditor extends Component {
 						<Icon icon={link} />
 					</button> */}
 				</FormatToolbar>
-				<button onClick={() => this.props.getCodeTemplate(this.state.currentNoteId)} className="code-btn">
+				{/* <button onClick={() => this.props.getCodeTemplate(this.state.currentNoteId)} className="code-btn">
 					add code snippet
-				</button>
+				</button> */}
 				<Editor
 					className="note-editor"
 					ref={this.ref}
@@ -356,7 +355,6 @@ class NoteEditor extends Component {
 					<ToastContainer enableMultiContainer containerId={'C'} transition={Bounce} autoClose={1000} />
 					<ToastContainer enableMultiContainer containerId={'D'} transition={Bounce} autoClose={1000} />
 				</div>
-				{/* <button onClick={this.handleCodeClick}>add notes to export</button> */}
 			</div>
 		);
 	}

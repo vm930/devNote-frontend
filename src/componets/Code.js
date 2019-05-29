@@ -128,27 +128,15 @@ class Code extends Component {
 	};
 
 	performSave = () => {
-		console.log('hitting performsave');
-
 		if (this.state.value !== '') {
 			if (this.state.currentCodeId === null) {
-				console.log('hitting create code logic');
 				this.createCode(this.state.value);
 				this.notifyCreate();
-				console.log('created');
 			}
 			if (this.state.currentCodeId) {
 				this.updateCode(this.selectCodeTitle.value, this.state.currentCodeTitle);
-				console.log('updated');
 			}
 		}
-		// } else {
-		// 	//when code value isnt empty & there's an existing code id should create code
-		// 	if (this.state.currentCodeId === null && this.props.noteId) {
-		// 		this.createCode();
-		// 		console.log('created');
-		// 	}
-		// }
 	};
 
 	//create code
@@ -335,8 +323,8 @@ class Code extends Component {
 						}}
 					/>
 
-					<Icon className="setting" data-tip="New code snippet" icon={fileEmpty} onClick={this.addCode} />
 					<Icon className="setting" icon={floppyDisk} data-tip="save" onClick={() => this.performSave} />
+					<Icon className="setting" data-tip="New code snippet" icon={fileEmpty} onClick={this.addCode} />
 					<Icon
 						className="setting"
 						icon={folderMinus}
