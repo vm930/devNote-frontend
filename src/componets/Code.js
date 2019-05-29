@@ -61,6 +61,17 @@ const LANGUAGES = [
 
 const THEME = [ 'monokai', 'github', 'xcode', 'tomorrow', 'solarized_dark' ];
 
+const debounce = (fn, delay) => {
+	let timer = null;
+	return function(...args) {
+		const context = this;
+		timer && clearTimeout(timer);
+		timer = setTimeout(() => {
+			fn.apply(context, args);
+		}, delay);
+	};
+};
+
 class Code extends Component {
 	state = {
 		value: '',
@@ -70,13 +81,19 @@ class Code extends Component {
 		currentCodeId: null
 	};
 
-	notifySave = () => toast('saved!', { containerId: 'S' });
-	notifyDelete = () => toast('deleted!', { containerId: 'D' });
-	notifyCreate = () => toast('created!', { containerId: 'C' });
+	autoSaver = debounce(() => {
+		this.performSave();
+	}, 5000);
+
+	notifySave = () => toast('auto saved!', { containerId: 'S' });
+	notifyDelete = () => toast('code deleted!', { containerId: 'D' });
+	notifyCreate = () => toast('code created!', { containerId: 'C' });
 	notifyDownload = () => toast('please create code to download!', { containerId: 'E' });
 
 	handleChange = (value) => {
-		this.setState({ value });
+		this.setState({ value }, () => {
+			this.autoSaver();
+		});
 	};
 
 	handleSelect = (e) => {
@@ -110,7 +127,30 @@ class Code extends Component {
 		});
 	};
 
-	// codes = { this.props.codes }
+	performSave = () => {
+		console.log('hitting performsave');
+
+		if (this.state.value !== '') {
+			if (this.state.currentCodeId === null) {
+				console.log('hitting create code logic');
+				this.createCode(this.state.value);
+				this.notifyCreate();
+				console.log('created');
+			}
+			if (this.state.currentCodeId) {
+				this.updateCode(this.selectCodeTitle.value, this.state.currentCodeTitle);
+				console.log('updated');
+			}
+		}
+		// } else {
+		// 	//when code value isnt empty & there's an existing code id should create code
+		// 	if (this.state.currentCodeId === null && this.props.noteId) {
+		// 		this.createCode();
+		// 		console.log('created');
+		// 	}
+		// }
+	};
+
 	//create code
 	createCode = () => {
 		const newCode = {
@@ -142,7 +182,6 @@ class Code extends Component {
 							.then((response) => response.json())
 							.then((code) => {
 								this.props.getCodeSnippet(this.props.noteId);
-								this.notifyCreate();
 							})
 				);
 			});
@@ -206,6 +245,17 @@ class Code extends Component {
 		}
 	};
 
+	addCode = () => {
+		this.props.resetCode();
+		this.setState({
+			value: '',
+			mode: 'javascript',
+			theme: 'xcode',
+			currentCodeTitle: '',
+			currentCodeId: null
+		});
+	};
+
 	render() {
 		return (
 			<div>
@@ -227,7 +277,12 @@ class Code extends Component {
 				<React.Fragment>
 					<ToastContainer enableMultiContainer containerId={'E'} transition={Bounce} autoClose={1000} />
 					<div className="dropdown-container">
-						<Icon className="setting" onClick={this.export} data-tip="export" icon={download2} />
+						<Icon
+							className="setting"
+							onClick={this.export}
+							data-tip="export as txt file"
+							icon={download2}
+						/>
 						<div className="dropdown">
 							<Icon className="icon" icon={globe} />
 							<Dropdown
@@ -280,20 +335,8 @@ class Code extends Component {
 						}}
 					/>
 
-					<Icon
-						className="setting"
-						data-tip="create"
-						icon={fileEmpty}
-						onClick={() => this.createCode(this.state.value)}
-					>
-						add code
-					</Icon>
-					<Icon
-						className="setting"
-						icon={floppyDisk}
-						data-tip="save"
-						onClick={() => this.updateCode(this.selectCodeTitle.value, this.state.currentCodeTitle)}
-					/>
+					<Icon className="setting" data-tip="New code snippet" icon={fileEmpty} onClick={this.addCode} />
+					<Icon className="setting" icon={floppyDisk} data-tip="save" onClick={() => this.performSave} />
 					<Icon
 						className="setting"
 						icon={folderMinus}

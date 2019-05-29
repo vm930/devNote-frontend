@@ -74,7 +74,7 @@ class NoteEditor extends Component {
 
 	autoSaver = debounce(() => {
 		this.performSave();
-	}, 3000);
+	}, 5000);
 
 	handleOnChange = ({ value }) => {
 		this.setState({ value }, () => {
@@ -251,8 +251,8 @@ class NoteEditor extends Component {
 	};
 
 	notifySave = () => toast('auto saved!', { containerId: 'S' });
-	notifyDelete = () => toast('deleted!', { containerId: 'D' });
-	notifyCreate = () => toast('created!', { containerId: 'C' });
+	notifyDelete = () => toast('note deleted!', { containerId: 'D' });
+	notifyCreate = () => toast('note created!', { containerId: 'C' });
 	notifyExport = () => toast('added to export!', { containerId: 'A' });
 
 	componentDidUpdate() {

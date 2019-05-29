@@ -41,6 +41,12 @@ export default class Main extends Component {
 		}
 	};
 
+	resetCode = () => {
+		this.setState({
+			codes: null
+		});
+	};
+
 	resetNote = () => {
 		this.setState({
 			codes: null,
@@ -103,6 +109,7 @@ export default class Main extends Component {
 							getCodeSnippet={this.getCodeSnippet}
 							noteId={this.state.noteId}
 							noteValue={this.state.noteValue}
+							resetCode={this.resetCode}
 						/>
 					</div>
 				</div>
