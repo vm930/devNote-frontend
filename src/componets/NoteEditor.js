@@ -27,8 +27,10 @@ import { github } from 'react-icons-kit/icomoon/github';
 import { floppyDisk } from 'react-icons-kit/icomoon/floppyDisk';
 import { fileEmpty } from 'react-icons-kit/icomoon/fileEmpty';
 import { folderMinus } from 'react-icons-kit/icomoon/folderMinus';
+import { copy } from 'react-icons-kit/icomoon/copy';
 
 // import { link } from 'react-icons-kit/fa/link';
+import Plain from 'slate-plain-serializer';
 
 const initialValue = Value.fromJSON({
 	document: {
@@ -191,7 +193,6 @@ class NoteEditor extends Component {
 				change.toggleMark('code');
 				return true;
 			}
-
 			default: {
 				return;
 			}
@@ -252,6 +253,7 @@ class NoteEditor extends Component {
 	notifySave = () => toast('auto saved!', { containerId: 'S' });
 	notifyDelete = () => toast('deleted!', { containerId: 'D' });
 	notifyCreate = () => toast('created!', { containerId: 'C' });
+	notifyExport = () => toast('added to export!', { containerId: 'A' });
 
 	componentDidUpdate() {
 		if (this.props.noteId) {
@@ -260,6 +262,13 @@ class NoteEditor extends Component {
 			}
 		}
 	}
+
+	handleCodeClick = () => {
+		const value = Plain.serialize(this.state.value);
+		//pass value back up to main
+		this.props.getNoteContent(value);
+		this.notifyExport();
+	};
 
 	render() {
 		return (
@@ -273,6 +282,7 @@ class NoteEditor extends Component {
 				/>
 				<FormatToolbar className="format-toolbar">
 					<ReactTooltip />
+					<ToastContainer enableMultiContainer containerId={'A'} transition={Bounce} autoClose={1000} />
 					<button className="tooltip-icon-button" data-tip="Bold" onClick={(e) => this.styleClick(e, 'bold')}>
 						<Icon icon={bold} />
 					</button>
@@ -315,6 +325,13 @@ class NoteEditor extends Component {
 					>
 						<Icon icon={github} />
 					</button>
+					<button
+						className="tooltip-icon-button"
+						data-tip="add notes to code snippet to export"
+						onClick={this.handleCodeClick}
+					>
+						<Icon icon={copy} />
+					</button>
 
 					{/* <button className="tooltip-icon-button" onClick={(e) => this.styleClick(e, 'code')}>
 						<Icon icon={link} />
@@ -339,6 +356,7 @@ class NoteEditor extends Component {
 					<ToastContainer enableMultiContainer containerId={'C'} transition={Bounce} autoClose={1000} />
 					<ToastContainer enableMultiContainer containerId={'D'} transition={Bounce} autoClose={1000} />
 				</div>
+				{/* <button onClick={this.handleCodeClick}>add notes to export</button> */}
 			</div>
 		);
 	}

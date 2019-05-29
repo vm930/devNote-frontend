@@ -6,15 +6,16 @@ class Note extends Component {
 		return (
 			<div>
 				<NoteEditor
-					resetNote={this.props.resetNote}
 					addNewNote={this.props.addNewNote}
 					currentUser={this.props.currentUser}
 					currentUserId={this.props.currentUserId}
 					deleteNote={this.props.deleteNote}
+					resetNote={this.props.resetNote}
 					getCodeTemplate={this.props.getCodeTemplate}
 					noteTitle={this.props.noteTitle}
 					noteId={this.props.noteId}
 					updateNote={this.props.updateNote}
+					getNoteContent={this.props.getNoteContent}
 				/>
 			</div>
 		);

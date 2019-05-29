@@ -9,7 +9,8 @@ export default class Main extends Component {
 	state = {
 		codes: null,
 		noteId: null,
-		noteTitle: null
+		noteTitle: null,
+		noteValue: ''
 	};
 
 	handleClick = () => {
@@ -54,6 +55,13 @@ export default class Main extends Component {
 		});
 	};
 
+	getNoteContent = (value) => {
+		this.setState({
+			noteValue: value
+		});
+		//invoke a function that set state to existing value + value here
+	};
+
 	render() {
 		return (
 			<React.Fragment>
@@ -65,7 +73,6 @@ export default class Main extends Component {
 						log out
 					</Link>
 				</div>
-
 				<div className="main-page">
 					<UserNav
 						currentUser={this.props.currentUser}
@@ -88,11 +95,14 @@ export default class Main extends Component {
 							noteId={this.state.noteId}
 							noteTitle={this.state.noteTitle}
 							updateNote={this.props.updateNote}
+							callit={this.callit}
+							getNoteContent={this.getNoteContent}
 						/>
 						<Code
 							codes={this.state.codes}
 							getCodeSnippet={this.getCodeSnippet}
 							noteId={this.state.noteId}
+							noteValue={this.state.noteValue}
 						/>
 					</div>
 				</div>

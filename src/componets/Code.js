@@ -74,6 +74,7 @@ class Code extends Component {
 	notifySave = () => toast('saved!', { containerId: 'S' });
 	notifyDelete = () => toast('deleted!', { containerId: 'D' });
 	notifyCreate = () => toast('created!', { containerId: 'C' });
+	notifyDownload = () => toast('please create code to download!', { containerId: 'E' });
 
 	handleChange = (value) => {
 		this.setState({ value });
@@ -192,15 +193,22 @@ class Code extends Component {
 	};
 
 	export = () => {
-		const element = document.createElement('a');
-		const file = new Blob([ this.state.value ], { type: 'text/plain' });
-		element.href = window.URL.createObjectURL(file);
-		element.download = 'myFile.txt';
-		document.body.appendChild(element);
-		element.click();
+		if (this.state.currentCodeId) {
+			const element = document.createElement('a');
+			const file = new Blob([ 'notes:\n', this.props.noteValue, '\ncode blocks:\n', this.state.value ], {
+				type: 'text/plain'
+			});
+			element.href = window.URL.createObjectURL(file);
+			element.download = `${this.state.currentCodeTitle}.txt`;
+			document.body.appendChild(element);
+			element.click();
+		} else {
+			this.notifyDownload();
+		}
 	};
 
 	render() {
+		// console.log('whats here?', this.props.noteValue);
 		return (
 			<div>
 				{this.props.codes ? (
@@ -219,6 +227,7 @@ class Code extends Component {
 					<div className="progress indeterminate" />
 				)}
 				<React.Fragment>
+					<ToastContainer enableMultiContainer containerId={'E'} transition={Bounce} autoClose={2000} />
 					<div className="dropdown-container">
 						<Icon className="setting" onClick={this.export} data-tip="export" icon={download2} />
 						<div className="dropdown">
