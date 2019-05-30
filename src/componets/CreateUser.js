@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-const URL = 'http://localhost:3000';
+const URL = 'https://dev-note-backend.herokuapp.com';
+// const URL = 'http://localhost:3000';
 
 class CreateUser extends Component {
 	state = {

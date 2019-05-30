@@ -32,6 +32,9 @@ import { copy } from 'react-icons-kit/icomoon/copy';
 // import { link } from 'react-icons-kit/fa/link';
 import Plain from 'slate-plain-serializer';
 
+const URL = 'https://dev-note-backend.herokuapp.com';
+// const URL = 'http://localhost:3000';
+
 const initialValue = Value.fromJSON({
 	document: {
 		nodes: [
@@ -84,7 +87,7 @@ class NoteEditor extends Component {
 
 	//Read exiting notes  -- base off which user is logging in from their userId
 	getNote = (noteId) => {
-		fetch('http://localhost:3000/notes/' + `${noteId}`).then((response) => response.json()).then((json) => {
+		fetch(`${URL}/notes/${noteId}`).then((response) => response.json()).then((json) => {
 			if (JSON.parse(json.note_value)) {
 				const existingValue = Value.fromJSON(JSON.parse(json.note_value));
 				this.setState({
@@ -124,7 +127,7 @@ class NoteEditor extends Component {
 
 	//create note
 	createNote = (noteContent, title) => {
-		fetch('http://localhost:3000/notes', {
+		fetch(`${URL}/notes`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json', Accepts: 'application/json' },
 			body: JSON.stringify({
@@ -147,7 +150,7 @@ class NoteEditor extends Component {
 
 	//update notes
 	saveNote = (noteId, noteContent, title) => {
-		fetch(`http://localhost:3000/notes/${noteId}`, {
+		fetch(`${URL}/notes/${noteId}`, {
 			method: 'PATCH',
 			headers: { 'Content-Type': 'application/json', Accepts: 'application/json' },
 			body: JSON.stringify({
