@@ -10,6 +10,8 @@ import Modal from 'react-responsive-modal';
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const URL = 'https://dev-note-backend.herokuapp.com';
+
 export default class UserNav extends Component {
 	state = {
 		open: false,
