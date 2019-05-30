@@ -1,68 +1,86 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img src="https://my-devnote.herokuapp.com/devNote.png" />
+</p>
+<p align="center">
+  <a href="#contributors">
+    <img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="All Contributors" />
+  </a>
+  <a href="">
+    <img src="" />
 
-## Available Scripts
+## Introduction
 
-In the project directory, you can run:
+You know 
 
-### `npm start`
+ - Most note-taking apps aren’t designed with programmers in mind
+ - they can be so difficult to use that they drive you to give up on   
+   notes entirely.
+ - Taking notes should not be difficult and time consuming. Should be
+   easy and simple
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Visit [my-devnote.herokuapp.com]([https://my-devnote.herokuapp.com/](https://my-devnote.herokuapp.com/)) or watch [this demo](https://youtube/victoriamei) to learn more about the project.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Features
 
-### `npm test`
+-  **Authentications For Users**. Simply create an account with password to log in.
+- **Create, Update, Delete Notes with Rich Text Editor**. Simply create an account and log into our landing page
+- **Auto Saving**. Auto saving, currently set to auto save after 5 seconds stop typing on editors.
+- **Code Snippet Syntax highlights with Coding Languages**. Customize your coding languages and themes on your coding snippet sandbox.
+- **Exporting Notes and Codes**. download your codes and notes with one click
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Example
 
-### `npm run build`
+<p align="center"><img width=100% src="https://my-devnote.herokuapp.com/devNote.png">place holder for examples</p>
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Usage
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+#### Import
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+There are a few different ways to import code into Carbon:
 
-### `npm run eject`
+- Drop a file onto the editor
+- Append a GitHub gist id to the url (e.g. `carbon.now.sh/GIST_ID_HERE`)
+- Paste your code directly
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Customization
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Once you've got all of your code into Carbon, you can customize your image by changing the syntax theme, background color, window theme, or padding.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Export/Sharing
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+After you've customized your image you can either Tweet a link to the image, or save it directly.
 
-## Learn More
+If you include a Carbon image in a post, the source code will be invisible for assistive technology, it will not be possible to enlarge it or copy it, etc. Please, think about adding another element with the source code as text, like an [HTML Details Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) below the image.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Community
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Check out these projects our awesome community has created:
 
-### Code Splitting
+##### Plugins
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- [`react-toastify`](https://plugins.jetbrains.com/plugin/10469-carbon-now-sh) - Open up the selection in your current IntelliJ IDEA file in Carbon through a context menu
+- [ `react-icons-kit`](https://atom.io/packages/carbon-now-sh) - Open up your current Atom file in Carbon with `shift-cmd-A`
+- [`react-dropdown`](https://marketplace.visualstudio.com/items?itemName=ericadamski.carbon-now-sh) - Open up your current VS Code file in Carbon with command `carbon`
 
-### Analyzing the Bundle Size
+##### Libraries
+- `slate`]([https://github.com/ianstormtaylor/slate](https://github.com/ianstormtaylor/slate)) - A completely customizable framework for building rich text editors.
+- `react-ace`](https://github.com/securingsincity/react-ace) - React Ace Component for Syntax highlights
+- `react-ace`](https://github.com/securingsincity/react-ace) - React Ace Component for Syntax highlights
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+##### Technologies
 
-### Making a Progressive Web App
+-  `JWT Auth`](https://yonicd.github.io/carbonate/) - Iteratively manipulate image aesthetics in 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## FeedBack
+Creating issues on Github are welcome. Also please leave feedback emails for design suggestions and more!
 
-### Advanced Configuration
+## Thanks To
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+[ HEROKU ](https://www.heroku.com) for free hosting.
 
-### Deployment
+## Authors
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+devNote is a project by <a href="https://linktr.ee/vickysdailystandup">VickysDailyStandup</a>
 
-### `npm run build` fails to minify
+- Victoria Mei ([@DailyVickys](hhttps://twitter.com/DailyVickys), [@vickysdailystandup]([@DailyVickys](hhttps://twitter.com/DailyVickys)))
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
