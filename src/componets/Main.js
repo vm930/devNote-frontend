@@ -5,6 +5,9 @@ import Code from './Code';
 import Note from './Note';
 import UserNav from './UserNav';
 
+const URL = 'https://dev-note-backend.herokuapp.com';
+// const URL = 'http://localhost:3000';
+
 export default class Main extends Component {
 	state = {
 		codes: null,
@@ -31,7 +34,7 @@ export default class Main extends Component {
 
 	getCodeSnippet = (noteId) => {
 		if (noteId) {
-			fetch(`http://localhost:3000/notes/${noteId}`).then((res) => res.json()).then((note) => {
+			fetch(`${URL}/notes/${noteId}`).then((res) => res.json()).then((note) => {
 				this.setState({
 					codes: note.codes
 				});

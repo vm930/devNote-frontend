@@ -39,7 +39,8 @@ import 'brace/theme/github';
 import 'brace/theme/tomorrow';
 import 'brace/theme/solarized_dark';
 
-const URL = 'http://localhost:3000';
+const URL = 'https://dev-note-backend.herokuapp.com';
+// const URL = 'http://localhost:3000';
 
 const LANGUAGES = [
 	'javascript',

@@ -10,8 +10,6 @@ import Modal from 'react-responsive-modal';
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const URL = 'http://localhost:3000';
-
 export default class UserNav extends Component {
 	state = {
 		open: false,

@@ -7,6 +7,9 @@ import LogIn from './componets/LogIn';
 import CreateUser from './componets/CreateUser';
 import Welcome from './componets/Welcome';
 
+const URL = 'https://dev-note-backend.herokuapp.com';
+// const URL = 'http://localhost:3000';
+
 class App extends Component {
 	state = {
 		currentUser: null,
@@ -22,7 +25,7 @@ class App extends Component {
 		const token = localStorage.getItem('token');
 		const userId = localStorage.getItem('id');
 		if (token) {
-			fetch(`http://localhost:3000/users/${userId}`).then((res) => res.json()).then((json) => {
+			fetch(`${URL}/users/${userId}`).then((res) => res.json()).then((json) => {
 				this.setState({
 					currentUser: json,
 					currentUserId: json.id,
@@ -46,7 +49,7 @@ class App extends Component {
 	};
 
 	getUser = (username, password) => {
-		fetch('http://localhost:3000/login/', {
+		fetch(`${URL}/login/`, {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',
@@ -65,7 +68,7 @@ class App extends Component {
 					console.log('errors');
 					this.props.history.push('/login');
 				} else {
-					// console.log(json.user);
+					// console.log(json);
 					if (json.user.id) {
 						localStorage.setItem('token', json.jwt);
 						localStorage.setItem('username', json.user.user_name);
@@ -82,7 +85,7 @@ class App extends Component {
 	};
 
 	getCurrentUser = (userid) => {
-		fetch(`http://localhost:3000/users/${userid}`).then((res) => res.json()).then((json) => {
+		fetch(`${URL}/users/${userid}`).then((res) => res.json()).then((json) => {
 			this.setState({
 				currentUser: json,
 				currentUserId: json.id,
@@ -118,7 +121,7 @@ class App extends Component {
 		});
 		//update the backend
 
-		fetch(`http://localhost:3000/notes/${deleteNoteId}`, {
+		fetch(`${URL}/notes/${deleteNoteId}`, {
 			method: 'DELETE'
 		});
 	};
