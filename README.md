@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://my-devnote.herokuapp.com/devNote.png" />
+  <img src="devNote.png" />
 </p>
 <p align="center">
   <a href="#contributors">
@@ -30,7 +30,7 @@ Visit [my-devnote.herokuapp.com]([https://my-devnote.herokuapp.com/](https://my-
 
 ## Example
 
-<p align="center"><img width=100% src="https://my-devnote.herokuapp.com/devNote.png">place holder for examples</p>
+<p align="center"><img width=100% src="devNote.png">place holder for examples</p>
 
 ## Usage
 
