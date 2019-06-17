@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="devNote.png" />
+  <img src="./public/devNote.png" />
 </p>
 <p align="center">
   <a href="#contributors">
-    <img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="All Contributors" />
+       <img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="All Contributors" />
   </a>
   <a href="">
     <img src="" />
@@ -13,8 +13,7 @@
 You know 
 
  - Most note-taking apps aren’t designed with programmers in mind
- - they can be so difficult to use that they drive you to give up on   
-   notes entirely.
+ - they can be so difficult to use that they drive you to give up on notes entirely.
  - Taking notes should not be difficult and time consuming. Should be
    easy and simple
 
@@ -28,48 +27,54 @@ Visit [my-devnote.herokuapp.com]([https://my-devnote.herokuapp.com/](https://my-
 - **Code Snippet Syntax highlights with Coding Languages**. Customize your coding languages and themes on your coding snippet sandbox.
 - **Exporting Notes and Codes**. download your codes and notes with one click
 
+## WireFrame
+
+<p align="center"><img width=100% src="./public/wireframe.png">WireFrame</p>
+
 ## Example
 
-<p align="center"><img width=100% src="devNote.png">place holder for examples</p>
+<p align="center"><img width=100% src="./public/note-demo.png">Main Note & Code taking page after sign in.</p>
 
 ## Usage
 
-#### Import
+#### Note Taking with Rich Text Editor
 
-There are a few different ways to import code into Carbon:
+There are a few highlights of taking notes with devNote text editor:
+- Users can read, create, edit, delete notes and code snippets according to their needs.
+- Auto saving feature trigger at every 5 seconds after user finish typing.
+- Rich text editibility and custom buttons that open to GitHub and Google pages.
 
-- Drop a file onto the editor
-- Append a GitHub gist id to the url (e.g. `carbon.now.sh/GIST_ID_HERE`)
-- Paste your code directly
+#### Customization of Code Snippets
 
-#### Customization
-
-Once you've got all of your code into Carbon, you can customize your image by changing the syntax theme, background color, window theme, or padding.
+After you've typed your block of codes in code snippets, you can customize your image by changing the syntax for that languages, theme color.
 
 #### Export/Sharing
 
-After you've customized your image you can either Tweet a link to the image, or save it directly.
+After you've customized your notes and code snippets,you can click on download button to export either just the block of code out as text file or you can add the notes along with the code snippets by clicking the copy button and share it else where.
 
-If you include a Carbon image in a post, the source code will be invisible for assistive technology, it will not be possible to enlarge it or copy it, etc. Please, think about adding another element with the source code as text, like an [HTML Details Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) below the image.
 
-## Community
+##### Technologies
 
-Check out these projects our awesome community has created:
+-  [`JWT Auth`](https://jwt.io/) - JSON web token 
+
+-  [`React`](https://reactjs.org/) - Front End 
+
+-  [`Ruby on Rails`](https://rubyonrails.org/) - Backend
+
+-  [`Custom Css Styling`](https://developer.mozilla.org/en-US/docs/Web/CSS) 
+
 
 ##### Plugins
 
-- [`react-toastify`](https://plugins.jetbrains.com/plugin/10469-carbon-now-sh) - Open up the selection in your current IntelliJ IDEA file in Carbon through a context menu
-- [ `react-icons-kit`](https://atom.io/packages/carbon-now-sh) - Open up your current Atom file in Carbon with `shift-cmd-A`
-- [`react-dropdown`](https://marketplace.visualstudio.com/items?itemName=ericadamski.carbon-now-sh) - Open up your current VS Code file in Carbon with command `carbon`
+- [`react-toastify`]("https://www.npmjs.com/package/react-toastify/v/1.4.3") 
+- [ `react-icons-kit`](https://www.npmjs.com/package/react-icons-kit) 
+- [`react-dropdown`](https://www.npmjs.com/package/react-dropdown)
 
 ##### Libraries
 - `slate`]([https://github.com/ianstormtaylor/slate](https://github.com/ianstormtaylor/slate)) - A completely customizable framework for building rich text editors.
 - `react-ace`](https://github.com/securingsincity/react-ace) - React Ace Component for Syntax highlights
 - `react-ace`](https://github.com/securingsincity/react-ace) - React Ace Component for Syntax highlights
 
-##### Technologies
-
--  `JWT Auth`](https://yonicd.github.io/carbonate/) - Iteratively manipulate image aesthetics in 
 
 ## FeedBack
 Creating issues on Github are welcome. Also please leave feedback emails for design suggestions and more!
@@ -80,7 +85,7 @@ Creating issues on Github are welcome. Also please leave feedback emails for des
 
 ## Authors
 
-devNote is a project by <a href="https://linktr.ee/vickysdailystandup">VickysDailyStandup</a>
+devNote is a project by <a href="https://victoriamei.com">VickysDailyStandup</a>
 
-- Victoria Mei ([@DailyVickys](hhttps://twitter.com/DailyVickys), [@vickysdailystandup]([@DailyVickys](hhttps://twitter.com/DailyVickys)))
+- Social Media ([@DailyVickys](https://www.instagram.com/vickysdailystandup/), [@vickysdailystandup]([@DailyVickys](hhttps://twitter.com/DailyVickys)))
 
