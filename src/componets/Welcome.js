@@ -25,8 +25,7 @@ class Welcome extends Component {
 				<div className="main-content
 				">
 					<div className="project-showcase">
-						place holder
-						<img src="" alt="project here" />
+						<img src="note-demo.png" alt="project demo display" />
 					</div>
 				</div>
 				<footer className="page-footer">
@@ -44,7 +43,7 @@ class Welcome extends Component {
 					<p className="footer-project">
 						{' '}
 						a project by{' '}
-						<a className="Vicky" href="https://linktr.ee/vickysdailystandup" target="_blank">
+						<a className="Vicky" href="https://victoriamei.com" target="_blank">
 							{' '}
 							VickysDailyStandup
 						</a>
