@@ -46,7 +46,7 @@ const initialValue = Value.fromJSON({
 						object: 'text',
 						leaves: [
 							{
-								text: 'Write Your Notes Here'
+								text: ''
 							}
 						]
 					}
