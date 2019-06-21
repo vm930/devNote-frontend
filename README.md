@@ -17,7 +17,7 @@ You know
  - Taking notes should not be difficult and time consuming. Should be
    easy and simple
 
-Visit [my-devnote.herokuapp.com]([https://my-devnote.herokuapp.com/](https://my-devnote.herokuapp.com/)) or watch [this demo](https://youtube/victoriamei) to learn more about the project.
+Visit [my-devnote.herokuapp.com]([https://my-devnote.herokuapp.com/](https://my-devnote.herokuapp.com/)) or watch [this demo](https://youtu.be/2wYDOWPsMhw) to learn more about the project.
 
 ## Features
 
@@ -73,8 +73,6 @@ After you've customized your notes and code snippets,you can click on download b
 ##### Libraries
 - `slate`]([https://github.com/ianstormtaylor/slate](https://github.com/ianstormtaylor/slate)) - A completely customizable framework for building rich text editors.
 - `react-ace`](https://github.com/securingsincity/react-ace) - React Ace Component for Syntax highlights
-- `react-ace`](https://github.com/securingsincity/react-ace) - React Ace Component for Syntax highlights
-
 
 ## FeedBack
 Creating issues on Github are welcome. Also please leave feedback emails for design suggestions and more!
@@ -85,7 +83,7 @@ Creating issues on Github are welcome. Also please leave feedback emails for des
 
 ## Authors
 
-devNote is a project by <a href="https://victoriamei.com">VickysDailyStandup</a>
+devNote is a project by <a href="https://victoriamei.com">Victoria Mei - VickysDailyStandup</a>
 
 - Social Media ([@DailyVickys](https://www.instagram.com/vickysdailystandup/), [@vickysdailystandup]([@DailyVickys](hhttps://twitter.com/DailyVickys)))
 
